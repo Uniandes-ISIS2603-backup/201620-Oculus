@@ -1,5 +1,6 @@
 # Oculus
-Seccion de laboratorio
-
+<b>Seccion de laboratorio</b>
+<br>
 INTEGRANTES
-nombre - login - Si es lider poner un '*' o escribir "lider". Sino no se pone nada
+<br>
+(nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada)
