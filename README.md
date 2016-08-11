@@ -5,9 +5,9 @@
 <b>INTEGRANTES</b>
 <br>
 
-1. (nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada) <br>
-2. (nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada) <br>
-3. (nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada) <br>
-4. (nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada) <br>
-5. (nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada) <br>
-6. (nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada) <br>
+1. German Camilo Andrade Mayorga  -   gc.andrade10 - lider <br>
+2. Ana María Espinosa Chaparro    -   am.espinosa11 - <br>
+3. Fabio Andres Lopez Corredor    -   fa.lopez1 - <br>
+4. Sneider Velandia Gonzalez      -   e.velandia2164 - <br>
+5. Ana Camila Fandiño             -   ac.fandino10 
+
