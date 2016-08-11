@@ -1,8 +1,8 @@
 <b>Oculus</b>
-<br>
-<u>Seccion de laboratorio </u> = 
-<br>
-<u>INTEGRANTES</u>
+<br><br>
+<b>Seccion (numero de seccion o dia) </b> 
+<br><br>
+<b>INTEGRANTES</b>
 <br>
 
 1. (nombre) - (login) - (Si es lider poner un '*' o escribir "lider". Sino no se pone nada) <br>
