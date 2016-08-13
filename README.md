@@ -1,6 +1,6 @@
-<b>Oculus</b>
+﻿<b>Oculus</b>
 <br><br>
-<b>Seccion (numero de seccion o dia) </b> 
+<b>Seccion miércoles </b> 
 <br><br>
 <b>INTEGRANTES</b>
 <br>
