@@ -1,6 +1,6 @@
-co\edu\uniandes\rest\cities\resources\CityResource.class
-co\edu\uniandes\rest\cities\dtos\CityDTO.class
-co\edu\uniandes\rest\cities\exceptions\CityLogicException.class
-co\edu\uniandes\rest\cities\mappers\CityLogicExceptionMapper.class
-co\edu\uniandes\rest\cities\mocks\CityLogicMock.class
-co\edu\uniandes\rest\cities\resources\RestConfig.class
+co\edu\uniandes\rest\exceptions\CityLogicException.class
+co\edu\uniandes\rest\mappers\CityLogicExceptionMapper.class
+co\edu\uniandes\rest\resources\RestConfig.class
+co\edu\uniandes\rest\dtos\EquipoDTO.class
+co\edu\uniandes\rest\mocks\EquipoLogicMock.class
+co\edu\uniandes\rest\resources\EquipoResource.class
