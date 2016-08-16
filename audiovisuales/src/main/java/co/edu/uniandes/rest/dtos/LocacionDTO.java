@@ -21,6 +21,8 @@ public class LocacionDTO
 {
     private String ubicacion;
     
+    private Long id;
+    
     /**
      * Constructor por defecto
      */
@@ -32,9 +34,10 @@ public class LocacionDTO
      * Constructor 
      * @param pUbicacion edificio de ubicacion
      */
-    public LocacionDTO(String pUbicacion) 
+    public LocacionDTO(Long pId,String pUbicacion) 
     {
       super();
+      this.id = pId;
       this.ubicacion = pUbicacion;
     }
     
@@ -50,13 +53,28 @@ public class LocacionDTO
      }
      
      /**
-     * @param ubicacion en la cual se encuentra
+     * @param pUbicacion en la cual se encuentra
      */
      public void setUbicacion(String pUbicacion)
      {
          this.ubicacion = pUbicacion;
      }
      
+     /**
+     * @return id
+     */
+     public Long getId()
+     {
+         return this.id;
+     }
+     
+      /**
+     * @param pId asignada
+     */
+     public void setId(Long pId)
+     {
+         this.id = pId;
+     }
      /**
      * Convierte el objeto a una cadena
      * @return 

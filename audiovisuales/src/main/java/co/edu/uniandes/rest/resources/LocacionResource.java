@@ -51,8 +51,8 @@ public class LocacionResource
      */
     @GET
     
-    @Path("{ubicacion: \\d+}")
-    public LocacionDTO getLocacion(@PathParam("ubicacion") String pUbic) throws CityLogicException 
+    @Path("{id: \\d+}")
+    public LocacionDTO getLocacion(@PathParam("id") Long pUbic) throws CityLogicException 
     {
             return locacionLogic.getLocacion(pUbic);
     }
@@ -79,8 +79,8 @@ public class LocacionResource
      * @throws CityLogicException excepciÃ³n retornada por la lÃ³gica
      */
     @PUT
-    @Path("{ubicacion: \\d+}")
-    public LocacionDTO updateCity(@PathParam("ubicacion") String pUbic, LocacionDTO pLoc) throws CityLogicException 
+    @Path("{id: \\d+}")
+    public LocacionDTO updateLocacion(@PathParam("id") Long pUbic, LocacionDTO pLoc) throws CityLogicException 
     {
             logger.info("PUT");
             return locacionLogic.updateLocacion(pUbic,pLoc);
@@ -88,13 +88,13 @@ public class LocacionResource
     
    /**
      *Borra la locacion identificada con la ubicacion
-     * @param pUbic ubicacion de la locacion a eliminar
+     * @param pUbic id de la locacion a eliminar
      * @return Atributos de la instancia de Locacion
      * @throws CityLogicException excepciÃ³n retornada por la lÃ³gica
      */
     @DELETE
-    @Path("{ubicacion: \\d+}")
-    public void deleteEquipo(@PathParam("ubicacion") String pUbic) throws CityLogicException 
+    @Path("{id: \\d+}")
+    public void deleteLocacion(@PathParam("id") Long pUbic) throws CityLogicException 
     {
             logger.info("Trata de borrar");
             locacionLogic.deleteLocacion(pUbic);

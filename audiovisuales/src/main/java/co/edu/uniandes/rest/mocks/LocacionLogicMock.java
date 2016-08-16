@@ -33,10 +33,10 @@ public class LocacionLogicMock
 
     	if (locaciones == null) {
             locaciones = new ArrayList<>();
-            locaciones.add(new LocacionDTO("Mario Laserna"));
-            locaciones.add(new LocacionDTO("Julio Mario Santo Domingo"));
-            locaciones.add(new LocacionDTO("Aulas"));
-            locaciones.add(new LocacionDTO("Henri Yerly"));
+            locaciones.add(new LocacionDTO(1L,"Mario Laserna"));
+            locaciones.add(new LocacionDTO(2L,"Julio Mario Santo Domingo"));
+            locaciones.add(new LocacionDTO(3L,"Aulas"));
+            locaciones.add(new LocacionDTO(4L,"Henri Yerly"));
         }
         
     	// indica que se muestren todos los mensajes
@@ -73,44 +73,49 @@ public class LocacionLogicMock
     {
     	logger.info("recibiendo solicitud de agregar locacion " + newLocacion);
     	
-    	// la nueva locacion tiene ubicacion ?
-    	if ( newLocacion.getUbicacion() != null ) {
-	    	// busca la locacion con la ubicacion suministrada
+    	// la nueva locación tiene id ?
+    	if ( newLocacion.getId() != null ) {
+	    	// busca la locación con el id suministrado
 	        for (LocacionDTO locacion : locaciones) {
-	        	// si existe una locacion con esa ubicacion
-	            if (Objects.equals(locacion.getUbicacion(), newLocacion.getUbicacion()))
-                    {
-	            	logger.severe("Ya existe una locacion con esa ubicacion");
-	                throw new CityLogicException("Ya existe una locacion con esa ubicacion");
+	        	// si existe una locación con ese id
+	            if (Objects.equals(locacion.getId(), newLocacion.getId())){
+	            	logger.severe("Ya existe una locación con ese id");
+	                throw new CityLogicException("Ya existe una locación con ese id");
 	            }
 	        }
 	        
-	    // la locacion no tiene ubicacion 
+	    // la nueva locación no tiene id ? 
+    	} else {
+
+    		// genera un id para la locación
+    		logger.info("Generando id para la nueva locación");
+    		long newId = 1;
+	        for (LocacionDTO locacion : locaciones) {
+	            if (newId <= locacion.getId()){
+	                newId =  locacion.getId() + 1;
+	            }
+	        }
+	        newLocacion.setId(newId);
     	}
-      //  else
-        //{
-          //  logger.severe("La locación no tiene ubicación, no es posible agregar");
-	    //throw new CityLogicException("La locación no tiene ubicación, no es posible agregar");
-        //}
     	
-        // agrega la locacion
-    	logger.info("agregando locacion " + newLocacion);
+        // agrega la locación
+    	logger.info("agregando locación " + newLocacion);
         locaciones.add(newLocacion);
         return newLocacion;
     }
     
      /**
      *Borra la locacion con la ubicacion dada
-     * @param pUbicacion de la locacion a eliminar
+     * @param pId de la locacion a eliminar
      * @throws CityLogicException cuando no existe la lista en memoria 
      */
-    public void deleteLocacion(String pUbicacion) throws CityLogicException 
+    public void deleteLocacion(Long pId) throws CityLogicException 
     {
         boolean encontrado = false;
         int i = 0;
         while(i < locaciones.size() && !encontrado)
         {
-            if(locaciones.get(i).getUbicacion().equals(pUbicacion))
+            if(locaciones.get(i).getId() == pId)
             {
                 encontrado = true;
                 locaciones.remove(i);
@@ -127,18 +132,18 @@ public class LocacionLogicMock
     
     /**
 	 * Obtiene los atributos de una instancia de locacion con la ubicacion dada
-         * @param pUbicacion de la locacion a eliminar
+         * @param pId de la locacion a eliminar
 	 * @return Locacion
 	 * @throws CityLogicException cuando no existe la lista en memoria  
 	 */    
-    public LocacionDTO getLocacion(String pUbicacion) throws CityLogicException 
+    public LocacionDTO getLocacion(Long pId) throws CityLogicException 
     {
-        LocacionDTO retornar = new LocacionDTO("Sin ubicación");
+        LocacionDTO retornar = new LocacionDTO(0L,"Sin ubicación");
         boolean encontrado = false;
         int i = 0;
         while(i < locaciones.size() && !encontrado)
         {
-            if(locaciones.get(i).getUbicacion().equals(pUbicacion))
+            if(locaciones.get(i).getId() == pId)
             {
                 encontrado = true;
                 retornar = locaciones.get(i);
@@ -147,8 +152,8 @@ public class LocacionLogicMock
     }
         if(!encontrado)
         {
-            logger.severe("No existe una locacion con esa ubicacion");
-            throw new CityLogicException("No existe una locacion con esa ubicacion");
+            logger.severe("No existe una locación con esa ubicación");
+            throw new CityLogicException("No existe una locación con esa ubicación");
         }
         return retornar;
     
@@ -156,18 +161,18 @@ public class LocacionLogicMock
     
     /**
      * Actualiza la informaciÃ³n de la locacion con la nueva suministrada por parametro
-     * @param pUbicacion ubicacion de la locacion a modificar
+     * @param pId id de la locacion a modificar
      * @param pLoc nuevos datos de la locacion
      * @return locacion modificada
      */
-    public LocacionDTO updateLocacion(String pUbicaccion, LocacionDTO pLoc) throws CityLogicException 
+    public LocacionDTO updateLocacion(Long pId, LocacionDTO pLoc) throws CityLogicException 
     {
-        LocacionDTO modificar = new LocacionDTO("Sin ubicación");
+        LocacionDTO modificar = new LocacionDTO(0L,"Sin ubicación");
         boolean encontrado = false;
         int i = 0;
         while(i < locaciones.size() && !encontrado)
         {
-            if(locaciones.get(i).getUbicacion().equals(pUbicaccion))
+            if(locaciones.get(i).getId() == pId)
             {
                 encontrado = true;
                 modificar = locaciones.get(i);
