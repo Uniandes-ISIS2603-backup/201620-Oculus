@@ -1,6 +1,9 @@
-C:\Users\gc.andrade10\Documents\Oculus\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\RestConfig.java
-C:\Users\gc.andrade10\Documents\Oculus\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\EquipoDTO.java
-C:\Users\gc.andrade10\Documents\Oculus\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\EquipoLogicMock.java
-C:\Users\gc.andrade10\Documents\Oculus\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\EquipoResource.java
-C:\Users\gc.andrade10\Documents\Oculus\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\exceptions\CityLogicException.java
-C:\Users\gc.andrade10\Documents\Oculus\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mappers\CityLogicExceptionMapper.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\EquipoDTO.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\exceptions\CityLogicException.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mappers\CityLogicExceptionMapper.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\SolicitudDTO.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\EquipoResource.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\SolicitudLogicMock.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\EquipoLogicMock.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\RestConfig.java
+C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\SolicitudResource.java
