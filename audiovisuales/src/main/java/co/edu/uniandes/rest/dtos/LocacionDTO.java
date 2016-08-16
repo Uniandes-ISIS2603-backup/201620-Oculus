@@ -10,14 +10,24 @@ import java.util.logging.Logger;
 import co.edu.uniandes.rest.mocks.LocacionLogicMock;
 import java.util.logging.Level;
 
+
 /**
  *
  * @author am.espinosa11
  */
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 public class LocacionDTO 
 {
     private String ubicacion;
     
+    /**
+     * Constructor por defecto
+     */
+    public LocacionDTO()
+    {
+        
+    }
     /**
      * Constructor 
      * @param pUbicacion edificio de ubicacion
