@@ -1,9 +1,15 @@
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\EquipoDTO.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\exceptions\CityLogicException.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mappers\CityLogicExceptionMapper.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\SolicitudDTO.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\EquipoResource.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\SolicitudLogicMock.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\EquipoLogicMock.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\RestConfig.java
-C:\Users\fa.lopez10\Desktop\Proyectos\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\SolicitudResource.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\EquipoDTO.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\exceptions\CityLogicException.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\AdministradorLogicMock.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\SolicitudLogicMock.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\SolicitudDTO.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\AdministradorDTO.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\AdministradorResource.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\RestConfig.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\LocacionResource.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mappers\CityLogicExceptionMapper.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\EquipoResource.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\SolicitudResource.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\LocacionDTO.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\LocacionLogicMock.java
+C:\Users\Sneider Velandia G\Documents\NetBeansProjects\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\EquipoLogicMock.java
