@@ -65,7 +65,7 @@ public class AdministradorLogicMock
     {
     	logger.info("recibiendo solicitud de agregar administrador " + newAdmi);
     	// el nuevo administrador ya existe ?
-    	if ( newAdmi.getCodigo() != null ) 
+    	if ( newAdmi.getCodigo() != 0) 
         {
 	    	// busca el administrador con el codigo suministrado
 	        for (AdministradorDTO administra : administradores) 

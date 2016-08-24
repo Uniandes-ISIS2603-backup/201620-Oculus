@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class AdministradorDTO
 {
     private String nombre;
-    private Integer codigo;
+    private int codigo;
     private String login;
     
     //constructor 
@@ -39,7 +39,7 @@ public class AdministradorDTO
     {
         return nombre;
     }
-    public Integer getCodigo()
+    public int getCodigo()
     {
         return codigo;
     }
@@ -53,7 +53,7 @@ public class AdministradorDTO
     {
         this.nombre = nomb;
     }
-    public void setCodigo(Integer cod)
+    public void setCodigo(int cod)
     {
         this.codigo = cod;
     }
