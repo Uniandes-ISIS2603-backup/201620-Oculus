@@ -52,7 +52,7 @@ public class ProfesorResource
      * @throws CityLogicException 
      */
     @GET
-    @Path("{codigo: \\d+}")
+    @Path("{id: \\d+}")
     public ProfesorDTO getTeacher(@PathParam("id") int id) throws CityLogicException
     {
         return profesorLogic.findTeacher(id);
@@ -79,7 +79,7 @@ public class ProfesorResource
      * @throws CityLogicException 
      */
     @PUT
-    @Path("{codigo: \\d+}")
+    @Path("{id: \\d+}")
     public ProfesorDTO updateTeacher(@PathParam("id") Long id, ProfesorDTO profe) throws CityLogicException {
         
         logger.info("PUT");
@@ -93,7 +93,7 @@ public class ProfesorResource
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteTeacher(@PathParam("id") Long id) throws CityLogicException
+    public void deleteTeacher(@PathParam("id") int id) throws CityLogicException
     {
           logger.info("proceso: intentando borrar");
             profesorLogic.deleteTeacher(id);

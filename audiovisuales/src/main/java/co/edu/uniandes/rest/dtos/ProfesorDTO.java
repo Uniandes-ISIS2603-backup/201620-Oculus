@@ -11,7 +11,7 @@ package co.edu.uniandes.rest.dtos;
  */
 public class ProfesorDTO
 {
-    private Long id;
+    private int id;
     private String nombre;
     private String login;
     
@@ -28,7 +28,7 @@ public class ProfesorDTO
      * @param nombre
      * @param login 
      */
-    public ProfesorDTO(Long id, String nombre, String login)
+    public ProfesorDTO(int id, String nombre, String login)
     {
         super();
         this.id=id;
@@ -40,7 +40,7 @@ public class ProfesorDTO
      * Gets the id of the teacher
      * @return id
      */
-    public long getId()
+    public int getId()
     {
         return this.id;
     }
@@ -48,7 +48,7 @@ public class ProfesorDTO
      * Sets the id to the teacher
      * @param id 
      */
-    public void setId(Long id)
+    public void setId(int id)
     {
         this.id = id;
     }

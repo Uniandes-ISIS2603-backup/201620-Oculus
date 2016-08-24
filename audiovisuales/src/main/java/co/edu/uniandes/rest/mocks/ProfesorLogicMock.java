@@ -33,9 +33,9 @@ public class ProfesorLogicMock
         if (profesores == null)
         {
             profesores = new ArrayList<>();
-            profesores.add(new ProfesorDTO(1L, "Elba Sito", "Contasena"));
-            profesores.add(new ProfesorDTO(38L, "Elba Nano", "Clave123"));
-            profesores.add(new ProfesorDTO(3L, "Elba Arquito", "AmoAJustinBieber"));
+            profesores.add(new ProfesorDTO(1, "Elba Sito", "Contasena"));
+            profesores.add(new ProfesorDTO(2, "Elba Nano", "Clave123"));
+            profesores.add(new ProfesorDTO(3, "Elba Arquito", "AmoAJustinBieber"));
         }
         
     	logger.setLevel(Level.INFO);
@@ -87,7 +87,7 @@ public class ProfesorLogicMock
     	} else {
            
     		logger.info("proceso: generando id para el profesor");
-    		long newId = 1;
+    		int newId = 1;
 	        for (ProfesorDTO profesor : profesores)
                 {
 	            if (newId <= profesor.getId())
@@ -111,14 +111,14 @@ public class ProfesorLogicMock
      * @param id
      * @throws CityLogicException 
      */
-    public void deleteTeacher (Long id) throws CityLogicException
+    public void deleteTeacher (int id) throws CityLogicException
     {
         
         boolean encontrado = false;
         
         for (int i=0; i<profesores.size(); i++) 
         {
-            Long toCompare = ((ProfesorDTO)profesores.get(i)).getId();
+            int toCompare = ((ProfesorDTO)profesores.get(i)).getId();
             if(Objects.equals(toCompare, id))
             {
                 encontrado = true;
@@ -144,7 +144,7 @@ public class ProfesorLogicMock
         
         for (int i=0; i<profesores.size(); i++) 
         {
-            Long toCompare = ((ProfesorDTO)profesores.get(i)).getId();
+            int toCompare = ((ProfesorDTO)profesores.get(i)).getId();
             if(Objects.equals(toCompare, id))
             {
                 actual=(ProfesorDTO)profesores.get(i);
@@ -178,7 +178,7 @@ public class ProfesorLogicMock
         
         for (int i=0; i<profesores.size(); i++) 
         {
-            Long toCompare = ((ProfesorDTO)profesores.get(i)).getId();
+            int toCompare = ((ProfesorDTO)profesores.get(i)).getId();
             if(Objects.equals(toCompare, id))
             {
                 encontrado = true;
