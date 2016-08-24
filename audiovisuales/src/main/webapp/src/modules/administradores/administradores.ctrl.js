@@ -1,7 +1,7 @@
 (function (ng) {
-    var mod = ng.module("citiesModule");
+    var mod = ng.module("administradoresModule");
 
-    mod.controller("citiesCtrl", ['$scope', '$state', '$stateParams', '$http', 'citiesContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("administradoresCtrl", ['$scope', '$state', '$stateParams', '$http', 'administradoresContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de ciudades está vacio
             $scope.records = {};

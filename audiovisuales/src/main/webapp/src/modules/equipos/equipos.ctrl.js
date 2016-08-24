@@ -1,7 +1,7 @@
 (function (ng) {
-    var mod = ng.module("citiesModule");
+    var mod = ng.module("equiposModule");
 
-    mod.controller("citiesCtrl", ['$scope', '$state', '$stateParams', '$http', 'citiesContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("equiposCtrl", ['$scope', '$state', '$stateParams', '$http', 'equiposContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de ciudades está vacio
             $scope.records = {};
@@ -48,7 +48,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('citiesList');
+                            $state.go('equiposList');
                         }, responseError);
                         
                 // si el id no es null, es un registro existente entonces lo actualiza
@@ -59,7 +59,7 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('citiesList');
+                            $state.go('equiposList');
                         }, responseError);
                 };
             };

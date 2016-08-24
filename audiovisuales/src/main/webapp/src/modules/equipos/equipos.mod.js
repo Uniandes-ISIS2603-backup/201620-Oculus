@@ -1,39 +1,39 @@
 (function (ng) {
-    var mod = ng.module("citiesModule", ["ngMessages"]);
-    mod.constant("citiesContext", "api/cities");
+    var mod = ng.module("equiposModule", ["ngMessages"]);
+    mod.constant("equiposContext", "api/equipos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/cities/';
-            $urlRouterProvider.otherwise("/citiesList");
+            var basePath = 'src/modules/equipos/';
+            $urlRouterProvider.otherwise("/equiposList");
      
-            $stateProvider.state('citiesList', {
-                url: '/cities',
+            $stateProvider.state('equiposList', {
+                url: '/equipos',
                 views: {
                     'mainView': {
-                        controller: 'citiesCtrl',
+                        controller: 'equiposCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'cities.list.html'
+                        templateUrl: basePath + 'equipos.list.html'
                     }
                 }
             }).state('cityCreate', {
-                url: '/cities/create',
+                url: '/equipos/create',
                 views: {
                     'mainView': {
-                        controller: 'citiesCtrl',
+                        controller: 'equiposCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'cities.create.html'
+                        templateUrl: basePath + 'equipos.create.html'
                     }
                 }
 
             }).state('cityEdit', {
-                url: '/cities/:cityId',
+                url: '/equipos/:cityId',
                 param: {
                     cityId: null
                 },
                 views: {
                     'mainView': {
-                        controller: 'citiesCtrl',
+                        controller: 'equiposCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'cities.create.html'
+                        templateUrl: basePath + 'equipos.create.html'
                     }
                 }
             });

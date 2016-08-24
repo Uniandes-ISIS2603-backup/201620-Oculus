@@ -1,39 +1,39 @@
 (function (ng) {
-    var mod = ng.module("citiesModule", ["ngMessages"]);
-    mod.constant("citiesContext", "api/cities");
+    var mod = ng.module("profesorModule", ["ngMessages"]);
+    mod.constant("profesorContext", "api/profesor");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/cities/';
-            $urlRouterProvider.otherwise("/citiesList");
+            var basePath = 'src/modules/profesor/';
+            $urlRouterProvider.otherwise("/profesorList");
      
-            $stateProvider.state('citiesList', {
-                url: '/cities',
+            $stateProvider.state('profesorList', {
+                url: '/profesor',
                 views: {
                     'mainView': {
-                        controller: 'citiesCtrl',
+                        controller: 'profesorCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'cities.list.html'
+                        templateUrl: basePath + 'profesor.list.html'
                     }
                 }
             }).state('cityCreate', {
-                url: '/cities/create',
+                url: '/profesor/create',
                 views: {
                     'mainView': {
-                        controller: 'citiesCtrl',
+                        controller: 'profesorCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'cities.create.html'
+                        templateUrl: basePath + 'profesor.create.html'
                     }
                 }
 
             }).state('cityEdit', {
-                url: '/cities/:cityId',
+                url: '/profesor/:cityId',
                 param: {
                     cityId: null
                 },
                 views: {
                     'mainView': {
-                        controller: 'citiesCtrl',
+                        controller: 'profesorCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'cities.create.html'
+                        templateUrl: basePath + 'profesor.create.html'
                     }
                 }
             });
