@@ -6,6 +6,7 @@ C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\
 C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\EquipoLogicMock.java
 C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\AdministradorLogicMock.java
 C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\dtos\ProfesorDTO.java
+C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\exceptions\EquipoLogicException.java
 C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\resources\RestConfig.java
 C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mappers\CityLogicExceptionMapper.java
 C:\Users\gc.andrade10\Documents\nuevo\Oculus\audiovisuales\src\main\java\co\edu\uniandes\rest\mocks\ProfesorLogicMock.java

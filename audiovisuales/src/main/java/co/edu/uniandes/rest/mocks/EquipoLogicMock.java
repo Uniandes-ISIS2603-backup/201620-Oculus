@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 
 import co.edu.uniandes.rest.dtos.EquipoDTO;
-import co.edu.uniandes.rest.exceptions.CityLogicException;
+import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 
 /*
  * EquipoLogicMock
@@ -55,12 +55,12 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
 	/**
 	 * Obtiene el listado de equipos. 
 	 * @return lista de equipos
-	 * @throws CityLogicException cuando no existe la lista en memoria  
+	 * @throws EquipoLogicException cuando no existe la lista en memoria  
 	 */    
-    public List<EquipoDTO> getEquipos() throws CityLogicException {
+    public List<EquipoDTO> getEquipos() throws EquipoLogicException {
     	if (equipos == null) {
     		logger.severe("Error interno: lista de equipos no existe.");
-    		throw new CityLogicException("Error interno: lista de equipos no existe.");    		
+    		throw new EquipoLogicException("Error interno: lista de equipos no existe.");    		
     	}
     	
     	logger.info("retornando todos los equipos");
@@ -72,20 +72,20 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
     /**
      * Agrega un equipo a la lista.
      * @param newEquipo equipo a adicionar
-     * @throws CityLogicException cuando ya existe un equipo con el id suministrado
+     * @throws EquipoLogicException cuando ya existe un equipo con el id suministrado
      * @return equipo agregado
      */
-    public EquipoDTO createEquipo(EquipoDTO newEquipo) throws CityLogicException {
+    public EquipoDTO createEquipo(EquipoDTO newEquipo) throws EquipoLogicException {
     	logger.info("recibiendo solicitud de agregar equipo " + newEquipo);
     	
     	// el nuevo equipo tiene id ?
     	if ( newEquipo.getId() != null ) {
-	    	// busca la ciudad con el id suministrado
+	    	// busca el equipo con el id suministrado
 	        for (EquipoDTO equipo : equipos) {
-	        	// si existe una ciudad con ese id
+	        	// si existe un equipo con ese id
 	            if (Objects.equals(equipo.getId(), newEquipo.getId())){
 	            	logger.severe("Ya existe un equipo con ese id");
-	                throw new CityLogicException("Ya existe un equipo con ese id");
+	                throw new EquipoLogicException("Ya existe un equipo con ese id");
 	            }
 	        }
 	        
@@ -113,11 +113,11 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
     
      /**
      * Actualiza la informaciÃ³n del equipo identificado con id con la informaciÃ³n pasada por parÃ¡metro en equipo
-     * @param id id de la ciudad a modificar
-     * @param equipo nuevos datos de la ciudad
-     * @return ciudad modificada
+     * @param id id del equipo a modificar
+     * @param equipo nuevos datos del equipo
+     * @return equipo actualEquipo
      */
-    public EquipoDTO updateEquipo(Long id, EquipoDTO equipo) throws CityLogicException 
+    public EquipoDTO updateEquipo(Long id, EquipoDTO equipo) throws EquipoLogicException 
     {
          boolean encontrado =false;
          EquipoDTO actualEquipo = null;
@@ -133,7 +133,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
    if(!encontrado)
    {
        logger.severe("No existe un equipo con ese id");
-	                throw new CityLogicException("No existe un equipo con ese id");
+	                throw new EquipoLogicException("No existe un equipo con ese id");
    }
     	actualEquipo.setTipo(equipo.getTipo());
         actualEquipo.setId(equipo.getId());
@@ -147,7 +147,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
      *Borra el equipo identificado con el id dado
      * @param id id del equipo a eliminar
      */
-    public void deleteEquipo(Long id) throws CityLogicException 
+    public void deleteEquipo(Long id) throws EquipoLogicException 
     {
          boolean encontrado = false;
          EquipoDTO actualEquipo = null;
@@ -164,7 +164,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
         if(!encontrado)
         {
             logger.severe("No existe un equipo con ese id");
-	                throw new CityLogicException("No existe un equipo con ese id");
+	                throw new EquipoLogicException("No existe un equipo con ese id");
         }
 
     }
@@ -172,9 +172,9 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
     /**
 	 * Obtiene los atributos de una instancia de equipo con el id dado
 	 * @return Equipo
-	 * @throws CityLogicException cuando no existe la lista en memoria  
+	 * @throws EquipoLogicException cuando no existe la lista en memoria  
 	 */    
-    public EquipoDTO getEquipo( Long id) throws CityLogicException 
+    public EquipoDTO getEquipo( Long id) throws EquipoLogicException 
     {
         boolean encontrado =false;
          EquipoDTO actualEquipo = null;
@@ -189,11 +189,11 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
    }
    if(!encontrado)
    {
-       logger.severe("No existe una ciudad con ese id");
-	                throw new CityLogicException("No existe una ciudad con ese id");
+       logger.severe("No existe un equipo con ese id");
+	                throw new EquipoLogicException("No existe un equipo con ese id");
    }
     	
-    	logger.info("retornando la ciudad "+actualEquipo);
+    	logger.info("retornando el equipo "+actualEquipo);
     	return actualEquipo;
     }
 

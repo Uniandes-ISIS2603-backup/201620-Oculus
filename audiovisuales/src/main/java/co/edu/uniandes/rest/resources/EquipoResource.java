@@ -6,7 +6,7 @@
 package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.rest.dtos.EquipoDTO;
-import co.edu.uniandes.rest.exceptions.CityLogicException;
+import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.EquipoLogicMock;
 
 import java.util.List;
@@ -25,7 +25,7 @@ import javax.ws.rs.Produces;
  * Clase que implementa el recurso REST correspondiente a "equipos".
  *
  * Note que la aplicación (definida en RestConfig.java) define la ruta "/api" y
- * este recurso tiene la ruta "cities". Al ejecutar la aplicación, el recurse
+ * este recurso tiene la ruta "equipos". Al ejecutar la aplicación, el recurse
  * será accesibe a través de la ruta "/api/equipos"
  *
  * @author German Andrade
@@ -43,22 +43,22 @@ public class EquipoResource
      * Obtiene el listado de equipos.
      *
      * @return lista de equipos
-     * @throws CityLogicException excepción retornada por la lógica
+     * @throws EquipoLogicException excepción retornada por la lógica
      */
     @GET // metodo
-    public List<EquipoDTO> getEquipos() throws CityLogicException 
+    public List<EquipoDTO> getEquipos() throws EquipoLogicException 
     {
         return equipoLogic.getEquipos();
     }
 
     /**
-     *Obtiene los atributos de una instancia de City (READ) que tiene identificado id
-     * @return Atributos de la instancia de City
-     * @throws CityLogicException excepciÃ³n retornada por la lÃ³gica
+     *Obtiene los atributos de una instancia de Equipo (READ) que tiene identificado id
+     * @return Atributos de la instancia de Equipo
+     * @throws EquipoLogicException excepción retornada por la lógica
      */
     @GET
     @Path("{id: \\d+}")
-    public EquipoDTO getCity(@PathParam("id") Long id) throws CityLogicException 
+    public EquipoDTO getEquipo(@PathParam("id") Long id) throws EquipoLogicException 
     {
             return equipoLogic.getEquipo(id);
     }
@@ -69,11 +69,11 @@ public class EquipoResource
      *
      * @param equipo ciudad a agregar
      * @return datos del  equipo a agregar
-     * @throws CityLogicException cuando ya existe un equipo con el id
+     * @throws EquipoLogicException cuando ya existe un equipo con el id
      * suministrado
      */
     @POST //metodo no importa el nombre del método la anotación es la que utiliza el servidor
-    public EquipoDTO createEquipo(EquipoDTO equipo) throws CityLogicException 
+    public EquipoDTO createEquipo(EquipoDTO equipo) throws EquipoLogicException 
     {
         //viene por un Json
         //Dto datos que manda el usuario
@@ -85,13 +85,13 @@ public class EquipoResource
      /**
      *Actualiza una instancia de la entidad Equipo (UPDATE)
      * @return Atributos de la instancia de Equipo
-     * @throws CityLogicException excepciÃ³n retornada por la lÃ³gica
+     * @throws EquipoLogicException excepciónn retornada por la lógica
      */
     @PUT
     @Path("{id: \\d+}")
-    public EquipoDTO updateCity(@PathParam("id") Long id, EquipoDTO equipo) throws CityLogicException 
+    public EquipoDTO updateCity(@PathParam("id") Long id, EquipoDTO equipo) throws EquipoLogicException 
     {
-            logger.info("PUTTTTTTTTTTTTTTTTTTT");
+            logger.info("Trata de hacer put");
             return equipoLogic.updateEquipo(id,equipo);
     }
     
@@ -99,11 +99,11 @@ public class EquipoResource
      *Borra el equipo identificado con id
      * @param id id de equipo a eliminar
      * @return Atributos de la instancia de Equipo
-     * @throws CityLogicException excepciÃ³n retornada por la lÃ³gica
+     * @throws EquipoLogicException excepciÃ³n retornada por la lógica
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteEquipo(@PathParam("id") Long id) throws CityLogicException 
+    public void deleteEquipo(@PathParam("id") Long id) throws EquipoLogicException 
     {
             logger.info("Trata de borrar");
             equipoLogic.deleteEquipo(id);
