@@ -33,9 +33,9 @@ public class ProfesorLogicMock
         if (profesores == null)
         {
             profesores = new ArrayList<>();
-            profesores.add(new ProfesorDTO(1, "Elba Sito", "Contasena"));
-            profesores.add(new ProfesorDTO(2, "Elba Nano", "Clave123"));
-            profesores.add(new ProfesorDTO(3, "Elba Arquito", "AmoAJustinBieber"));
+            profesores.add(new ProfesorDTO(1, "Juan Pablo Arjona", "Contasena"));
+            profesores.add(new ProfesorDTO(2, "Fernanda Velasquez", "Clave123"));
+            profesores.add(new ProfesorDTO(3, "Rogelio Diaz", "OtroLogin"));
         }
         
     	logger.setLevel(Level.INFO);
@@ -69,36 +69,27 @@ public class ProfesorLogicMock
      */
     public ProfesorDTO createProfesor(ProfesorDTO newTeacher) throws CityLogicException
     {
-    	logger.info("proceso: recibiendo solicitud para agregar profe " + newTeacher);
-    	
-    	if ( newTeacher.getId() != 0 )
+        
+    	//ProfesorDTO newTeacher = new ProfesorDTO(num, login, nom);
+    	logger.info("proceso: recibiendo solicitud para agregar profe " + newTeacher.getNombre());
+    	if ( newTeacher.getId() >= 0 )
         {
             
 	        for (ProfesorDTO profesor : profesores)
                 {
                     
-	            if (Objects.equals(profesor.getId(), newTeacher.getId()))
+	            if (profesor.getId()==newTeacher.getId())
                     {
 	            	logger.severe("Ya existe un profesor con ese id. Intente con otro, gracias");
 	                throw new CityLogicException("Ya existe un profesor con ese id. Intente con otro y disculpe los inconvenientes");
 	            }
 	        }
 	        
-    	} else {
-           
-    		logger.info("proceso: generando id para el profesor");
-    		int newId = 1;
-	        for (ProfesorDTO profesor : profesores)
-                {
-	            if (newId <= profesor.getId())
-                    {
-	                newId =  profesor.getId() + 1;
-	            }
-	        }
-	        newTeacher.setId(newId);
     	}
     	
-        // agrega la ciudad
+        
+    	logger.info("proceso: generando id para el profesor");
+	newTeacher.setId(profesores.size()+1);
     	logger.info("proceso: agregando profe " + newTeacher);
         profesores.add(newTeacher);
         return newTeacher;
@@ -170,33 +161,23 @@ public class ProfesorLogicMock
 
      
     
-    public ProfesorDTO updateInfo(Long id, ProfesorDTO profe) throws CityLogicException
+    public ProfesorDTO updateInfo(int id, ProfesorDTO profe) throws CityLogicException
     {
+        ProfesorDTO toReturn = findTeacher(id);
         
-        boolean encontrado = false;
-        ProfesorDTO actual = null;
-        
-        for (int i=0; i<profesores.size(); i++) 
+        if(toReturn==null) 
         {
-            int toCompare = ((ProfesorDTO)profesores.get(i)).getId();
-            if(Objects.equals(toCompare, id))
-            {
-                encontrado = true;
-                i=profesores.size();
-                actual=(ProfesorDTO)profesores.get(i);
-                //if(name!=null) actual.setNombre(name);
-                //if(contrasena!=null) actual.setLogin(contrasena);
-                logger.info("proceso: retornando el profesor "+ actual);
-                return actual;
-            }
+            logger.severe("proceso: no existe profesor con tal id");
+            throw new CityLogicException("No existe un profesor con ese id");
+            
+        }else{
+            profe.setId(id);
+            profesores.set(id-1, profe);
+            logger.info("proceso: retornando el profesor "+ ((ProfesorDTO)profesores.get(id-1)).getNombre());
         }
         
-        if(encontrado == false)
-        {
-          logger.severe("proceso: no existe profesor con tal id");
-	  throw new CityLogicException("No existe un profesor con ese id");
-        }
-        return actual;
+       
+            return findTeacher(id);
     }
     
 }

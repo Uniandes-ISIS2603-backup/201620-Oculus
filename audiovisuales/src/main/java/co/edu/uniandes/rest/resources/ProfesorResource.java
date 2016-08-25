@@ -80,7 +80,7 @@ public class ProfesorResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public ProfesorDTO updateTeacher(@PathParam("id") Long id, ProfesorDTO profe) throws CityLogicException {
+    public ProfesorDTO updateTeacher(@PathParam("id") int id, ProfesorDTO profe) throws CityLogicException {
         
         logger.info("PUT");
         return profesorLogic.updateInfo(id,profe);
