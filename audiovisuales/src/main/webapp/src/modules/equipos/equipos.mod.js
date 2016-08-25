@@ -1,0 +1,1 @@
+var mod = ng.module("equiposModule", ["ngMessages"]);
