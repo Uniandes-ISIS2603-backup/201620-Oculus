@@ -2,11 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Oculus</groupId> <!-- //nombre de la empresa-->   
-    <artifactId>audiovisuales</artifactId>           <!-- //nombre del componente --> 
+    <groupId>Oculus</groupId>                   <!-- //nombre de la empresa-->   
+    <artifactId>audiovisuales</artifactId>      <!-- //nombre del componente --> 
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging> <!-- //aplicacion web -->
+    <packaging>war</packaging>                  <!-- //aplicacion web -->
 
+    <!-- Nombre para el archivo ejecutable / el contexto en Glassfish -->
     <name>audiovisuales_Oculus</name>
 
     <properties>
@@ -14,7 +15,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
-   <dependencies>
+    <dependencies>
+        
+        <!-- Esta dependencia no se requiere - se incluye en Java EE -->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
@@ -22,19 +25,25 @@
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
-      <dependency>
-         <groupId>org.eclipse.persistence</groupId>
-         <artifactId>eclipselink</artifactId>
-         <version>2.5.2</version>
-         <scope>provided</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.eclipse.persistence</groupId>
-         <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-         <version>2.5.2</version>
-         <scope>provided</scope>
-      </dependency>
-      <dependency>
+        <!-- Esta dependencia no se requiere - se incluye en Java EE -->
+        <!-- solo se necesita si usan elementos no estándar -->
+        <dependency>
+           <groupId>org.eclipse.persistence</groupId>
+           <artifactId>eclipselink</artifactId>
+           <version>2.5.2</version>
+           <scope>provided</scope>
+        </dependency>
+        <!-- Esta dependencia no se requiere - se incluye en Java EE -->
+        <!-- solo se necesita si desean generar un JPA metamodel -->        
+        <dependency>
+           <groupId>org.eclipse.persistence</groupId>
+           <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+           <version>2.5.2</version>
+           <scope>provided</scope>
+        </dependency>
+        
+        
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId> <!-- //java en version 7 -->
             <version>7.0</version>
@@ -43,7 +52,8 @@
     </dependencies>
 
     <build>
-        <plugins>
+        <plugins>            
+            <!-- Configuración del compilador -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -56,6 +66,31 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
+            
+            <!-- Ejecuta "bower install" durante la compilación         -->
+            <!-- NOTA: bower debe estar en el PATH de los computadores -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>bower</executable>
+                    <arguments>
+                        <argument>install</argument>
+                    </arguments>
+                    <workingDirectory>${basedir}</workingDirectory>
+                </configuration>
+            </plugin>
+                        
+            <!-- Configuración del generador del war de la aplicación web -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -64,6 +99,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            <!-- Uso de librerías de Java EE que pueden faltar en el JDK -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
