@@ -17,7 +17,7 @@
     mod.constant("profesoresContext", "api/profesores");
 
     /**
-     * Generamos la configuracion del modulo creado según la arquitectura REST
+     * Generamos la configuracion del modulo creado
      */
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
                 
