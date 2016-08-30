@@ -1,32 +1,21 @@
 (function (ng) {
-    var mod = angular.module('equiposModule', ['ui.router']);
+    var mod = ng.module("equiposModule", ["ngMessages"]);
     mod.constant("equiposContext", "api/equipos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/equipos';
+            var basePath = 'src/modules/equipos/';
             $urlRouterProvider.otherwise("/equiposList");
-            
-            $stateProvider.state('equiposGet',{
-                url: "/equipos",
+     
+            $stateProvider.state('equiposList', {
+                url: '/equipos',
                 views: {
-                'mainView': {
-                    controller: 'equiposCtrl',
-                    controllerAs: 'ctrl',
-                    templateUrl: basePath + 'equipos.get.html'
+                    'mainView': {
+                        
+                        controller: 'equiposCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'equipos.list.html'
+                    }
                 }
-            }
-            }).state('solicitudGet',{
-                url: "/equipos/:solicitudId",
-                param: {
-                    cityId: null
-                },
-                views: {
-                'mainView': {
-                    controller: 'equiposCtrl',
-                    controllerAs: 'ctrl',
-                    templateUrl: basePath + 'equipos.getSolicitud.html'
-                }
-            }
-            }).state('solicitudCreate', {
+            }).state('equipoCreate', {
                 url: '/equipos/create',
                 views: {
                     'mainView': {
@@ -36,30 +25,18 @@
                     }
                 }
 
-            }).state('solicitudUpdate', {
-                url: '/equipos/update/:solicitudId',
+            }).state('EquipoEdit', {
+                url: '/cities/:cityId',
                 param: {
-                    solicitudId: null
+                    cityId: null
                 },
                 views: {
                     'mainView': {
                         controller: 'equiposCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'equipos.update.html'
-                    }
-                }
-            }).state('solicitudDelete', {
-                url: '/equipos/delete/:solicitudId',
-                param: {
-                    solicitudId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'equiposCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'equipos.delete.html'
+                        templateUrl: basePath + 'equipos.create.html'
                     }
                 }
             });
-    }]);
+        }]);
 })(window.angular);
