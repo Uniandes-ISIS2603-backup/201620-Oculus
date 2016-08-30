@@ -3,7 +3,7 @@
     mod.constant("solicitudesContext", "api/solicitudes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/solicitudes';
-            $urlRouterProvider.otherwise("/solicitudesList");
+            $urlRouterProvider.otherwise("/solicitudesGet");
             
             $stateProvider.state('solicitudesGet',{
                 url: "/solicitudes",
