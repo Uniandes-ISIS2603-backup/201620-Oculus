@@ -28,7 +28,7 @@
             {
 
                 $scope.currentRecord = {
-                    id: undefined 
+                    id: undefined ,
                     name: '' /*Tipo String*/,
                 };
               
