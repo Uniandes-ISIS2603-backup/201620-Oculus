@@ -1,6 +1,6 @@
 (function(ng){
     var mod = ng.module("administradoresModule", ['ui.router']);
-    mod.constant("Contexto de administradores","api/administradores");
+    mod.constant("administradoresContext","api/administradores");
     mode.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
             var direccionInicial='src/modules/administradores';
             $urlRouterProvide.otherwise("/listaAdministradores");
