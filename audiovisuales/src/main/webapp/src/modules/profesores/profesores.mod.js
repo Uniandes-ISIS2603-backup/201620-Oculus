@@ -35,7 +35,7 @@
                                 //Vista de prueba
                                 "vista1": {template: "Esta vista permite dejar un mensaje de prueba."},
                                 //Vista actual con controladores respectivos
-                                "vista2": {
+                                "mainView": {
                                     templateUrl: base+"profesores.html",
                                     controller: 'profesoresCtrl',
                                     controllerAs: 'ctrl',
@@ -54,7 +54,7 @@
                                 //Vista de prueba
                                 "vista1": {template: "Esta vista permite dejar un mensaje de prueba."},
                                 //Vista actual con controladores respectivos
-                                "vista2": {
+                                "mainView": {
                                     templateUrl: base+"profesores.html",
                                     controller: 'profesoresCtrl',
                                     controllerAs: 'ctrl',
@@ -70,7 +70,7 @@
                                 //Vista de prueba
                                 "vista1": {template: "Esta vista permite dejar un mensaje de prueba."},
                                 //Vista actual con controladores respectivos
-                                "vista2": {
+                                "mainView": {
                                     templateUrl: base+"profesores.update.html",
                                     controller: 'profesoresCtrl',
                                     controllerAs: 'ctrl',
@@ -87,7 +87,7 @@
                                 //Vista de prueba
                                 "vista1": {template: "Esta vista permite dejar un mensaje de prueba."},
                                 //Vista actual con controladores respectivos
-                                "vista2": {
+                                "mainView": {
                                     templateUrl: base+"profesores.delete.html",
                                     controller: 'profesoresCtrl',
                                     controllerAs: 'ctrl',
@@ -102,7 +102,7 @@
                                 //Vista de prueba
                                 "vista1": {template: "Esta vista permite dejar un mensaje de prueba."},
                                 //Vista actual con controladores respectivos
-                                "vista2": {
+                                "mainView": {
                                     templateUrl: base+"profesores.create.html",
                                     controller: 'profesoresCtrl',
                                     controllerAs: 'ctrl',
