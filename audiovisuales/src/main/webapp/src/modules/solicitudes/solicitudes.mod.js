@@ -1,5 +1,5 @@
 var mod = angular.module('solicitudesModule', ['ui.router']);
-    mod.constant("citiesContext", "api/cities");
+    mod.constant("solicitudesContext", "api/solicitudes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/solicitudes';
             $urlRouterProvider.otherwise("/solicitudes");
