@@ -1,6 +1,6 @@
 (function(ng){
-    var mod = ng.module("locacionesModule", ["ngMessages"]);
-    mod.constant("Contexto de locaciones","api/locaciones");
+    var mod = ng.module("ModuloLocaciones", ["ngMessages"]);
+    mod.constant("ContextoDeLocaciones","api/locaciones");
     mode.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
             var direccionInicial ='src/modules/locaciones/';
             $urlRouterProvide.otherwise("/ListaLocaciones");
