@@ -9,7 +9,7 @@
                 url:'locaciones',
                 views: {
                     'mainView':{
-                        templateUrl: direccionInicial + 'locaciones.listaLocaciones.html'//Falta crear locaciones.listaLOcaciones.html
+                        templateUrl: direccionInicial + 'locaciones.listaLocaciones.html'//Falta crear locaciones.listaLocaciones.html
                         
                     } 
                 }
