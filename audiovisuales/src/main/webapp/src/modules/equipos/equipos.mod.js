@@ -1,11 +1,14 @@
-(function (ng) {
+(function (ng) 
+{
     var mod = ng.module("equiposModule", ["ngMessages"]);
     mod.constant("equiposContext", "api/equipos");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) 
+        {
             var basePath = 'src/modules/equipos/';
             $urlRouterProvider.otherwise("/equiposList");
      
-            $stateProvider.state('equiposList', {
+            $stateProvider.state('equiposList', 
+            {
                 url: '/equipos',
                 views: {
                     'mainView': {
