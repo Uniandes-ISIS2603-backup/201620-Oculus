@@ -2,14 +2,19 @@ Reservas de equipos
 
 Requerimientos basados en casos de uso:
 [Administrador]
-*Registrar un equipo 	(Agregar)
-*Registrar una locación	(Agregar)
-*Eliminar una locación
-*Eliminar una equipo
-*Cambiar características de un equipo
-*Recibir equipo de usuario
-*Entregar equipo a usuario
-*Reponder solicitud
+*Registrar un equipo 	(Agregar) 		Sneider
+*Registrar una locación	(Agregar)		Sneider
+*Eliminar una locación 				Camila
+*Eliminar una equipo				Camila
+*Cambiar características de un equipo 		Fabio
+*Recibir equipo de usuario			Fabio
+*Entregar equipo a usuario			Ana
+*Reponder solicitud				Ana
 [Usuario]
-*Solicitar reserva equipo.
-*Cancelar reserva
+*Solicitar reserva equipo.			German
+*Cancelar reserva				German
+
+
+Siguiendo los esquemas en https://csw-uniandes.gitbooks.io/desarrollo-de-software-en-equipos/content/temas/requerimientos/casosuso.html
+
+todos en genmy model
