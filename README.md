@@ -11,4 +11,4 @@
 | Ana María Espinosa Chaparro   | Líder de planeación           | am.espinosa11  | 
 | Fabio Andrés López Corredor   | Líder de soporte              | fa.lopez10     |
 | Sneider Velandia Gonzalez     | Líder de calidad              | e.velandia2164 | 
-| Ana Camila Fandiño            | Líde de diseño web            | ac.fandino10   |
+| Ana Camila Fandiño            | Líder de diseño web            | ac.fandino10   |
