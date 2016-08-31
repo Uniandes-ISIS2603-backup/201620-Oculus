@@ -5,10 +5,10 @@
 <b>INTEGRANTES</b>
 <br>
 
-| Nombre                        | Rol             | Correo         | 
-|-------------------------------|-----------------|----------------|
-| German Camilo Andrade Mayorga | Líder del grupo | gc.andrade10   | 
-| Ana María Espinosa Chaparro   |                 | am.espinosa11  | 
-| Fabio Andrés López Corredor   |                 | fa.lopez10     |
-| Sneider Velandia Gonzalez     |                 | e.velandia2164 | 
-| Ana Camila Fandiño            |                 | ac.fandino10   |
+| Nombre                        | Rol                           | Correo         | 
+|-------------------------------|-------------------------------|----------------|
+| German Camilo Andrade Mayorga | Líder del grupo/Desarrollo    | gc.andrade10   | 
+| Ana María Espinosa Chaparro   | Líder de planeación           | am.espinosa11  | 
+| Fabio Andrés López Corredor   | Líder de soporte              | fa.lopez10     |
+| Sneider Velandia Gonzalez     | Líder de calidad              | e.velandia2164 | 
+| Ana Camila Fandiño            | Líde de diseño web            | ac.fandino10   |
