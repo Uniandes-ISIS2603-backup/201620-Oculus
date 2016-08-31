@@ -1,7 +1,7 @@
 (function (ng) {
 
    var mod = ng.module("audiovisuales",
-   ["ui.router","ngMessages","equiposModule","administradoresModule","ProfesoresModule,","ModuloLocaciones","solicitudesModule"]);
+   ["ui.router","ngMessages","equiposModule"]);
 
     mod.config(['$logProvider', function ($logProvider) {
             $logProvider.debugEnabled(true);
@@ -13,3 +13,5 @@
 
   
 })(window.angular);
+//,"administradoresModule","ProfesoresModule,","ModuloLocaciones","solicitudesModule"
+//No cargan!!!

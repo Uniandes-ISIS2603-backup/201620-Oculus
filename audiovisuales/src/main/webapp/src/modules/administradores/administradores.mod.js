@@ -1,7 +1,7 @@
 (function(ng){
-    var mod = ng.module("administradoresModule", ['ui.router']);
+    var mod = ng.module("administradoresModule", ["ngMessages"]);
     mod.constant("administradoresContext","api/administradores");
-    mode.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+    mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
             var direccionInicial='src/modules/administradores';
             $urlRouterProvide.otherwise("/listaAdministradores");
             
