@@ -1,6 +1,6 @@
-var mod = ng.module("citiesModule");
+var mod = ng.module("ProfesoresModule");
 
-    mod.controller("citiesCtrl", ['$scope', '$state', '$stateParams', '$http', 'citiesContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("profesoresCtrl", ['$scope', '$state', '$stateParams', '$http', 'profesoresContext', function ($scope, $state, $stateParams, $http, context) {
 
             // Se inicializa el listado de profesores vacio 
             $scope.records = {};

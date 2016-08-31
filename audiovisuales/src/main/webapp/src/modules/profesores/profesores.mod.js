@@ -45,7 +45,7 @@
                         
                         //Se generan los estados para CRUD
                         
-                        .state('profesores.get', {
+                        .state('profesoresGet', {
                             url: "/profesores/:id",
                             param: { profeId: null},
                             views: {
@@ -61,7 +61,7 @@
                                 }
                             }
                         })
-                        .state('profesores.update', {
+                        .state('profesoresUpdate', {
                             url: "/profesores/update/:id",
                             param: { profeId: null},
                             views: {
@@ -78,7 +78,7 @@
                             }
                             
                         })
-                        .state('profesores.delete', {
+                        .state('profesoresDelete', {
                             url: "/profesores/delete/:id",
                             param: { profeId: null},
                             views: {
@@ -94,7 +94,7 @@
                                 }
                             }
                         })
-                        .state('profesores.create', {
+                        .state('profesoresCreate', {
                             url: "/profesores/create",
                             views: {
                                 //Caso Base: Vista no definida
