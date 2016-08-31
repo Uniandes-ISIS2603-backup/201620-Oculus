@@ -1,0 +1,15 @@
+Reservas de equipos
+
+Requerimientos basados en casos de uso:
+[Administrador]
+*Registrar un equipo 	(Agregar)
+*Registrar una locación	(Agregar)
+*Eliminar una locación
+*Eliminar una equipo
+*Cambiar características de un equipo
+*Recibir equipo de usuario
+*Entregar equipo a usuario
+*Reponder solicitud
+[Usuario]
+*Solicitar reserva equipo.
+*Cancelar reserva
