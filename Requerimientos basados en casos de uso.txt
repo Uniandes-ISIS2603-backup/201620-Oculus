@@ -3,14 +3,14 @@ Reservas de equipos
 Requerimientos basados en casos de uso:
 [Administrador]
 *Registrar un equipo 	(Agregar) 		Sneider
-*Registrar una locación	(Agregar)		Sneider
-*Eliminar una locación 				Camila
+*Registrar una locaciÃ³n	(Agregar)		Sneider
+*Eliminar una locaciÃ³n 				Camila
 *Eliminar una equipo				Camila
-*Cambiar características de un equipo 		Fabio
+*Cambiar caracterÃ­sticas de un equipo 		Fabio
 *Recibir equipo de usuario			Fabio
 *Entregar equipo a usuario			Ana
 *Reponder solicitud				Ana
-[Usuario]
+[Profesor]
 *Solicitar reserva equipo.			German
 *Cancelar reserva				German
 
