@@ -30,19 +30,6 @@
                     }
                 }
 
-            }).state('locacionDelete', {
-                url: '/locaciones/:locacionDelId',
-                param: {
-                    locacionDelId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'locacionesCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'locaciones.delete.html'
-                    }
-                }
-
             }).state('locacionEdit', {
                 url: '/locaciones/:locacionId',
                 param: {
@@ -55,6 +42,19 @@
                         templateUrl: basePath + 'locaciones.create.html'
                     }
                 }
+            }).state('locacionDelete', {
+                url: '/locaciones/delete/:locacionDelId',
+                param: {
+                    locacionDelId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'locacionesCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'locaciones.delete.html'
+                    }
+                }
+
             });
             
         }]);

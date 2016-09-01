@@ -9,15 +9,15 @@
 
     mod.controller("locacionesCtrl", ['$scope', '$state', '$stateParams', '$http', 'locacionesContext', function ($scope, $state, $stateParams, $http, context) {
 
-            // inicialmente el listado de ciudades está vacio
+            
             $scope.records = {};
-            // carga las ciudades
+           
             $http.get(context).then(function(response){
                 $scope.records = response.data;    
             }, responseError);
 
-            // el controlador recibió un cityId ??
-            // revisa los parámetros (ver el :cityId en la definición de la ruta)
+           
+           
             if ($stateParams.locacionId !== null && $stateParams.locacion !== undefined) {
                 
                 // toma el id del parámetro
@@ -30,7 +30,7 @@
                         $scope.currentRecord = response.data;
                     }, responseError);
 
-            // el controlador no recibió un cityId
+           
             } else
             {
                 // el registro actual debe estar vacio
@@ -54,7 +54,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('citiesList');
+                            $state.go('locacionesList');
                         }, responseError);
                         
                 // si el id no es null, es un registro existente entonces lo actualiza
@@ -65,7 +65,7 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('citiesList');
+                            $state.go('locacionesList');
                         }, responseError);
                 };
             };
