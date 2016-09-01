@@ -1,4 +1,5 @@
-(function (ng) {
+(function (ng) 
+{
     var mod = ng.module("solicitudesModule");
 
     mod.controller("solicitudesCtrl", ['$scope', '$state', '$stateParams', '$http', 'solicitudesContext', function ($scope, $state, $stateParams, $http, context) {

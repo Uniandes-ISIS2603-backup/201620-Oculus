@@ -1,6 +1,10 @@
-var mod = ng.module("profesoresModule");
+(function (ng) 
+{
+    var mod = ng.module("profesoresModule");
 
-    mod.controller("profesoresCtrl", ['$scope', '$state', '$stateParams', '$http', 'profesoresContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("profesoresCtrl", ['$scope', '$state', '$stateParams', 
+        '$http', 'profesoresContext', function ($scope, $state, $stateParams, $http, context) 
+        {
 
             // Se inicializa el listado de profesores vacio 
             $scope.records = {};
@@ -42,5 +46,8 @@ var mod = ng.module("profesoresModule");
                             $state.go('profesoresList');
                         }, responseError);
                 };
-            }   
-    }])(window.angular);
+            }  
+
+        }]);
+
+})(window.angular);
