@@ -1,60 +1,63 @@
-(function(ng){
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+(function (ng) {
     var mod = ng.module("administradoresModule", ["ngMessages"]);
-    mod.constant("administradoresContext","api/administradores");
-    mod.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-            var direccionInicial='src/modules/administradores';
-            $urlRouterProvide.otherwise("/listaAdministradores");
-            
-  $stateProvider.state('administradoresGet',{
-                url:'/administradores',
-                views: {
-                    'mainView':{
-                        controller: 'administradoresCtrl',
-                        controllerAd: 'ctrl',
-                        templateUrl: direccionInicial + 'administradores.get.html'//Falta crear 
-                    }
-                   }
-          }).state('administradorGet',{
-                url: "/administradores/:administradorId",
-                param: {administradorId: null},
+    mod.constant("administradoresContext", "api/administradores");
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            var basePath = 'src/modules/administradores/';
+            $urlRouterProvider.otherwise("/administradoresList");
+     
+            $stateProvider.state('administradoresList', {
+                url: '/administradores',
                 views: {
                     'mainView': {
                         controller: 'administradoresCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: direccionInicial + 'administradores.getAdministrador.html'
-                        }
-                       }
-          }).state('administradorCreate', {
+                        templateUrl: basePath + 'administradores.list.html'
+                    }
+                }
+            }).state('administradorCreate', {
                 url: '/administradores/create',
                 views: {
                     'mainView': {
                         controller: 'administradoresCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: direccionInicial + 'administradores.create.html'
-                        }
-                       }
-          }).state('administradorUpdate', {
-                url: '/administradores/update/:administradordId',
-                param: {administradorId: null},
+                        templateUrl: basePath + 'administraciones.create.html'
+                    }
+                }
+
+            }).state('administradorEdit', {
+                url: '/administradores/:administradorId',
+                param: {
+                    administradorId: null
+                },
                 views: {
                     'mainView': {
                         controller: 'administradoresCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: direccionInicial + 'administradores.update.html' 
+                        templateUrl: basePath + 'administradores.create.html'
                     }
-                   }
-          }).state('administradorDelete', {
+                }
+            }).state('administradorDelete', {
                 url: '/administradores/delete/:administradorId',
-                param: {administradorId: null},
+                param: {
+                    administradorId: null
+                },
                 views: {
                     'mainView': {
                         controller: 'administradoresCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: direccionInicial + 'administradores.delete.html' 
+                        templateUrl: basePath + 'administradores.delete.html'
                     }
-                   }
-            });  
-        }
-    ]);
-});
-(window.angular);
+                }
+
+            });
+            
+        }]);
+})(window.angular);
+
+

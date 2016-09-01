@@ -51,7 +51,7 @@
                     'mainView': {
                         controller: 'locacionesCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'locaciones.delete.html'
+                        templateUrl: basePath + 'administradores.delete.html'
                     }
                 }
 
