@@ -1,7 +1,7 @@
 (function (ng) {
 
    var mod = ng.module("audiovisuales",
-   ["ui.router","ngMessages","equiposModule","solicitudesModule","locacionesModule","administradoresModule"]);
+   ["ui.router","ngMessages","equiposModule","solicitudesModule","locacionesModule","administradoresModule","profesoresModule"]);
 
     mod.config(['$logProvider', function ($logProvider) {
             $logProvider.debugEnabled(true);

@@ -9,7 +9,7 @@
      * Se genera el modulo respectivo mod que maneje la funcionalidad de los profesores
      * @type angular.module.angular-1_3_6_L1749.moduleInstance
      */
-    var mod = angular.module('ProfesoresModule', ['ui.router']);
+    var mod = angular.module('profesoresModule', ['ui.router']);
     
     /**
      * Constantes
@@ -110,6 +110,6 @@
                             }
                         })
             }]);
-    });
+    })
     
 (window.angular);

@@ -1,4 +1,4 @@
-var mod = ng.module("ProfesoresModule");
+var mod = ng.module("profesoresModule");
 
     mod.controller("profesoresCtrl", ['$scope', '$state', '$stateParams', '$http', 'profesoresContext', function ($scope, $state, $stateParams, $http, context) {
 
