@@ -1,27 +1,39 @@
-(function(ng){
-  var mod = ng.module("ModuloLocaciones");
-  
-   mod.controller("locacionesCtrl", ['$scope', '$state', '$stateParams', '$http', 'contextoDeLocaciones', function ($scope, $state, $stateParams, $http, context) {
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+(function (ng) {
+    var mod = ng.module("locacionesModule");
+
+    mod.controller("locacionesCtrl", ['$scope', '$state', '$stateParams', '$http', 'locacionesContext', function ($scope, $state, $stateParams, $http, context) {
+
+            // inicialmente el listado de ciudades está vacio
             $scope.records = {};
-            
+            // carga las ciudades
             $http.get(context).then(function(response){
                 $scope.records = response.data;    
             }, responseError);
 
-           
-            if ($stateParams.locacionId !== null && $stateParams.locacionId !== undefined) {
+            // el controlador recibió un cityId ??
+            // revisa los parámetros (ver el :cityId en la definición de la ruta)
+            if ($stateParams.locacionId !== null && $stateParams.locacion !== undefined) {
                 
+                // toma el id del parámetro
                 id = $stateParams.locacionId;
-                
+                // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
-                    .then(function (response) 
-                    {
+                    .then(function (response) {
+                        // $http.get es una promesa
+                        // cuando llegue el dato, actualice currentRecord
                         $scope.currentRecord = response.data;
                     }, responseError);
 
+            // el controlador no recibió un cityId
             } else
             {
+                // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
@@ -34,36 +46,43 @@
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
                 
+                // si el id es null, es un registro nuevo, entonces lo crea
                 if (id == null) {
 
-                    // ejecuta POST 
+                    // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
-                        .then(function () 
-                {
-                            $state.go('ListaLocaciones');
+                        .then(function () {
+                            // $http.post es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('citiesList');
                         }, responseError);
                         
-                } else 
-                {  
-                    // ejecuta PUT 
+                // si el id no es null, es un registro existente entonces lo actualiza
+                } else {
+                    
+                    // ejecuta PUT en el recurso REST
                     return $http.put(context + "/" + currentRecord.id, currentRecord)
-                        .then(function () 
-                {
-                            $state.go('ListaCiudades');
+                        .then(function () {
+                            // $http.put es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('citiesList');
                         }, responseError);
                 };
             };
 
-            // -----------------------------------------------------------------
-            // Aqui se manejan los mensajes en la aplicación
 
+
+            // -----------------------------------------------------------------
+            // Funciones para manejra los mensajes en la aplicación
+
+
+            //Alertas
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
             };
 
             // Función showMessage: Recibe el mensaje en String y su tipo con el fin de almacenarlo en el array $scope.alerts.
-            function showMessage(msg, type) 
-            {
+            function showMessage(msg, type) {
                 var types = ["info", "danger", "warning", "success"];
                 if (types.some(function (rc) {
                     return type === rc;
@@ -86,7 +105,6 @@
                 self.showError(response.data);
             }
         }]);
-    
-})(window.angular);
 
+})(window.angular);
 

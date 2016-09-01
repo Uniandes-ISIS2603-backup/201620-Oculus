@@ -1,40 +1,62 @@
-(function(ng){
-    var mod = ng.module("ModuloLocaciones", ["ngMessages"]);
-    mod.constant("ContextoDeLocaciones","api/locaciones");
-    mode.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-            var direccionInicial ='src/modules/locaciones/';
-            $urlRouterProvide.otherwise("/ListaLocaciones");
-            
-            $stateProvider.state('ListaLocaciones',{
-                url:'locaciones',
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+(function (ng) {
+    var mod = ng.module("locacionesModule", ["ngMessages"]);
+    mod.constant("locacionesContext", "api/locaciones");
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            var basePath = 'src/modules/locaciones/';
+            $urlRouterProvider.otherwise("/locacionesList");
+     
+            $stateProvider.state('locacionesList', {
+                url: '/locaciones',
                 views: {
-                    'mainView':{
-                        templateUrl: direccionInicial + 'locaciones.listaLocaciones.html'//Falta crear locaciones.listaLocaciones.html
-                        
-                    } 
-                }
-                
-            }).state('CrearLocacion',{
-                url: 'crear',
-                views: {
-                    'mainView':{
-                        templateUrl: direccionInicial + 'locaciones.crearLocacion.html'//falta crear locaciones.crearLocacion.html
+                    'mainView': {
+                        controller: 'locacionesCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'locaciones.list.html'
                     }
                 }
-            }).state('EditarLocacion',{
-                url: 'locaciones/:locacionId',
-                param:{
-                    locacionId:null
+            }).state('locacionCreate', {
+                url: '/locaciones/create',
+                views: {
+                    'mainView': {
+                        controller: 'locacionesCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'locaciones.create.html'
+                    }
+                }
+
+            }).state('locacionDelete', {
+                url: '/locaciones/:locacionDelId',
+                param: {
+                    locacionDelId: null
                 },
-                views:{
-                'mainView':{
-                    templateUrl: direccionInicial + 'locaciones.crearLocacion.html'//Falta crear locaciones.crearLocacion.html
-                }   
+                views: {
+                    'mainView': {
+                        controller: 'locacionesCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'locaciones.delete.html'
+                    }
+                }
+
+            }).state('locacionEdit', {
+                url: '/locaciones/:locacionId',
+                param: {
+                    locacionId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'locacionesCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'locaciones.create.html'
+                    }
                 }
             });
             
-    }
-        
-    ]);
-});
-(window.angular);
+        }]);
+})(window.angular);
+
