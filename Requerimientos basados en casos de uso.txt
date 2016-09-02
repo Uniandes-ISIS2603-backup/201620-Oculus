@@ -7,8 +7,8 @@ Requerimientos basados en casos de uso:
 *Eliminar una locación 				Camila
 *Eliminar una equipo				Camila
 *Cambiar características de un equipo 		Fabio
-*Recibir equipo de usuario			Fabio
-*Entregar equipo a usuario			Ana
+*Recibir equipo de profesor			Fabio
+*Entregar equipo a profesor			Ana
 *Reponder solicitud				Ana
 [Profesor]
 *Solicitar reserva equipo.			German
