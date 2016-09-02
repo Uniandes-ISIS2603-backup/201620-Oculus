@@ -1,10 +1,9 @@
-(function (ng) {
+(function () {
     var mod = angular.module('solicitudesModule', ['ui.router']);
     mod.constant("solicitudesContext", "api/solicitudes");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/solicitudes/';
             $urlRouterProvider.otherwise("/solicitudesGet");
-            
             $stateProvider.state('solicitudesGet',{
                 url: "/solicitudes",
                 views: {

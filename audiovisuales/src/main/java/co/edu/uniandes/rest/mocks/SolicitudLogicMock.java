@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class SolicitudLogicMock {
     // objeto para presentar logs de las operaciones
 	private final static Logger logger = Logger.getLogger(SolicitudLogicMock.class.getName());
+        public final static String SOLICITUD_INEXISTENTE = "No existe solicitud con ese id";
 	
 	// listado de solicitudes
     private static ArrayList<SolicitudDTO> solicitudes;
@@ -32,7 +33,7 @@ public class SolicitudLogicMock {
 
     	if (solicitudes == null) {
             solicitudes = new ArrayList<>();
-            solicitudes.add(new SolicitudDTO(1L, new Date(2015, 05, 2, 15, 30), "computador", "rechazada"));
+            solicitudes.add(new SolicitudDTO(1L, new Date(2015, 5, 2, 15, 30), "computador", "rechazada"));
             solicitudes.add(new SolicitudDTO(2L, new Date(2016, 2, 10, 12, 30), "audifonos", "en espera"));
             solicitudes.add(new SolicitudDTO(3L, new Date(2015, 12, 24, 8, 30), "computador", "aprobada"));
         }
@@ -108,7 +109,7 @@ public class SolicitudLogicMock {
             if(solicitud.getId()==id)
                 return solicitud;
         }
-        throw new CityLogicException("No existe solicitud con ese id");
+        throw new CityLogicException(SOLICITUD_INEXISTENTE);
     }
 
     public SolicitudDTO updateSolicitud(Long id, SolicitudDTO newSolicitud) throws CityLogicException {
@@ -122,7 +123,7 @@ public class SolicitudLogicMock {
                 return solicitud;
             }     
         }
-        throw new CityLogicException("No existe solicitud con ese id");
+        throw new CityLogicException(SOLICITUD_INEXISTENTE);
     }
 
     public void deleteSolicitud(Long id) throws CityLogicException {
@@ -134,7 +135,7 @@ public class SolicitudLogicMock {
                 return;
             }     
         }
-        throw new CityLogicException("No existe solicitud con ese id");
+        throw new CityLogicException(SOLICITUD_INEXISTENTE);
     }
 
 }
