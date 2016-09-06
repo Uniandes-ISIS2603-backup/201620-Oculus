@@ -9,7 +9,7 @@ Requerimientos basados en casos de uso:
 *Cambiar características de un equipo 		Fabio
 *Recibir equipo de profesor			Fabio
 *Entregar equipo a profesor			Ana
-*Reponder solicitud				Ana
+*Reponder una solcitud			Ana
 [Profesor]
 *Solicitar reserva equipo.			German
 *Cancelar reserva				German
