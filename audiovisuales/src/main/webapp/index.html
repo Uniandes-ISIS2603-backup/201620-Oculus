@@ -62,12 +62,48 @@
            <input type="text" name="user_id" id="user_id" size="25" maxlength="50"/>
 
           </div>
-          <div class="form_item">
-            <label>CONTRASE&Ntilde;A:</label>
-           <input size="25" name="password" id="password" type="password" autocomplete="off"/>
-          </div>
-          <a href="" target="_blank">&iquest;Ha olvidado su contrase&ntilde;a?</a>
-          <input type="submit" value="INICIAR SESI&Oacute;N" name="login">       
+        <ul class="nav nav-tabs">            
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Equipos
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="equipoCreate">Crear</a></li>    
+                         <li><a ui-sref="equiposList">Listar</a></li>       
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Administradores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="administradorCreate">Create</a></li>    
+                         <li><a ui-sref="administradoresList">List</a></li>       
+                    </ul>
+                    <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Locaciones
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="locacionCreate">Create</a></li>    
+                         <li><a ui-sref="locacionesList">List</a></li>       
+                    </ul>
+                        <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Profesores
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="cityCreate">Create</a></li>    
+                         <li><a ui-sref="citiesList">List</a></li>       
+                    </ul>
+                            <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Solicitudes
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="solicitudCreate">Create</a></li>    
+                         <li><a ui-sref="solicitudesGet">List</a></li>       
+                    </ul>
+                </li>  
+                </li>  
+                </li>  
+                </li>  
+            </ul>       
       </div>
             </div>
         </div>
