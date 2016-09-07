@@ -1,6 +1,6 @@
 /*
- * SolicitudDTO
- * Objeto de transferencia de datos de Solicitudes.
+ * ReservaDTO
+ * Objeto de transferencia de datos de Reservas.
  * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
  */
 package co.edu.uniandes.rest.dtos;
@@ -8,10 +8,10 @@ package co.edu.uniandes.rest.dtos;
 import java.util.Date;
 
 /**
- * Objeto de transferencia de datos de Solicitudes.
+ * Objeto de transferencia de datos de Reservas.
  * @author fa.lopez10
  */
-public class SolicitudDTO {
+public class ReservaDTO {
     private Long id;
     private Date fecha;
     private String tipo;
@@ -20,17 +20,17 @@ public class SolicitudDTO {
     /**
      * Constructor por defecto
      */
-    public SolicitudDTO() {
+    public ReservaDTO() {
 	}
 
     /**
      * Constructor con parámetros.
-     * @param id identificador de la solicitud
-     * @param estado estado de la solicitud
-     * @param fecha fecha en que se hace la solicitud
-     * @param tipo tipo de solicitud que se realiza
+     * @param id identificador de la reserva
+     * @param estado estado de la reserva
+     * @param fecha fecha en que se hace la reserva
+     * @param tipo tipo de reserva que se realiza
      */
-    public SolicitudDTO(Long id, Date fecha, String tipo, String estado) {
+    public ReservaDTO(Long id, Date fecha, String tipo, String estado) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
