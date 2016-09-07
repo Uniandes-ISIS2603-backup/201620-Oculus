@@ -1,20 +1,20 @@
 (function (ng)
 {
-    var mod = ng.module("solicitudesModule");
+    var mod = ng.module("reservasModule");
 
-    mod.controller("solicitudesCtrl", ['$scope', '$state', '$stateParams', '$http', 'solicitudesContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("reservasCtrl", ['$scope', '$state', '$stateParams', '$http', 'reservasContext', function ($scope, $state, $stateParams, $http, context) {
 
-            // inicialmente el listado de solicitudes está vacio
+            // inicialmente el listado de reservas está vacio
             $scope.records = {};
-            // carga las solicitudes
+            // carga las reservas
             $http.get(context).then(function(response){
                 $scope.records = response.data;
             }, responseError);            
-            // el controlador recibió un solicitudId ??
-            // revisa los parámetros (ver el :solicitudId en la definición de la ruta)
-            if ($stateParams.solicitudId !== null && $stateParams.solicitudId !== undefined) {       
+            // el controlador recibió un reservaId ??
+            // revisa los parámetros (ver el :reservaId en la definición de la ruta)
+            if ($stateParams.reservaId !== null && $stateParams.reservaId !== undefined) {       
                 // toma el id del parámetro
-                var id = $stateParams.solicitudId;
+                var id = $stateParams.reservaId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                     .then(function (response) {
@@ -23,7 +23,7 @@
                         $scope.currentRecord = response.data;
                     }, responseError);
 
-            // el controlador no recibió un solicitudId
+            // el controlador no recibió un reservaId
             } else
             {
                 // el registro actual debe estar vacio
@@ -43,7 +43,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('solicitudesGet');
+                            $state.go('reservasGet');
                         }, responseError);
                 // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -52,7 +52,7 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('solicitudesGet');
+                            $state.go('reservasGet');
                         }, responseError);
                 };
             };
