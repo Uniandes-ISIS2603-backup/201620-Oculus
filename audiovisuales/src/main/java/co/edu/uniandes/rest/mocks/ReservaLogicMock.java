@@ -30,12 +30,13 @@ public class ReservaLogicMock {
      * Constructor. Crea los datos de ejemplo.
      */
     public ReservaLogicMock() {
+        Date date = new Date();
 
     	if (reservas == null) {
             reservas = new ArrayList<>();
-            reservas.add(new ReservaDTO(1L, new Date(2015, 5, 2, 15, 30), "computador", "rechazada"));
-            reservas.add(new ReservaDTO(2L, new Date(2016, 2, 10, 12, 30), "audifonos", "en espera"));
-            reservas.add(new ReservaDTO(3L, new Date(2015, 12, 24, 8, 30), "computador", "aprobada"));
+            reservas.add(new ReservaDTO(1L, date, "computador", "rechazada"));
+            reservas.add(new ReservaDTO(2L, date, "audifonos", "en espera"));
+            reservas.add(new ReservaDTO(3L, date, "computador", "aprobada"));
         }
         
     	// indica que se muestren todos los mensajes

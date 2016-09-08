@@ -3,12 +3,25 @@
     <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
         <div ng-messages="form.$error">
-            <div ng-message="required">Fill the required fields!</div>
+            <div ng-message="required">Llene el formulario</div>
         </div>
    
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+
+                <label for="Fecha" class="col-md-2 control-label">Fecha</label>
+                <div class="col-md-10">
+                    <p class="input-group">
+                        <input  id="fecha" name="fecha"  type="text" class="form-control" uib-datepicker-popup ng-model="currentRecord.fecha" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="ctrl.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                
                 <label for="name" class="col-md-2 control-label">Tipo</label>
                 <div class="col-md-10">
                     <input id="tipo" name="tipo" class="form-control" type="text" ng-model="currentRecord.tipo" ng-init="currentRecord.tipo" required />

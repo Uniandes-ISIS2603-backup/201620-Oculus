@@ -24,7 +24,7 @@
                 }
 
             }).state('reservaUpdate', {
-                url: '/reservas/update/:reservaId',
+                url: '/reservas/update/{reservaId:int}',
                 param: {
                     reservaId: null
                 },
@@ -32,7 +32,7 @@
                     'mainView': {
                         controller: 'reservasCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'reservas.update.html'
+                        templateUrl: basePath + 'reservas.create.html'
                     }
                 }
             }).state('reservaDelete', {
