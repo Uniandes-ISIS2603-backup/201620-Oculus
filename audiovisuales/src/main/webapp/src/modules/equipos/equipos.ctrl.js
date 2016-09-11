@@ -2,20 +2,20 @@
     var mod = ng.module("equiposModule");
 
     mod.controller("equiposCtrl", ['$scope', '$state', '$stateParams', '$http', 'equiposContext', function ($scope, $state, $stateParams, $http, context) {
-
-            // inicialmente el listado de ciudades está vacio
+            // inicialmente el listado de equipos está vacio
             $scope.records = {};
-            // carga las ciudades
-            $http.get(context).then(function(response){
+            // carga los equipos
+            $http.get(context).then(function(response)
+            {
                 $scope.records = response.data;    
             }, responseError);
 
-            // el controlador recibió un cityId ??
-            // revisa los parámetros (ver el :cityId en la definición de la ruta)
-            if ($stateParams.cityId !== null && $stateParams.cityId !== undefined) {
+            // el controlador recibió un equipoId ??
+            // revisa los parámetros (ver el :equipoId en la definición de la ruta)
+            if ($stateParams.equipoId !== null && $stateParams.equipoId !== undefined) {
                 
                 // toma el id del parámetro
-                id = $stateParams.cityId;
+                id = $stateParams.equipoId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                     .then(function (response) {
@@ -24,7 +24,7 @@
                         $scope.currentRecord = response.data;
                     }, responseError);
 
-            // el controlador no recibió un cityId
+            // el controlador no recibió un equipoId
             } else
             {
                 // el registro actual debe estar vacio
@@ -63,6 +63,15 @@
                         }, responseError);
                 };
             };
+            
+            this.deleteRecord=function(record)
+            {
+                id=record.id;
+                return $http.delete(context+"/"+id)
+                        .then(function(){
+                            $state.reload();
+                        },responseError);
+            }
 
 
 

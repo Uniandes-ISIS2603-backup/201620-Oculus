@@ -1,4 +1,34 @@
+<div class="col-md-6 well">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
+    <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+        
+        <div ng-messages="form.$error">
+            <div ng-message="required">Llene el formulario</div>
+        </div>
+   
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
 
-<div>
-    
+                <label for="tipo" class="col-md-4 control-label">Tipo</label>
+                <div class="col-md-10">
+                    <input id="tipo" name="tipo" class="form-control" type="text" ng-model="currentRecord.tipo" ng-init="currentRecord.tipo" required />
+                </div>
+                
+                <label for="tipo" class="col-md-4 control-label">Caracteristicas</label>
+                <div class="col-md-10">
+                    <input id="caracteristicas" name="caracteristicas" class="form-control" type="text" ng-model="currentRecord.caracteristicas" ng-init="currentRecord.caracteristicas" required />
+                </div>
+                
+                <label for="tipo" class="col-md-8 control-label">Disponibilidad (true o false)</label>
+                <div class="col-md-10">
+                    <input id="disponibilidad" name="disponibilidad" class="form-control" type="text" ng-model="currentRecord.disponibilidad" ng-init="currentRecord.disponibilidad" required />
+                </div>
+                
+            </div>
+            
+            <button type="button" ui-sref='equiposList'>Cancel</button>
+            <button type="submit" >Save</button>    
+        </fieldset>
+    </form>
 </div>

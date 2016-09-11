@@ -28,10 +28,10 @@
                     }
                 }
 
-            }).state('EquipoEdit', {
-                url: '/cities/:cityId',
+            }).state('equipoEdit', {
+                url: '/{equipoId:int}/edit',
                 param: {
-                    cityId: null
+                    equipoId: null
                 },
                 views: {
                     'mainView': {

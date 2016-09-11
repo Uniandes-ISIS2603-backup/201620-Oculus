@@ -39,9 +39,9 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
 
     	if (equipos == null) {
             equipos = new ArrayList<>();
-            equipos.add(new EquipoDTO(1L, "computador", true, "toshiba"));
-            equipos.add(new EquipoDTO(2L, "audifonos", true, "panasonic"));
-            equipos.add(new EquipoDTO(3L, "computador", true, "Dell"));
+            equipos.add(new EquipoDTO(1L, "Computador", true, "Toshiba"));
+            equipos.add(new EquipoDTO(2L, "Audifonos", true, "Panasonic"));
+            equipos.add(new EquipoDTO(3L, "Computador", true, "Dell"));
         }
         
     	// indica que se muestren todos los mensajes
