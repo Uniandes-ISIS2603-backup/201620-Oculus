@@ -43,7 +43,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('reservasGet');
+                            $state.go('reservasList');
                         }, responseError);
                 // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -52,11 +52,31 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('reservasGet');
+                            $state.go('reservasList');
                         }, responseError);
                 };
             };
-            //CREO que falta el DELETE
+            
+            this.deleteRecord = function (id, record) {
+                //currentRecord = $scope.currentRecord;
+                
+                // si el id es null, no hace nada
+                if (id == null) {
+
+                    $state.go('reservasList');
+                        
+                // si el id no es null, es un registro existente entonces lo elimina
+                } else {
+                    
+                    // ejecuta DELETE en el recurso REST
+                    return $http.delete(context + "/" + record.id, record)
+                        .then(function () {
+                            // $http.delete es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('reservasList');
+                        }, responseError);
+                };
+            };
  
             // -----------------------------------------------------------------
             // Funciones para manejar las fechas

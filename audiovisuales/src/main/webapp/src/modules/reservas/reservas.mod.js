@@ -3,14 +3,14 @@
     mod.constant("reservasContext", "api/reservas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/reservas/';
-            $urlRouterProvider.otherwise("/reservasGet");
-            $stateProvider.state('reservasGet',{
+            $urlRouterProvider.otherwise("/reservasList");
+            $stateProvider.state('reservasList',{
                 url: "/reservas",
                 views: {
                 'mainView': {
                     controller: 'reservasCtrl',
                     controllerAs: 'ctrl',
-                    templateUrl: basePath + 'reservas.get.html'
+                    templateUrl: basePath + 'reservas.list.html'
                 }
             }
             }).state('reservaCreate', {
@@ -23,8 +23,8 @@
                     }
                 }
 
-            }).state('reservaUpdate', {
-                url: '/reservas/update/{reservaId:int}',
+            }).state('reservaEdit', {
+                url: '/reservas/edit/{reservaId:int}',
                 param: {
                     reservaId: null
                 },
@@ -33,18 +33,6 @@
                         controller: 'reservasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'reservas.create.html'
-                    }
-                }
-            }).state('reservaDelete', {
-                url: '/reservas/delete/:reservaId',
-                param: {
-                    reservaId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'reservasCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'reservas.delete.html'
                     }
                 }
             }).state('reservaGet',{
