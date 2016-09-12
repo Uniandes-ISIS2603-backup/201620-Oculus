@@ -13,7 +13,7 @@ import co.edu.uniandes.rest.exceptions.CityLogicException;
  */
 public class AdministradorLogicMock
 {
-    private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getName());
+    private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     private static ArrayList<AdministradorDTO> administradores;
     
     //constructor
@@ -22,11 +22,11 @@ public class AdministradorLogicMock
        if (administradores == null)
        {
             administradores = new ArrayList<>();
-            administradores.add(new AdministradorDTO("German A", 100001, "g.andrade10"));
-            administradores.add(new AdministradorDTO("Fabio L", 200002, "f.lopez20"));
-            administradores.add(new AdministradorDTO("Ana E", 300003, "a.espinosa30"));
-            administradores.add(new AdministradorDTO("Ana F", 400004, "a.fandino40"));
-            administradores.add(new AdministradorDTO("Sneider V", 500005, "e.velandia50"));
+            administradores.add(new AdministradorDTO("German A", 100001L, "g.andrade10"));
+            administradores.add(new AdministradorDTO("Fabio L", 200002L, "f.lopez20"));
+            administradores.add(new AdministradorDTO("Ana E", 300003L, "a.espinosa30"));
+            administradores.add(new AdministradorDTO("Ana F", 400004L, "a.fandino40"));
+            administradores.add(new AdministradorDTO("Sneider V", 500005L, "e.velandia50"));
        }
        
        // indica que se muestren todos los mensajes
@@ -65,7 +65,7 @@ public class AdministradorLogicMock
     {
     	logger.info("recibiendo solicitud de agregar administrador " + newAdmi);
     	// el nuevo administrador ya existe ?
-    	if ( newAdmi.getCodigo() != 0) 
+    	if ( newAdmi.getCodigo() != null) 
         {
 	    	// busca el administrador con el codigo suministrado
 	        for (AdministradorDTO administra : administradores) 
@@ -91,7 +91,7 @@ public class AdministradorLogicMock
      * @param administrador nuevos datos del administrador
      * @return administrador modificado
      */
-    public AdministradorDTO updateAdministrador (int codigo, AdministradorDTO administadorUp) throws CityLogicException
+    public AdministradorDTO updateAdministrador (Long codigo, AdministradorDTO administadorUp) throws CityLogicException
     {
         boolean encontro = false;
         AdministradorDTO actualAdmi = null;
@@ -123,14 +123,14 @@ public class AdministradorLogicMock
      *Borra el administrador identificado con el codigo dado
      * @param codigo codigo del administrador a eliminar
      */
-    public void deleteAdministrador (int codigoDelete) throws CityLogicException
+    public void deleteAdministrador (Long codigoDelete) throws CityLogicException
     {
        boolean encontro = false;
        AdministradorDTO administradorActual = null;
        //buscamos el administrador y lo eliminamos
-        for (int i=0; i<administradores.size(); i++) 
+        for (int i=0; i<administradores.size()&& !encontro; i++) 
         {
-            administradorActual = (AdministradorDTO)administradores.get(i);
+            administradorActual = ((AdministradorDTO)administradores.get(i));
             if(administradorActual.getCodigo() == codigoDelete)
             {
                 administradores.remove(i);
@@ -138,7 +138,7 @@ public class AdministradorLogicMock
             }
         }
         //no se encuentra el administrador
-        if (encontro == false)
+        if (!encontro)
         {
           logger.severe("No existe un Administrador con ese codigo");
 	  throw new CityLogicException("No existe un Administrador con ese codigo"); 
@@ -150,7 +150,7 @@ public class AdministradorLogicMock
      * @return administrador encontrado
      * @throws CityLogicException cuando no existe la lista en memoria  
      */ 
-    public AdministradorDTO getAdministradorDTO (int codigoS) throws CityLogicException
+    public AdministradorDTO getAdministradorDTO (Long codigoS) throws CityLogicException
     {
         boolean encontro = false;
         AdministradorDTO admiActual = null;

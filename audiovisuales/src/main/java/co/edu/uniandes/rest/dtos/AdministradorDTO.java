@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class AdministradorDTO
 {
     private String nombre;
-    private int codigo;
+    private Long codigo;
     private String login;
     
     //constructor 
@@ -26,7 +26,7 @@ public class AdministradorDTO
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     
     //constructor con parametros
-    public AdministradorDTO(String nomb, Integer cod, String log)
+    public AdministradorDTO(String nomb, Long cod, String log)
     {
         super();
         this.nombre = nomb;
@@ -39,7 +39,7 @@ public class AdministradorDTO
     {
         return nombre;
     }
-    public int getCodigo()
+    public Long getCodigo()
     {
         return codigo;
     }
@@ -53,7 +53,7 @@ public class AdministradorDTO
     {
         this.nombre = nomb;
     }
-    public void setCodigo(int cod)
+    public void setCodigo(Long cod)
     {
         this.codigo = cod;
     }

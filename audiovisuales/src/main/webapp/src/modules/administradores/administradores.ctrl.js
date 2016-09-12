@@ -2,55 +2,56 @@
     var mod = ng.module("administradoresModule");
 
     mod.controller("administradoresCtrl", ['$scope', '$state', '$stateParams', '$http', 'administradoresContext', function ($scope, $state, $stateParams, $http, context) {
-
-            $scope.records = {}; // el listado de administradores esta vacio
-            
-            // se carga administradores 
-            $http.get(context).then(function(response){ 
+            // inicialmente el listado de administradores está vacio
+            $scope.records = {};
+            // carga los equipos
+            $http.get(context).then(function(response)
+            {
                 $scope.records = response.data;    
             }, responseError);
-            
-            // el controlador recibió un administradorId ??
-            // revisa los parámetros
-            if ($stateParams.administradorId !== null && $stateParams.administradorId !== undefined) {
+
+            // el controlador recibió un administradorCodigo ??
+            // revisa los parámetros (ver el :equipoId en la definición de la ruta)
+            if ($stateParams.administradorCodigo !== null && $stateParams.administradorCodigo !== undefined) {
                 
                 // toma el id del parámetro
-                id = $stateParams.administradorId;
+                codigo = $stateParams.administradorCodigo;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
+                $http.get(context + "/" + codigo)
                     .then(function (response) {
                         // $http.get es una promesa
                         // cuando llegue el dato, actualice currentRecord
                         $scope.currentRecord = response.data;
                     }, responseError);
-            // el controlador no recibió un administradorId
-            } 
-            else
+
+            // el controlador no recibió un equipoId
+            } else
             {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
-                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                    codigo: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
                 };
               
                 $scope.alerts = [];
             }
-            
-            this.saveRecord = function (id) {
+
+
+            this.saveRecord = function (codigo) {
                 currentRecord = $scope.currentRecord;
                 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                if (codigo == null) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('administradoresGet');
+                            $state.go('administradoresList');
                         }, responseError);
                         
-                // si el id no es null, es un registro existente entonces lo actualiza
+                // si el codigo no es null, es un registro existente entonces lo actualiza
                 } else {
                     
                     // ejecuta PUT en el recurso REST
@@ -58,15 +59,26 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('administradoresGet');
+                            $state.go('administradoresList');
                         }, responseError);
                 };
             };
-          
             
+            this.deleteRecord=function(record)
+            {
+                id=record.id;
+                return $http.delete(context+"/"+codigo)
+                        .then(function(){
+                            $state.reload();
+                        },responseError);
+            }
+
+
+
             // -----------------------------------------------------------------
-            // Funciones para manejar los mensajes en la aplicación
-            
+            // Funciones para manejra los mensajes en la aplicación
+
+
             //Alertas
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
@@ -95,7 +107,6 @@
 
                 self.showError(response.data);
             }
-            
         }]);
 
 })(window.angular);

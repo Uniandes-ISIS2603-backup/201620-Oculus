@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  * 
  * @author Sneider Velandia G
  */
-@Path("administrador") // api/administrador
+@Path("administradores") // api/administrador
 @Produces("application/json") // todos retornan Jsons
 
 public class AdministradorResource 
@@ -49,7 +49,7 @@ public class AdministradorResource
      */
     @GET
     @Path("{codigo: \\d+}")
-    public AdministradorDTO getAdministrador(@PathParam("codigo") int cod) throws CityLogicException
+    public AdministradorDTO getAdministrador(@PathParam("codigo") Long cod) throws CityLogicException
     {
         return administradorLogic.getAdministradorDTO(cod);
     }
@@ -61,7 +61,7 @@ public class AdministradorResource
      */
     @PUT
     @Path("{codigo: \\d+}")
-    public AdministradorDTO updateAdministrador(@PathParam("codigo") int cod , AdministradorDTO administradorUp) throws CityLogicException
+    public AdministradorDTO updateAdministrador(@PathParam("codigo") Long cod , AdministradorDTO administradorUp) throws CityLogicException
     {
         logger.info("PUT");
         return administradorLogic.updateAdministrador(cod, administradorUp);
@@ -89,7 +89,7 @@ public class AdministradorResource
      */
     @DELETE
     @Path("{codigo: \\d+}")
-    public void deleteAdminitrador(@PathParam("codigo") int cod) throws CityLogicException
+    public void deleteAdminitrador(@PathParam("codigo") Long cod) throws CityLogicException
     {
           logger.info("Trata de borrar");
             administradorLogic.deleteAdministrador(cod);
