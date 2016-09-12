@@ -49,60 +49,40 @@
 
 
     </head>
-   
-        <body style="padding-top: 20px;">
+   <body style="padding-top: 20px;">
         <div class="container-fluid" class="col-md-12">   
             <h3>Audiovisuales</h3>
             
             <ul class="nav nav-tabs">            
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Equipos
+                    <a class="dropdown-toggle" data-toggle="dropdown">Profesor
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="equipoCreate">Crear</a></li>    
-                         <li><a ui-sref="equiposList">Listar</a></li>     
+                        <li><a ui-sref="equipoCreate">Crear reserva</a></li>    
+                         <li><a ui-sref="equiposList">Reservas</a></li>
                     </ul>
                 </li>
-                
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Administradores
+                    <a class="dropdown-toggle" data-toggle="dropdown">Administrador
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="administradorCreate">Create</a></li>    
-                         <li><a ui-sref="administradoresList">List</a></li>     
+                        <li><a ui-sref="equipoCreate">Registrar un equipo</a></li>    
+                        <li><a ui-sref="equiposList">Recibir equipo</a></li>
                     </ul>
                 </li>
-                
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Locaciones
+                    <a class="dropdown-toggle" data-toggle="dropdown">Administrador General
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="locacionCreate">Create</a></li>    
-                         <li><a ui-sref="locacionesList">List</a></li>        
+                        <li><a ui-sref="equipoCreate">Agregar punto de atención</a></li>    
+                        <li><a ui-sref="equiposList">Puntos de atención</a></li>
+                        <li><a ui-sref="equipoCreate">Ver reservas pendientes</a></li>    
+                        <li><a ui-sref="equiposList">Ver reservas canceladas</a></li>
                     </ul>
                 </li>
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Profesores
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="profesorCreate">Create</a></li>    
-                         <li><a ui-sref="profesoresList">List</a></li>        
-                    </ul>
-                </li>
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Reservas
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="reservaCreate">Create</a></li>    
-                         <li><a ui-sref="reservasList">List</a></li>       
-                    </ul>
-                </li> 
-                
-            </ul>
+             </ul>
             <div ui-view="mainView">
             </div>
         </div>
-</body>
+</body>        
 </html>
