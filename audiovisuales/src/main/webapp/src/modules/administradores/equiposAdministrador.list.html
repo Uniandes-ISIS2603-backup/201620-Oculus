@@ -1,0 +1,20 @@
+<div class="container-fluid" >
+   
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Caracteríticas</th>
+                <th>Disponibilidad</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-id">{{record.id}}</td>
+                <td id="{{$index}}-caracteristicas">{{record.caracteristicas}}</td>
+                <td id="{{$index}}-tipo">{{record.tipo}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

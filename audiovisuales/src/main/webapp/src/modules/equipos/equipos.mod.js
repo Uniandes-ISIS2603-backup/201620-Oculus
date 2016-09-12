@@ -25,6 +25,7 @@
                         controller: 'equiposCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'equipos.create.html'
+                       
                     }
                 }
 

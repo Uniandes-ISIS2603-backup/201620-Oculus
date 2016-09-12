@@ -16,23 +16,25 @@ import java.util.logging.Logger;
  */
 public class AdministradorDTO
 {
-    private String nombre;
     private int codigo;
+    private String nombre;
     private String login;
-    
+    private PuntoDeAtencionDTO puntoDeAtencion;
     //constructor 
     public AdministradorDTO(){}
     
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     
     //constructor con parametros
-    public AdministradorDTO(String nomb, Integer cod, String log)
+    public AdministradorDTO(String nomb, Integer cod, String log, PuntoDeAtencionDTO pPunto)
     {
         super();
         this.nombre = nomb;
         this.codigo = cod;
         this.login = log;
+        puntoDeAtencion = pPunto;
     }
+    
     
     //METODOS .GET
     public String getNombre()
@@ -47,6 +49,10 @@ public class AdministradorDTO
     {
         return login;
     }
+        public PuntoDeAtencionDTO getPuntoDeAtencionDTO()
+    {
+        return puntoDeAtencion;
+    }
     
     //METODOS .SET
     public void setNombre(String nomb)
@@ -60,6 +66,10 @@ public class AdministradorDTO
     public void setLogin(String log)
     {
         this.login = log;
+    }
+    public void setPuntoDeAtencionDTO(PuntoDeAtencionDTO pPunto)
+    {
+        this.puntoDeAtencion = pPunto;
     }
     
     //Convierte el objeto a una cadena

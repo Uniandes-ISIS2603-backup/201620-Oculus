@@ -8,6 +8,7 @@ package co.edu.uniandes.rest.dtos;
 
 import java.util.logging.Logger;
 import co.edu.uniandes.rest.mocks.LocacionLogicMock;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 
@@ -17,26 +18,27 @@ import java.util.logging.Level;
  */
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
-public class LocacionDTO 
+public class PuntoDeAtencionDTO 
 {
     private String ubicacion;
-    
+    private ArrayList<EquipoDTO> equipos;
     private Long id;
     
     /**
      * Constructor por defecto
      */
-    public LocacionDTO()
+    public PuntoDeAtencionDTO()
     {
-        
+        equipos = new ArrayList<EquipoDTO>();
     }
     /**
      * Constructor 
      * @param pUbicacion edificio de ubicacion
      */
-    public LocacionDTO(Long pId,String pUbicacion) 
+    public PuntoDeAtencionDTO(Long pId,String pUbicacion) 
     {
       super();
+      this.equipos = new ArrayList<EquipoDTO>();
       this.id = pId;
       this.ubicacion = pUbicacion;
     }
@@ -60,6 +62,7 @@ public class LocacionDTO
          this.ubicacion = pUbicacion;
      }
      
+     
      /**
      * @return id
      */
@@ -75,6 +78,30 @@ public class LocacionDTO
      {
          this.id = pId;
      }
+      
+         
+     /**
+     * @return ubicacion
+     */
+     public ArrayList getEquipos()
+     {
+         return equipos;
+     }
+     
+     /**
+     * @param pUbicacion en la cual se encuentra
+     */
+     public void setEquipos(ArrayList pEquipos)
+     {
+         this.equipos = pEquipos;
+     }
+     
+     public EquipoDTO agregarEquipo(EquipoDTO e)
+     {
+         this.equipos.add(e);
+         return e;
+     } 
+     
      /**
      * Convierte el objeto a una cadena
      * @return 

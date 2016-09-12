@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.rest.mocks;
 
-import co.edu.uniandes.rest.dtos.LocacionDTO;
+import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class LocacionLogicMock
     private final static Logger logger = Logger.getLogger(LocacionLogicMock.class.getName());
 	
 	// listado de locaciones
-    private static ArrayList<LocacionDTO> locaciones;
+    private static ArrayList<PuntoDeAtencionDTO> locaciones;
     //ArrayList de Locaciones
     
     /**
@@ -33,10 +33,10 @@ public class LocacionLogicMock
 
     	if (locaciones == null) {
             locaciones = new ArrayList<>();
-            locaciones.add(new LocacionDTO(1L,"Mario Laserna"));
-            locaciones.add(new LocacionDTO(2L,"Julio Mario Santo Domingo"));
-            locaciones.add(new LocacionDTO(3L,"Aulas"));
-            locaciones.add(new LocacionDTO(4L,"Henri Yerly"));
+            locaciones.add(new PuntoDeAtencionDTO(1L,"Mario Laserna"));
+            locaciones.add(new PuntoDeAtencionDTO(2L,"Julio Mario Santo Domingo"));
+            locaciones.add(new PuntoDeAtencionDTO(3L,"Aulas"));
+            locaciones.add(new PuntoDeAtencionDTO(4L,"Henri Yerly"));
         }
         
     	// indica que se muestren todos los mensajes
@@ -52,7 +52,7 @@ public class LocacionLogicMock
 	 * @return lista de locaciones
 	 * @throws CityLogicException cuando no existe la lista en memoria  
 	 */    
-    public List<LocacionDTO> getLocaciones() throws CityLogicException {
+    public List<PuntoDeAtencionDTO> getLocaciones() throws CityLogicException {
     	if (locaciones == null) {
     		logger.severe("Error interno: lista de locaciones no existe.");
     		throw new CityLogicException("Error interno: lista de locaciones no existe.");    		
@@ -69,14 +69,14 @@ public class LocacionLogicMock
      * @throws CityLogicException cuando ya existe un equipo con el id suministrado
      * @return locacion agregada
      */
-    public LocacionDTO createLocacion(LocacionDTO newLocacion) throws CityLogicException 
+    public PuntoDeAtencionDTO createLocacion(PuntoDeAtencionDTO newLocacion) throws CityLogicException 
     {
     	logger.info("recibiendo solicitud de agregar locacion " + newLocacion);
     	
     	// la nueva locación tiene id ?
     	if ( newLocacion.getId() != null ) {
 	    	// busca la locación con el id suministrado
-	        for (LocacionDTO locacion : locaciones) {
+	        for (PuntoDeAtencionDTO locacion : locaciones) {
 	        	// si existe una locación con ese id
 	            if (Objects.equals(locacion.getId(), newLocacion.getId())){
 	            	logger.severe("Ya existe una locación con ese id");
@@ -90,7 +90,7 @@ public class LocacionLogicMock
     		// genera un id para la locación
     		logger.info("Generando id para la nueva locación");
     		long newId = 1;
-	        for (LocacionDTO locacion : locaciones) {
+	        for (PuntoDeAtencionDTO locacion : locaciones) {
 	            if (newId <= locacion.getId()){
 	                newId =  locacion.getId() + 1;
 	            }
@@ -136,9 +136,9 @@ public class LocacionLogicMock
 	 * @return Locacion
 	 * @throws CityLogicException cuando no existe la lista en memoria  
 	 */    
-    public LocacionDTO getLocacion(Long pId) throws CityLogicException 
+    public PuntoDeAtencionDTO getLocacion(Long pId) throws CityLogicException 
     {
-        LocacionDTO retornar = new LocacionDTO(0L,"Sin ubicación");
+        PuntoDeAtencionDTO retornar = new PuntoDeAtencionDTO(0L,"Sin ubicación");
         boolean encontrado = false;
         int i = 0;
         while(i < locaciones.size() && !encontrado)
@@ -165,9 +165,9 @@ public class LocacionLogicMock
      * @param pLoc nuevos datos de la locacion
      * @return locacion modificada
      */
-    public LocacionDTO updateLocacion(Long pId, LocacionDTO pLoc) throws CityLogicException 
+    public PuntoDeAtencionDTO updateLocacion(Long pId, PuntoDeAtencionDTO pLoc) throws CityLogicException 
     {
-        LocacionDTO modificar = new LocacionDTO(0L,"Sin ubicación");
+        PuntoDeAtencionDTO modificar = new PuntoDeAtencionDTO(0L,"Sin ubicación");
         boolean encontrado = false;
         int i = 0;
         while(i < locaciones.size() && !encontrado)

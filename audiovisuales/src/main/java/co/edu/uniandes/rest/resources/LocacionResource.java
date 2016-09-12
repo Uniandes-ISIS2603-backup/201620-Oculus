@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.rest.resources;
 
-import co.edu.uniandes.rest.dtos.LocacionDTO;
+import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.mocks.LocacionLogicMock;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class LocacionResource
      * @throws CityLogicException excepción retornada por la lógica
      */
     @GET 
-    public List<LocacionDTO> getLocaciones() throws CityLogicException 
+    public List<PuntoDeAtencionDTO> getLocaciones() throws CityLogicException 
     {
         return locacionLogic.getLocaciones();
     }
@@ -52,7 +52,7 @@ public class LocacionResource
     @GET
     
     @Path("{id: \\d+}")
-    public LocacionDTO getLocacion(@PathParam("id") Long pUbic) throws CityLogicException 
+    public PuntoDeAtencionDTO getLocacion(@PathParam("id") Long pUbic) throws CityLogicException 
     {
             return locacionLogic.getLocacion(pUbic);
     }
@@ -67,7 +67,7 @@ public class LocacionResource
      * suministrado
      */
     @POST //metodo no importa el nombre del método la anotación es la que utiliza el servidor
-    public LocacionDTO createLocacion(LocacionDTO pLocacion) throws CityLogicException 
+    public PuntoDeAtencionDTO createLocacion(PuntoDeAtencionDTO pLocacion) throws CityLogicException 
     {
         logger.info("Se trata de agregar "+ pLocacion);
         return locacionLogic.createLocacion(pLocacion);
@@ -80,7 +80,7 @@ public class LocacionResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public LocacionDTO updateLocacion(@PathParam("id") Long pUbic, LocacionDTO pLoc) throws CityLogicException 
+    public PuntoDeAtencionDTO updateLocacion(@PathParam("id") Long pUbic, PuntoDeAtencionDTO pLoc) throws CityLogicException 
     {
             logger.info("PUT");
             return locacionLogic.updateLocacion(pUbic,pLoc);

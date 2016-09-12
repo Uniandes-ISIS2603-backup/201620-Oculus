@@ -1,21 +1,21 @@
 (function (ng) {
     var mod = ng.module("administradoresModule");
 
-    mod.controller("administradoresCtrl", ['$scope', '$state', '$stateParams', '$http', 'administradoresContext', function ($scope, $state, $stateParams, $http, context) {
-
-            $scope.records = {}; // el listado de administradores esta vacio
-            
-            // se carga administradores 
-            $http.get(context).then(function(response){ 
+    mod.controller("administradoresCtrl", ['$scope', '$state', '$stateParams', '$http', 'equiposContext', function ($scope, $state, $stateParams, $http, context) {
+            // inicialmente el listado de equipos está vacio
+            $scope.records = {};
+            // carga los equipos
+            $http.get(context).then(function(response)
+            {
                 $scope.records = response.data;    
             }, responseError);
-            
-            // el controlador recibió un administradorId ??
-            // revisa los parámetros
-            if ($stateParams.administradorId !== null && $stateParams.administradorId !== undefined) {
+
+            // el controlador recibió un equipoId ??
+            // revisa los parámetros (ver el :equipoId en la definición de la ruta)
+            if ($stateParams.equipoId !== null && $stateParams.equipoId !== undefined) {
                 
                 // toma el id del parámetro
-                id = $stateParams.administradorId;
+                id = $stateParams.equipoId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                     .then(function (response) {
@@ -23,9 +23,9 @@
                         // cuando llegue el dato, actualice currentRecord
                         $scope.currentRecord = response.data;
                     }, responseError);
-            // el controlador no recibió un administradorId
-            } 
-            else
+
+            // el controlador no recibió un equipoId
+            } else
             {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
@@ -35,7 +35,8 @@
               
                 $scope.alerts = [];
             }
-            
+
+
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
                 
@@ -47,7 +48,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('administradoresGet');
+                            $state.go('equiposList');
                         }, responseError);
                         
                 // si el id no es null, es un registro existente entonces lo actualiza
@@ -58,15 +59,26 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('administradoresGet');
+                            $state.go('equiposList');
                         }, responseError);
                 };
             };
-          
             
+            this.deleteRecord=function(record)
+            {
+                id=record.id;
+                return $http.delete(context+"/"+id)
+                        .then(function(){
+                            $state.reload();
+                        },responseError);
+            }
+
+
+
             // -----------------------------------------------------------------
-            // Funciones para manejar los mensajes en la aplicación
-            
+            // Funciones para manejra los mensajes en la aplicación
+
+
             //Alertas
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
@@ -95,7 +107,6 @@
 
                 self.showError(response.data);
             }
-            
         }]);
 
 })(window.angular);

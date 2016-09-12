@@ -6,7 +6,9 @@
 package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.rest.dtos.AdministradorDTO;
+import co.edu.uniandes.rest.dtos.EquipoDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
+import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.AdministradorLogicMock;
 import java.util.List;
 import java.util.logging.Logger;
@@ -32,66 +34,22 @@ public class AdministradorResource
     AdministradorLogicMock administradorLogic = new AdministradorLogicMock();
 
     /**
-     * Obtiene el listado de administradores asociados.
-     * @return lista de administradores
+     * Obtiene el listado de equipos asociados al punto de atención que administra.
+     * @return lista de equipos
      * @throws CityLogicException excepción retornada por la lógica
      */
     @GET
-    public List<AdministradorDTO> getAdministradores() throws CityLogicException
+    public List<EquipoDTO> getAdministradores() throws CityLogicException
     {
-        return administradorLogic.getAdministradores();
+        return administradorLogic.getEquiposAdministrador();
     }
-    
-   /**
-     *Obtiene los atributos de un administrador dado su codigo
-     * @return adminitrador buscado
-     * @throws CityLogicException excepcion retornada por la logica
-     */
-    @GET
-    @Path("{codigo: \\d+}")
-    public AdministradorDTO getAdministrador(@PathParam("codigo") int cod) throws CityLogicException
+    @POST //metodo no importa el nombre del método la anotación es la que utiliza el servidor
+    public EquipoDTO createEquipo(EquipoDTO equipo) throws EquipoLogicException 
     {
-        return administradorLogic.getAdministradorDTO(cod);
-    }
-    
-   /**
-     *Actualiza una instancia de la entidad Administrador
-     * @return Atributos de la instancia de administrador
-     * @throws CityLogicException excepcion retornada por la logica
-     */
-    @PUT
-    @Path("{codigo: \\d+}")
-    public AdministradorDTO updateAdministrador(@PathParam("codigo") int cod , AdministradorDTO administradorUp) throws CityLogicException
-    {
-        logger.info("PUT");
-        return administradorLogic.updateAdministrador(cod, administradorUp);
-    }
- 
-    /**
-     * Agrega un administrador
-     * @param administrador administrador a agregar
-     * @return datos del administrador agregado
-     * @throws CityLogicException cuando ya existe un equipo con el id
-     * suministrado
-     */
-    @POST
-    public AdministradorDTO creatAdministrador(AdministradorDTO administrador) throws CityLogicException
-    {
-         logger.info("Se trata de agregar "+administrador);
-        return administradorLogic.createAdministrador(administrador);
-    }
-    
-   /**
-     * elimina el administrador con el codigo dado
-     * @param cod codigo del administrador a eliminar
-     * @return Atributos de la instancia de administrador
-     * @throws CityLogicException excepcion retornada por la logica
-     */
-    @DELETE
-    @Path("{codigo: \\d+}")
-    public void deleteAdminitrador(@PathParam("codigo") int cod) throws CityLogicException
-    {
-          logger.info("Trata de borrar");
-            administradorLogic.deleteAdministrador(cod);
-    }
+        //viene por un Json
+        //Dto datos que manda el usuario
+        //lo agrega a un arreglo
+        logger.info("Se trata de agregar "+equipo);
+        return administradorLogic.agregarEquipo(equipo);
+    }    
 }
