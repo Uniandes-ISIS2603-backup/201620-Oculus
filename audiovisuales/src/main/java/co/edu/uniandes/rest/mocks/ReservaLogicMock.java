@@ -34,9 +34,9 @@ public class ReservaLogicMock {
 
     	if (reservas == null) {
             reservas = new ArrayList<>();
-            reservas.add(new ReservaDTO(1L, date, "computador", "rechazada"));
-            reservas.add(new ReservaDTO(2L, date, "audifonos", "en espera"));
-            reservas.add(new ReservaDTO(3L, date, "computador", "aprobada"));
+            reservas.add(new ReservaDTO(1L, date, "rechazada"));
+            reservas.add(new ReservaDTO(2L, date, "en espera"));
+            reservas.add(new ReservaDTO(3L, date, "aprobada"));
         }
         
     	// indica que se muestren todos los mensajes
@@ -120,7 +120,6 @@ public class ReservaLogicMock {
             {
                 reserva.setFecha(newReserva.getFecha());
                 reserva.setEstado(newReserva.getEstado());
-                reserva.setTipo(newReserva.getTipo());
                 return reserva;
             }     
         }

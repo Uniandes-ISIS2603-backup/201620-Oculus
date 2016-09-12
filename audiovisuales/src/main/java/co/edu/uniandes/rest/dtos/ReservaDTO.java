@@ -14,7 +14,6 @@ import java.util.Date;
 public class ReservaDTO {
     private Long id;
     private Date fecha;
-    private String tipo;
     private String estado;
 
     /**
@@ -28,13 +27,11 @@ public class ReservaDTO {
      * @param id identificador de la reserva
      * @param estado estado de la reserva
      * @param fecha fecha en que se hace la reserva
-     * @param tipo tipo de reserva que se realiza
      */
-    public ReservaDTO(Long id, Date fecha, String tipo, String estado) {
+    public ReservaDTO(Long id, Date fecha, String estado) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
-                this.tipo = tipo;
                 this.estado = estado;
 	}
 
@@ -67,21 +64,7 @@ public class ReservaDTO {
     }
     
     /**
-     * @return el tipo
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo el tipo a cambiar
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
-    /**
-     * @return el fecha
+     * @return la fecha
      */
     public Date getFecha() {
         return fecha;
@@ -100,6 +83,6 @@ public class ReservaDTO {
      */
     @Override
     public String toString() {
-    	return "{ id : " + getId() + ", fecha : \"" + getFecha()+ ", tipo : \"" + getTipo()+ ", estado : \"" + getEstado()+ "\" }" ;  
+    	return "{ id : " + getId() + ", fecha : \"" + getFecha()+ ", estado : \"" + getEstado()+ "\" }" ;  
     }
 }

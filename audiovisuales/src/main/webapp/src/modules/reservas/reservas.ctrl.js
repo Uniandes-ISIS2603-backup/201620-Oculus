@@ -2,7 +2,8 @@
 {
     var mod = ng.module("reservasModule");
 
-    mod.controller("reservasCtrl", ['$scope', '$state', '$stateParams', '$http', 'reservasContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("reservasCtrl", ['$scope', '$state', '$stateParams', '$http', 'reservasContext', 
+        function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de reservas está vacio
             $scope.records = {};
@@ -43,7 +44,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('reservasGet');
+                            $state.go('reservasList');
                         }, responseError);
                 // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
@@ -52,12 +53,23 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('reservasGet');
+                            $state.go('reservasList');
                         }, responseError);
                 };
             };
-            //CREO que falta el DELETE
- 
+            
+            this.deleteRecord = function (record) {
+                //currentRecord = $scope.currentRecord;
+                id = record.id;
+                
+                // ejecuta DELETE en el recurso REST
+                return $http.delete(context + "/" + id, record)
+                        .then(function () {
+                            $state.reload();
+                }, responseError);
+                
+            };
+            
             // -----------------------------------------------------------------
             // Funciones para manejar las fechas
             // -----------------------------------------------------------------
