@@ -2,7 +2,8 @@
 {
     var mod = ng.module("reservasModule");
 
-    mod.controller("reservasCtrl", ['$scope', '$state', '$stateParams', '$http', 'reservasContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("reservasCtrl", ['$scope', '$state', '$stateParams', '$http', 'reservasContext', 
+        function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de reservas está vacio
             $scope.records = {};
@@ -57,27 +58,18 @@
                 };
             };
             
-            this.deleteRecord = function (id, record) {
+            this.deleteRecord = function (record) {
                 //currentRecord = $scope.currentRecord;
+                id = record.id;
                 
-                // si el id es null, no hace nada
-                if (id == null) {
-
-                    $state.go('reservasList');
-                        
-                // si el id no es null, es un registro existente entonces lo elimina
-                } else {
-                    
-                    // ejecuta DELETE en el recurso REST
-                    return $http.delete(context + "/" + record.id, record)
+                // ejecuta DELETE en el recurso REST
+                return $http.delete(context + "/" + id, record)
                         .then(function () {
-                            // $http.delete es una promesa
-                            // cuando termine bien, cambie de estado
-                            $state.go('reservasList');
-                        }, responseError);
-                };
+                            $state.reload();
+                }, responseError);
+                
             };
- 
+            
             // -----------------------------------------------------------------
             // Funciones para manejar las fechas
             // -----------------------------------------------------------------

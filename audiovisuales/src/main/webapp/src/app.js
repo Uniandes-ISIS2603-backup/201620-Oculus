@@ -13,5 +13,3 @@
 
   
 })(window.angular);
-//"ProfesoresModule,"
-//No cargan!!!

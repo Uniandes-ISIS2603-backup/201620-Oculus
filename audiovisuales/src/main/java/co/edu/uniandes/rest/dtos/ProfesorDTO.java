@@ -14,6 +14,7 @@ public class ProfesorDTO
     private int id;
     private String nombre;
     private String login;
+    private int codigo;
     
     /**
      * Constructor por defecto
@@ -27,13 +28,15 @@ public class ProfesorDTO
      * @param id
      * @param nombre
      * @param login 
+     * @param codigo 
      */
-    public ProfesorDTO(int id, String nombre, String login)
+    public ProfesorDTO(int id, String nombre, String login, int codigo)
     {
         super();
         this.id=id;
         this.nombre=nombre;
         this.login=login;
+        this.codigo=codigo;
     }
     
     /**
@@ -87,7 +90,24 @@ public class ProfesorDTO
         this.login=login;
     }
     
+    /**
+     * Gets the codigo of the teacher
+     * @return codigo
+     */
+    public int getCodigo()
+    {
+        return this.codigo;
+    }
+    /**
+     * Sets the codigo to the teacher
+     * @param codigo 
+     */
+    public void setCodigo(int codigo)
+    {
+        this.codigo = codigo;
+    }
+    
     public String toString() {
-    	return "{ id : " + getId() + ", nombre : \"" + getNombre()+", login : \"" + getLogin() + "\" }" ;  
+    	return "{ id : " + getId() + ", nombre : \"" + getNombre()+", login : \"" + getLogin()+", codigo : \"" + getCodigo() + "\" }" ;  
     }
 }
