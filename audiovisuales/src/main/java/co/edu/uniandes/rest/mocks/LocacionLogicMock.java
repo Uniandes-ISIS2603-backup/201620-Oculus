@@ -72,90 +72,49 @@ public class LocacionLogicMock
     public LocacionDTO createLocacion(LocacionDTO newLocacion) throws CityLogicException 
     {
     	logger.info("recibiendo solicitud de agregar locacion " + newLocacion);
-    	
-    	// la nueva locación tiene id ?
-    	if ( newLocacion.getId() != null ) {
-	    	// busca la locación con el id suministrado
-	        for (LocacionDTO locacion : locaciones) {
-	        	// si existe una locación con ese id
-	            if (Objects.equals(locacion.getId(), newLocacion.getId())){
-	            	logger.severe("Ya existe una locación con ese id");
-	                throw new CityLogicException("Ya existe una locación con ese id");
-	            }
-	        }
-	        
-	    // la nueva locación no tiene id ? 
-    	} else {
 
-    		// genera un id para la locación
-    		logger.info("Generando id para la nueva locación");
-    		long newId = 1;
-	        for (LocacionDTO locacion : locaciones) {
-	            if (newId <= locacion.getId()){
-	                newId =  locacion.getId() + 1;
-	            }
-	        }
-	        newLocacion.setId(newId);
-    	}
-    	
-        // agrega la locación
-    	logger.info("agregando locación " + newLocacion);
+        // la nueva editorial tiene id ?
+        if (newLocacion.getId() != null) {
+            
+            for (LocacionDTO locacion : locaciones) {
+                
+                if (Objects.equals(locacion.getId(), newLocacion.getId())) {
+                    logger.severe("Ya existe una locacion con ese id");
+                    throw new CityLogicException("Ya existe una locacion con ese id");
+                };
+                if (Objects.equals(locacion.getUbicacion(), newLocacion.getUbicacion())) {
+                    logger.severe("Ya existe una locacion con esa ubicacion");
+                    throw new CityLogicException("Ya existe una locacion con esa ubicacion");
+                }
+
+            }
+
+           
+        } else {
+            for (LocacionDTO locacion : locaciones) {
+                
+                
+                if (Objects.equals(locacion.getUbicacion(), newLocacion.getUbicacion())) {
+                    logger.severe("Ya existe una locacion con esa ubicacion");
+                    throw new CityLogicException("Ya existe una locacion con esa ubicacion");
+                }
+
+            }
+           
+            logger.info("Generando id para la nueva locacion");
+            long newId = 1;
+            for (LocacionDTO locacion : locaciones) {
+                if (newId <= locacion.getId()) {
+                    newId = locacion.getId() + 1;
+                }
+            }
+            newLocacion.setId(newId);
+        }
+
+        
+        logger.info("agregando locacion " + newLocacion);
         locaciones.add(newLocacion);
         return newLocacion;
-    }
-    
-     /**
-     *Borra la locacion con la ubicacion dada
-     * @param pId de la locacion a eliminar
-     * @throws CityLogicException cuando no existe la lista en memoria 
-     */
-    public void deleteLocacion(Long pId) throws CityLogicException 
-    {
-        boolean encontrado = false;
-        int i = 0;
-        while(i < locaciones.size() && !encontrado)
-        {
-            if(locaciones.get(i).getId() == pId)
-            {
-                encontrado = true;
-                locaciones.remove(i);
-            }
-            i++;
-        }
-        if(!encontrado)
-        {
-             logger.severe("No existe una locacion con esa ubicacion");
-             throw new CityLogicException("No existe una locacion con esa ubicacion");
-            
-        }
-    }
-    
-    /**
-	 * Obtiene los atributos de una instancia de locacion con la ubicacion dada
-         * @param pId de la locacion a eliminar
-	 * @return Locacion
-	 * @throws CityLogicException cuando no existe la lista en memoria  
-	 */    
-    public LocacionDTO getLocacion(Long pId) throws CityLogicException 
-    {
-        LocacionDTO retornar = new LocacionDTO(0L,"Sin ubicación");
-        boolean encontrado = false;
-        int i = 0;
-        while(i < locaciones.size() && !encontrado)
-        {
-            if(locaciones.get(i).getId() == pId)
-            {
-                encontrado = true;
-                retornar = locaciones.get(i);
-            }
-            i++;
-    }
-        if(!encontrado)
-        {
-            logger.severe("No existe una locación con esa ubicación");
-            throw new CityLogicException("No existe una locación con esa ubicación");
-        }
-        return retornar;
     
     }
     
@@ -167,26 +126,73 @@ public class LocacionLogicMock
      */
     public LocacionDTO updateLocacion(Long pId, LocacionDTO pLoc) throws CityLogicException 
     {
-        LocacionDTO modificar = new LocacionDTO(0L,"Sin ubicación");
-        boolean encontrado = false;
-        int i = 0;
-        while(i < locaciones.size() && !encontrado)
-        {
-            if(locaciones.get(i).getId() == pId)
-            {
-                encontrado = true;
-                modificar = locaciones.get(i);
-                modificar.setUbicacion(pLoc.getUbicacion());
-              
+       logger.info("recibiendo solictud de modificar locacion " + pLoc);
+
+        
+        for (LocacionDTO locacion : locaciones) {
+            if (Objects.equals(locacion.getId(), pId)) {
+
+                
+                locacion.setId(pLoc.getId());
+                locacion.setUbicacion(pLoc.getUbicacion());
+
+               
+                logger.info("Modificando locacion " + locacion);
+                return locacion;
             }
-            i++;
         }
-        if(!encontrado)
-        {
-            logger.severe("No existe una locacion con esa ubicacion");
-            throw new CityLogicException("No existe una locacion con esa ubicacion");
-        }
-        return modificar;
+
+       
+        logger.severe("No existe una locacion con ese id");
+        throw new CityLogicException("No existe una locacion con ese id");
     }
     
+    /**
+     * Elimina los datos de una Locacion
+     *
+     * @param id identificador de la locacion a eliminar
+     * @throws CityLogicException cuando no existe una editorial con el id
+     * suministrado
+     */
+    public void deleteLocacion(Long id) throws CityLogicException {
+        logger.info("recibiendo solictud de eliminar locacion con id " + id);
+
+        
+        for (LocacionDTO locacion : locaciones) {
+            if (Objects.equals(locacion.getId(), id)) {
+
+                
+                logger.info("eliminando locacion " + locacion);
+                locaciones.remove(locacion);
+                return;
+            }
+        }
+
+       
+        logger.severe("No existe una locacion con ese id");
+        throw new CityLogicException("No existe una locacion con ese id");
+    }
+    
+    /**
+     * Obtiene una locacion
+     *
+     * @param id identificador de la locacion
+     * @return locacion encontrada
+     * @throws CityLogicException cuando el editorial no existe
+     */
+    public LocacionDTO getLocacion(Long id) throws CityLogicException {
+        logger.info("recibiendo solicitud de locacion con id " + id);
+
+        
+        for (LocacionDTO locacion : locaciones) {
+            if (Objects.equals(locacion.getId(), id)) {
+                logger.info("retornando locacion " + locacion);
+                return locacion;
+            }
+        }
+
+        
+        logger.severe("No existe locacion con ese id");
+        throw new CityLogicException("No existe locacion con ese id");
+    }
 }

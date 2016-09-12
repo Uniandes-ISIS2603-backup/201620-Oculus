@@ -8,21 +8,20 @@
     var mod = ng.module("locacionesModule");
 
     mod.controller("locacionesCtrl", ['$scope', '$state', '$stateParams', '$http', 'locacionesContext', function ($scope, $state, $stateParams, $http, context) {
-
-            
-            $scope.records = {};
            
-            $http.get(context).then(function(response){
+            $scope.records = {};
+            
+            $http.get(context).then(function(response)
+            {
                 $scope.records = response.data;    
             }, responseError);
 
-           
-           
-            if ($stateParams.locacionId !== null && $stateParams.locacion !== undefined) {
+            
+            if ($stateParams.locacionId !== null && $stateParams.locacionId !== undefined) {
                 
-                // toma el id del parámetro
+               
                 id = $stateParams.locacionId;
-                // obtiene el dato del recurso REST
+               
                 $http.get(context + "/" + id)
                     .then(function (response) {
                         // $http.get es una promesa
@@ -69,6 +68,15 @@
                         }, responseError);
                 };
             };
+            
+            this.deleteRecord=function(record)
+            {
+                id=record.id;
+                return $http.delete(context+"/"+id)
+                        .then(function(){
+                            $state.reload();
+                        },responseError);
+            }
 
 
 
@@ -107,4 +115,3 @@
         }]);
 
 })(window.angular);
-

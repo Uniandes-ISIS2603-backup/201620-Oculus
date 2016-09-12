@@ -31,7 +31,7 @@
                 }
 
             }).state('locacionEdit', {
-                url: '/locaciones/:locacionId',
+                url: '/locaciones/editar/{locacionId:int}',
                 param: {
                     locacionId: null
                 },
@@ -39,23 +39,11 @@
                     'mainView': {
                         controller: 'locacionesCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'locaciones.create.html'
+                        templateUrl: basePath + 'locaciones.edit.html'
                     }
                 }
-            }).state('locacionDelete', {
-                url: '/locaciones/delete/:locacionDelId',
-                param: {
-                    locacionDelId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'locacionesCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'administradores.delete.html'
-                    }
-                }
-
-            });
+            })
+            ;
             
         }]);
 })(window.angular);

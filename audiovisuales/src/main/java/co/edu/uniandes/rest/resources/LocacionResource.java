@@ -49,14 +49,11 @@ public class LocacionResource
      * @return Atributos de la instancia de Locacion
      * @throws CityLogicException excepciÃ³n retornada por la lÃ³gica
      */
-    @GET
-    
+     @GET
     @Path("{id: \\d+}")
-    public LocacionDTO getLocacion(@PathParam("id") Long pUbic) throws CityLogicException 
-    {
-            return locacionLogic.getLocacion(pUbic);
+    public LocacionDTO getEditorial(@PathParam("id") Long id) throws CityLogicException {
+        return locacionLogic.getLocacion(id);
     }
-
    
     /**
      * Agrega una locacion
@@ -80,10 +77,9 @@ public class LocacionResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public LocacionDTO updateLocacion(@PathParam("id") Long pUbic, LocacionDTO pLoc) throws CityLogicException 
+    public LocacionDTO updateLocacion(@PathParam("id") Long id, LocacionDTO pLoc) throws CityLogicException 
     {
-            logger.info("PUT");
-            return locacionLogic.updateLocacion(pUbic,pLoc);
+           return locacionLogic.updateLocacion(id, pLoc);
     }
     
    /**
