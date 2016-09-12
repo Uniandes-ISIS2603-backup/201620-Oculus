@@ -40,6 +40,24 @@
                         templateUrl: basePath + 'administradores.create.html'
                     }
                 }
+            }).state('administradoresReservasPendientes', {
+               url: '/administradores/reservasPendientes',
+              views: {
+                    'mainView': {
+                        controller: 'administradoresCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'administradores.reservasPendientes.html'
+                    }
+                }
+            }).state('administradoresReservasCanceladas', {
+                url: '/administradores/reservasCanceladas',
+                views: {
+                    'mainView': {
+                        controller: 'administradoresCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'administradores.reservasCanceladas.html'
+                    }
+                }
             });
         }]);
 })(window.angular);

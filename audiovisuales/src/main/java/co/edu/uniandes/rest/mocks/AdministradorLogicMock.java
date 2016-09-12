@@ -128,7 +128,7 @@ public class AdministradorLogicMock
        boolean encontro = false;
        AdministradorDTO administradorActual = null;
        //buscamos el administrador y lo eliminamos
-        for (int i=0; i<administradores.size()&& !encontro; i++) 
+        for (int i=0; i<administradores.size(); i++) 
         {
             administradorActual = ((AdministradorDTO)administradores.get(i));
             if(administradorActual.getCodigo() == codigoDelete)
@@ -138,7 +138,7 @@ public class AdministradorLogicMock
             }
         }
         //no se encuentra el administrador
-        if (!encontro)
+        if (encontro == false)
         {
           logger.severe("No existe un Administrador con ese codigo");
 	  throw new CityLogicException("No existe un Administrador con ese codigo"); 
@@ -157,7 +157,7 @@ public class AdministradorLogicMock
         for (int i=0; i<administradores.size(); i++) 
         {
             admiActual = (AdministradorDTO)administradores.get(i);
-            if(admiActual.getCodigo() == codigoS)
+            if(admiActual.getCodigo()==codigoS)
             {
                 encontro = true;
             }
