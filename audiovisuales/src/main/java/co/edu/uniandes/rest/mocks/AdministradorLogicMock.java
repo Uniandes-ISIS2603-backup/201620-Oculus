@@ -93,30 +93,23 @@ public class AdministradorLogicMock
      */
     public AdministradorDTO updateAdministrador (Long codigo, AdministradorDTO administadorUp) throws CityLogicException
     {
-        boolean encontro = false;
-        AdministradorDTO actualAdmi = null;
+        logger.info("recibiendo solictud de modificar administrador " + administadorUp);
+
         
-        for (int i=0; i<administradores.size(); i++) 
-        {
-            actualAdmi = (AdministradorDTO)administradores.get(i);
-            if(actualAdmi.getCodigo() == codigo)
+        for (AdministradorDTO admin : administradores) {
+            if (Objects.equals(admin.getCodigo(), codigo)) 
             {
-                encontro = true;
+               admin.setCodigo(administadorUp.getCodigo());
+               admin.setLogin(administadorUp.getLogin());
+               admin.setNombre(administadorUp.getNombre());
+
+               
+                logger.info("Modificando administrador " + admin);
+                return admin;
             }
         }
-        //si no encuentra el administrador lanzamos mensaje de error
-        if(encontro == false)
-        {
-          logger.severe("No existe un administrador con ese codigo");
-	  throw new CityLogicException("No existe un administrador con ese codigo");
-        }
-        //si encuentra el administrador hacemos el cambio 
-        actualAdmi.setCodigo(administadorUp.getCodigo());
-        actualAdmi.setNombre(administadorUp.getNombre());
-        actualAdmi.setLogin(administadorUp.getLogin());
-        
-        logger.info("retornando el administrador "+ actualAdmi);
-    	return actualAdmi;
+        logger.severe("No existe un administrador con ese codigo");
+        throw new CityLogicException("No existe un administrador con ese codigo");
     }
      
     /**
@@ -125,24 +118,20 @@ public class AdministradorLogicMock
      */
     public void deleteAdministrador (Long codigoDelete) throws CityLogicException
     {
-       boolean encontro = false;
-       AdministradorDTO administradorActual = null;
-       //buscamos el administrador y lo eliminamos
-        for (int i=0; i<administradores.size(); i++) 
+      logger.info("recibiendo solictud de eliminar administrador con codigo " + codigoDelete);
+
+        
+        for (AdministradorDTO admin : administradores) 
         {
-            administradorActual = ((AdministradorDTO)administradores.get(i));
-            if(administradorActual.getCodigo() == codigoDelete)
-            {
-                administradores.remove(i);
-                encontro = true;
+            if (Objects.equals(admin.getCodigo(), codigoDelete)) 
+            {              
+                logger.info("eliminando administrador " + admin);
+                administradores.remove(admin);
+                return;
             }
         }
-        //no se encuentra el administrador
-        if (encontro == false)
-        {
-          logger.severe("No existe un Administrador con ese codigo");
-	  throw new CityLogicException("No existe un Administrador con ese codigo"); 
-        }
+        logger.severe("No existe un administrador con ese codigo");
+        throw new CityLogicException("No existe un administrador con ese codigo");
     }
     
     /**
@@ -152,23 +141,19 @@ public class AdministradorLogicMock
      */ 
     public AdministradorDTO getAdministradorDTO (Long codigoS) throws CityLogicException
     {
-        boolean encontro = false;
-        AdministradorDTO admiActual = null;
-        for (int i=0; i<administradores.size(); i++) 
+         logger.info("recibiendo solicitud de administrador con codigo " + codigoS);
+
+        // busca el administrador con el codigo suministrado
+        for (AdministradorDTO admi : administradores) 
         {
-            admiActual = (AdministradorDTO)administradores.get(i);
-            if(admiActual.getCodigo()==codigoS)
-            {
-                encontro = true;
+            if (Objects.equals(admi.getCodigo(), codigoS)) {
+                logger.info("retornando administrador " + admi);
+                return admi;
             }
         }
-        //no existe el administrador
-        if( encontro == false)
-        {
-            logger.severe("No existe un administrador con ese codigo");
-	    throw new CityLogicException("No existe un administrador con ese codigo");
+
+        // si no encuentra el administrador
+        logger.severe("No existe el administrador con ese codigo");
+        throw new CityLogicException("No existe administrador con ese codigo");
         }
-        logger.info("retornando el administrador "+admiActual);
-        return admiActual;
-    }
 }
