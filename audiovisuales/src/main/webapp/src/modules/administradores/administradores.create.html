@@ -10,19 +10,19 @@
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
 
-                <label for="tipo" class="col-md-4 control-label">Nombre</label>
+                <label for="nombre" class="col-md-4 control-label">Nombre</label>
                 <div class="col-md-10">
-                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.tipo" ng-init="currentRecord.tipo" required />
+                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
                 </div>
                 
-                <label for="tipo" class="col-md-4 control-label">Codigo</label>
+                <label for="codigo" class="col-md-4 control-label">Codigo</label>
                 <div class="col-md-10">
-                    <input id="codigo" name="codigo" class="form-control" type="text" ng-model="currentRecord.caracteristicas" ng-init="currentRecord.caracteristicas" required />
+                    <input id="codigo" name="codigo" class="form-control" type="text" ng-model="currentRecord.codigo" ng-init="currentRecord.codigo" required />
                 </div>
                 
-                <label for="tipo" class="col-md-8 control-label">Login</label>
+                <label for="login" class="col-md-8 control-label">Login</label>
                 <div class="col-md-10">
-                    <input id="login" name="login" class="form-control" type="text" ng-model="currentRecord.disponibilidad" ng-init="currentRecord.disponibilidad" required />
+                    <input id="login" name="login" class="form-control" type="text" ng-model="currentRecord.login" ng-init="currentRecord.login" required />
                 </div>
                 
             </div>
