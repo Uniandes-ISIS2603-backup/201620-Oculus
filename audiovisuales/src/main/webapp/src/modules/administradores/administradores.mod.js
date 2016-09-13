@@ -21,7 +21,7 @@
             }).state('administradoresCreate', {
                 url: '/administradores/create',
                 views: {
-                    'mainView': {
+                    'mainView': {   
                         controller: 'administradoresCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'administradores.create.html'
