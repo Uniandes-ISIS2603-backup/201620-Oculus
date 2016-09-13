@@ -29,7 +29,7 @@
                 }
 
             }).state('administradorEdit', {
-                url: '/{administradorCodigo:int}/edit',
+                url: 'administradores/edit/{administradorCodigo:int}',
                 param: {
                     administradorCodigo: null
                 },
