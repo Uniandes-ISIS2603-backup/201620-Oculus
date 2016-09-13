@@ -17,6 +17,7 @@
                 // toma el id del parámetro
                 codigo = $stateParams.administradorCodigo;
                 // obtiene el dato del recurso REST
+                alert(context);
                 $http.get(context + "/" + codigo)
                     .then(function (response) {
                         // $http.get es una promesa
@@ -27,6 +28,7 @@
             // el controlador no recibió un equipoId
             } else
             {
+                
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     codigo: undefined /*Tipo Long. El valor se asigna en el backend*/,
@@ -55,7 +57,7 @@
                 } else {
                     
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(context + "/" + currentRecord.codigo, currentRecord)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
