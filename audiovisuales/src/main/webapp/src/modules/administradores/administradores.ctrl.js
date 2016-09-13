@@ -66,7 +66,7 @@
             
             this.deleteRecord=function(record)
             {
-                id=record.id;
+                codigo=record.codigo;
                 return $http.delete(context+"/"+codigo)
                         .then(function(){
                             $state.reload();
