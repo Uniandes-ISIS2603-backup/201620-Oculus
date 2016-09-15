@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class AdministradorDTO
 {
     private String nombre;
-    private Long codigo;
+    private Long id;
     private String login;
     
     //constructor 
@@ -26,11 +26,11 @@ public class AdministradorDTO
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     
     //constructor con parametros
-    public AdministradorDTO(String nomb, Long cod, String log)
+    public AdministradorDTO(String nomb, Long id, String log)
     {
         super();
         this.nombre = nomb;
-        this.codigo = cod;
+        this.id = id;
         this.login = log;
     }
     
@@ -39,9 +39,9 @@ public class AdministradorDTO
     {
         return nombre;
     }
-    public Long getCodigo()
+    public Long getId()
     {
-        return codigo;
+        return id;
     }
     public String getLogin()
     {
@@ -53,9 +53,9 @@ public class AdministradorDTO
     {
         this.nombre = nomb;
     }
-    public void setCodigo(Long cod)
+    public void setId(Long id)
     {
-        this.codigo = cod;
+        this.id = id;
     }
     public void setLogin(String log)
     {
@@ -66,7 +66,7 @@ public class AdministradorDTO
     @Override
     public String toString() 
     {
-        String formato="{ nombre : " + getNombre() + ", codigo : \"" + getCodigo() + "\", login : \""+getLogin()+" }" ; 
+        String formato="{ nombre : " + getNombre() + ", id : \"" + getId()+ "\", login : \""+getLogin()+" }" ; 
     	logger.setLevel(Level.INFO);
         logger.info("toStrimg:"+formato);
         return  formato;

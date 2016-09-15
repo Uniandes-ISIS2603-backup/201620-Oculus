@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  * 
  * @author Sneider Velandia G
  */
-@Path("administradores") // api/administrador
+@Path("administradores") // api/administradores
 @Produces("application/json") // todos retornan Jsons
 
 public class AdministradorResource 
@@ -43,15 +43,15 @@ public class AdministradorResource
     }
     
    /**
-     *Obtiene los atributos de un administrador dado su codigo
+     *Obtiene los atributos de un administrador dado su id
      * @return adminitrador buscado
      * @throws CityLogicException excepcion retornada por la logica
      */
     @GET
-    @Path("{codigo: \\d+}")
-    public AdministradorDTO getAdministrador(@PathParam("codigo") Long cod) throws CityLogicException
+    @Path("{id: \\d+}")
+    public AdministradorDTO getAdministrador(@PathParam("id") Long id) throws CityLogicException
     {
-        return administradorLogic.getAdministradorDTO(cod);
+        return administradorLogic.getAdministrador(id);
     }
     
    /**
@@ -60,11 +60,11 @@ public class AdministradorResource
      * @throws CityLogicException excepcion retornada por la logica
      */
     @PUT
-    @Path("{codigo: \\d+}")
-    public AdministradorDTO updateAdministrador(@PathParam("codigo") Long cod , AdministradorDTO administradorUp) throws CityLogicException
+    @Path("{id: \\d+}")
+    public AdministradorDTO updateAdministrador(@PathParam("id") Long id , AdministradorDTO administradorUp) throws CityLogicException
     {
-        logger.info("PUT");
-        return administradorLogic.updateAdministrador(cod, administradorUp);
+        logger.info("trata de hacer PUT");
+        return administradorLogic.updateAdministrador(id, administradorUp);
     }
  
     /**
@@ -82,16 +82,16 @@ public class AdministradorResource
     }
     
    /**
-     * elimina el administrador con el codigo dado
-     * @param cod codigo del administrador a eliminar
+     * elimina el administrador con el id dado
+     * @param id del administrador a eliminar
      * @return Atributos de la instancia de administrador
      * @throws CityLogicException excepcion retornada por la logica
      */
     @DELETE
-    @Path("{codigo: \\d+}")
-    public void deleteAdminitrador(@PathParam("codigo") Long cod) throws CityLogicException
+    @Path("{id: \\d+}")
+    public void deleteAdminitrador(@PathParam("id") Long id) throws CityLogicException
     {
           logger.info("Trata de borrar");
-            administradorLogic.deleteAdministrador(cod);
+            administradorLogic.deleteAdministrador(id);
     }
 }
