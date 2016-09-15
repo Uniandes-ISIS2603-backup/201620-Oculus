@@ -54,7 +54,35 @@
         <div class="container-fluid" class="col-md-12">   
             <h3>Audiovisuales</h3>
             
-            <ul class="nav nav-tabs">            
+            <ul class="nav nav-tabs">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Profesor
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="equipoCreate">Crear reserva</a></li>    
+                         <li><a ui-sref="equiposList">Reservas</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Administrador
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="administradorListEquipos">Equipos</a></li>
+                        <li><a ui-sref="administradorEquipoCreate">Registrar un equipo</a></li>    
+                        <li><a ui-sref="equiposList">Recibir equipo</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Administrador General
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="equipoCreate">Agregar punto de atención</a></li>    
+                        <li><a ui-sref="equiposList">Puntos de atención</a></li>
+                        <li><a ui-sref="equipoCreate">Ver reservas pendientes</a></li>    
+                        <li><a ui-sref="equiposList">Ver reservas canceladas</a></li>
+                    </ul>
+                </li>
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">Equipos
                         <span class="caret"></span></a>
@@ -76,7 +104,7 @@
                 </li>
                 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Locaciones
+                    <a class="dropdown-toggle" data-toggle="dropdown">Puntos de atención
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a ui-sref="locacionCreate">Create</a></li>    

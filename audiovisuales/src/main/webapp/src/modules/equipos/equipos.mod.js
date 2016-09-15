@@ -29,7 +29,7 @@
                 }
 
             }).state('equipoEdit', {
-                url: '/{equipoId:int}/edit',
+                url: '/equipos/{equipoId:int}/edit',
                 param: {
                     equipoId: null
                 },
