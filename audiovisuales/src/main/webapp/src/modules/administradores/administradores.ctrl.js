@@ -10,27 +10,27 @@
                 $scope.records = response.data;    
             }, responseError);
 
-            // el controlador recibió un administradorCodigo ??
-            // revisa los parámetros (ver el :equipoId en la definición de la ruta)
-            if ($stateParams.administradorCodigo !== null && $stateParams.administradorCodigo !== undefined) {
+            // el controlador recibió un administradorId ??
+            // revisa los parámetros (ver el :administradorId en la definición de la ruta)
+            if ($stateParams.administradorId !== null && $stateParams.administradorId !== undefined) {
                 
                 // toma el id del parámetro
-                codigo = $stateParams.administradorCodigo;
+                id = $stateParams.administradorId;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + codigo)
+                $http.get(context + "/" + id)
                     .then(function (response) {
                         // $http.get es una promesa
                         // cuando llegue el dato, actualice currentRecord
                         $scope.currentRecord = response.data;
                     }, responseError);
 
-            // el controlador no recibió un equipoId
+            // el controlador no recibió un administradorId
             } else
             {
                 
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
-                    codigo: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
                 };
               
@@ -38,11 +38,11 @@
             }
 
 
-            this.saveRecord = function (codigo) {
+            this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-                alert(codigo);
+               
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (codigo == null) {
+                if (id == null) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
@@ -52,11 +52,11 @@
                             $state.go('administradoresList');
                         }, responseError);
                         
-                // si el codigo no es null, es un registro existente entonces lo actualiza
+                // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
                     
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.codigo, currentRecord)
+                    return $http.put(context + "/" + currentRecord.id, currentRecord)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
@@ -67,8 +67,8 @@
             
             this.deleteRecord=function(record)
             {
-                codigo=record.codigo;
-                return $http.delete(context+"/"+codigo)
+                id=record.id;
+                return $http.delete(context+"/"+id)
                         .then(function(){
                             $state.reload();
                         },responseError);

@@ -29,9 +29,9 @@
                 }
 
             }).state('administradorEdit', {
-                url: '/administradores/edit/{administradorCodigo:int}',
+                url: '/administradores/edit/{administradorId:int}',
                 param: {
-                    administradorCodigo: null
+                    administradorId: null
                 },
                 views: {
                     'mainView': {
