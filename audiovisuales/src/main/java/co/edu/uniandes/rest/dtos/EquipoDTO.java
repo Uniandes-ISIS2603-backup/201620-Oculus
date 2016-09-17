@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.rest.dtos;
 
-import co.edu.uniandes.rest.mocks.EquipoLogicMock;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +20,8 @@ import java.util.logging.Logger;
     private Long id;
     private String tipo;
     private String caracteristicas;
-    private boolean disponibilidad;
+    
+    public static final String [] tipos={"Computador portatil", "Audífonos", "Cámara de video", "Apuntador" };
    
 
     /**
@@ -29,7 +30,7 @@ import java.util.logging.Logger;
     public EquipoDTO() 
     {
     }
-    private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getName());
+    private final static Logger logger = Logger.getLogger(AdministradorDTO.class.getName());
 
     /**
      * Constructor con parámetros.
@@ -38,31 +39,16 @@ import java.util.logging.Logger;
      * @param tipo tipo del equipo
      * @param descripcion descripción del equipo
      */
-    public EquipoDTO(Long id, String tipo,boolean disponibilidad,String tipo1) 
+    public EquipoDTO(Long id, String tipo,String pCaracteristicas) 
     {
 		super();
 		this.id = id;
 		this.tipo = tipo; 
-                this.caracteristicas = tipo1; 
-                this.disponibilidad = disponibilidad;;
+                this.caracteristicas = pCaracteristicas; 
+          
 
 	}
 
-    /**
-     * @return disponibilidad
-     */
-    public boolean getDisponibilidad() 
-    {
-        return disponibilidad;
-    }
-
-    /**
-     * @param disponibilidad the id to set
-     */
-    public void setDisponibilidad(boolean disponibilidad) 
-    {
-        this.disponibilidad = disponibilidad;
-    }
     /**
      * @return the id
      */
@@ -119,7 +105,7 @@ import java.util.logging.Logger;
     @Override
     public String toString() 
     {
-        String formato="{ id : " + getId() + ", tipo : \"" + getTipo() + "\", descripcion : \""+getCaracteristicas()+"\", disponibilidad : "+getDisponibilidad()+" }" ; 
+        String formato="{ id : " + getId() + ", tipo : \"" + getTipo() + "\", descripcion : \""+getCaracteristicas()+" }" ; 
     	logger.setLevel(Level.INFO);
         logger.info("toStrimg:"+formato);
         return  formato;

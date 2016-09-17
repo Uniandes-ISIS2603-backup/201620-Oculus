@@ -6,8 +6,11 @@
 package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.rest.dtos.AdministradorDTO;
+import co.edu.uniandes.rest.dtos.EquipoDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
+import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.AdministradorLogicMock;
+import co.edu.uniandes.rest.mocks.EquipoLogicMock;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ws.rs.DELETE;
@@ -30,8 +33,83 @@ public class AdministradorResource
 {
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     AdministradorLogicMock administradorLogic = new AdministradorLogicMock();
+    
+    EquipoLogicMock equipoLogicMock = new EquipoLogicMock();
 
     /**
+     *  NUEVOS PARA CICLO 2 
+     */
+    
+    /**
+     *Obtiene los equipos de un administrador dado su id
+     * @return lista de equipos
+     * @throws EquipoLogicException excepcion retornada por la logica
+     */
+        @GET
+        @Path("{idAdministrador: \\d+}/equipos")
+        public List<EquipoDTO> getEquipos(@PathParam("idAdministrador") Long id , @PathParam("idAdministrador") Long ide) throws EquipoLogicException
+        {
+            return equipoLogicMock.getEquipos();
+        }
+    
+    /**
+     *Obtiene los atributos de un equipo de un Administrador, dados el idEquipo y el idAdministrador
+     * @return equipo buscado
+     * @throws EquipoLogicException excepcion retornada por la logica
+     */
+    @GET
+    @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}")
+    public EquipoDTO getEquipo(@PathParam("idAdministrador") Long idAdmin , @PathParam("idEquipo") Long idEquipo) throws EquipoLogicException
+    {
+        return equipoLogicMock.getEquipo(idEquipo);
+    }
+    
+    /**
+     * Agrega un equipo
+     *
+     * @param equipo equipos a agregar
+     * @return datos del  equipo a agregar
+     * @throws EquipoLogicException cuando ya existe un equipo con el id
+     * suministrado
+     */
+    
+    @POST
+    @Path("{idAdministrador: \\d+}/equipos")
+    public EquipoDTO createEquipo(@PathParam("idAdministrador") Long idAdmin, EquipoDTO equipo) throws EquipoLogicException 
+    {
+        //viene por un Json
+        //Dto datos que manda el usuario
+        //lo agrega a un arreglo
+        logger.info("Se trata de agregar "+equipo+" a "+idAdmin);
+        return equipoLogicMock.createEquipo(equipo);
+    }
+    
+    @PUT
+    @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}")
+    public EquipoDTO updateEquipo(@PathParam("idEquipo") Long idEquipo, EquipoDTO equipo) throws EquipoLogicException 
+    {
+            logger.info("Trata de hacer put");
+            return equipoLogicMock.updateEquipo(idEquipo,equipo);
+    }
+    
+         /**
+     *Borra el equipo identificado con id
+     * @param id id de equipo a eliminar
+     * @return Atributos de la instancia de Equipo
+     * @throws EquipoLogicException excepciÃ³n retornada por la lógica
+     */
+    @DELETE
+    @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}")
+    public void deleteEquipo(@PathParam("idEquipo") Long idEquipo) throws EquipoLogicException 
+    {
+            logger.info("Trata de borrar");
+            equipoLogicMock.deleteEquipo(idEquipo);
+    }
+    
+    /**
+     * Antiguos
+     */
+     /**
      * Obtiene el listado de administradores asociados.
      * @return lista de administradores
      * @throws CityLogicException excepción retornada por la lógica
@@ -75,6 +153,7 @@ public class AdministradorResource
      * suministrado
      */
     @POST
+    @Path("a")
     public AdministradorDTO creatAdministrador(AdministradorDTO administrador) throws CityLogicException
     {
          logger.info("Se trata de agregar "+administrador);

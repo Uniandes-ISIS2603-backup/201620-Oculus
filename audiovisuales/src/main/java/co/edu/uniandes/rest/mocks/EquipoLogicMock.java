@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 
 import co.edu.uniandes.rest.dtos.EquipoDTO;
+import static co.edu.uniandes.rest.dtos.EquipoDTO.tipos;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 
 /*
@@ -39,9 +40,9 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
 
     	if (equipos == null) {
             equipos = new ArrayList<>();
-            equipos.add(new EquipoDTO(1L, "Computador", true, "Toshiba"));
-            equipos.add(new EquipoDTO(2L, "Audifonos", true, "Panasonic"));
-            equipos.add(new EquipoDTO(3L, "Computador", true, "Dell"));
+            equipos.add(new EquipoDTO(1L, tipos[1], "LG"));
+            equipos.add(new EquipoDTO(1L, tipos[1], "Dell"));
+            equipos.add(new EquipoDTO(1L, tipos[1], "Toshiba"));
         }
         
     	// indica que se muestren todos los mensajes
@@ -138,7 +139,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
     	actualEquipo.setTipo(equipo.getTipo());
         actualEquipo.setId(equipo.getId());
         actualEquipo.setCaracteristicas(equipo.getCaracteristicas());
-        actualEquipo.setDisponibilidad(equipo.getDisponibilidad());
+
     	logger.info("retornando el equipo "+actualEquipo);
     	return actualEquipo;
     }
