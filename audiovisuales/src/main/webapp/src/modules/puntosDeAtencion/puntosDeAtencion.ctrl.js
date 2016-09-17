@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 (function (ng) {
-    var mod = ng.module("locacionesModule");
+    var mod = ng.module("puntosDeAtencionModule");
 
-    mod.controller("locacionesCtrl", ['$scope', '$state', '$stateParams', '$http', 'locacionesContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("puntosDeAtencionCtrl", ['$scope', '$state', '$stateParams', '$http', 'puntosDeAtencionContext', function ($scope, $state, $stateParams, $http, context) {
            
             $scope.records = {};
-            
+           
             $http.get(context).then(function(response)
             {
                 $scope.records = response.data;    
             }, responseError);
 
-            
-            if ($stateParams.locacionId !== null && $stateParams.locacionId !== undefined) {
+            // revisa los parámetros (ver el :puntoAtencionId en la definición de la ruta)
+            if ($stateParams.puntoDeAtencionId !== null && $stateParams.puntoDeAtencionId !== undefined) {
                 
-               
-                id = $stateParams.locacionId;
-               
+                // toma el id del parámetro
+                id = $stateParams.puntoDeAtencionId;
+                // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                     .then(function (response) {
                         // $http.get es una promesa
@@ -53,7 +52,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('locacionesList');
+                            $state.go('puntosDeAtencionList');
                         }, responseError);
                         
                 // si el id no es null, es un registro existente entonces lo actualiza
@@ -64,7 +63,7 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('locacionesList');
+                            $state.go('puntosDeAtencionList');
                         }, responseError);
                 };
             };
@@ -115,3 +114,8 @@
         }]);
 
 })(window.angular);
+
+
+
+
+
