@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <div class="col-md-6 well">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
     <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
@@ -20,7 +15,7 @@ and open the template in the editor.
                     <input id="ubicacion" name="ubicacion" class="form-control" type="text" ng-model="currentRecord.ubicacion" ng-init="currentRecord.ubicacion" required />
                 </div>
             </div>
-            <button type="button" ui-sref='locacionesList'>Cancel</button>
+            <button type="button" ui-sref='puntosDeAtencionList'>Cancel</button>
             <button type="submit" >Save</button>    
         </fieldset>
     </form>
