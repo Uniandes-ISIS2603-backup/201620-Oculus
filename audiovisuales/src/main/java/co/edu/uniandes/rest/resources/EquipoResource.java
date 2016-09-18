@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.rest.dtos.EquipoDTO;
+import co.edu.uniandes.rest.dtos.TipoDTO;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.EquipoLogicMock;
 
@@ -61,6 +62,18 @@ public class EquipoResource
     public EquipoDTO getEquipo(@PathParam("id") Long id) throws EquipoLogicException 
     {
             return equipoLogic.getEquipo(id);
+    }
+    
+    /**
+     *Obtiene los atributos de una instancia de Equipo (READ) que tiene identificado id
+     * @return Atributos de la instancia de Equipo
+     * @throws EquipoLogicException excepción retornada por la lógica
+     */
+    @GET
+    @Path("tipos")
+    public TipoDTO[] getTipos() throws EquipoLogicException 
+    {
+            return equipoLogic.getTipos();
     }
 
    

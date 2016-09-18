@@ -68,7 +68,7 @@ public class AdministradorDTO
     {
         String formato="{ nombre : " + getNombre() + ", id : \"" + getId()+ "\", login : \""+getLogin()+" }" ; 
     	logger.setLevel(Level.INFO);
-        logger.info("toStrimg:"+formato);
+        logger.info("toString:"+formato);
         return  formato;
     }
 

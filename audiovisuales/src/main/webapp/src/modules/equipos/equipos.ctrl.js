@@ -13,7 +13,7 @@
             // el controlador recibió un equipoId ??
             // revisa los parámetros (ver el :equipoId en la definición de la ruta)
             if ($stateParams.equipoId !== null && $stateParams.equipoId !== undefined) {
-                
+               
                 // toma el id del parámetro
                 id = $stateParams.equipoId;
                 // obtiene el dato del recurso REST
@@ -25,6 +25,7 @@
                     }, responseError);
 
             // el controlador no recibió un equipoId
+            
             } else
             {
                 // el registro actual debe estar vacio
@@ -35,9 +36,13 @@
               
                 $scope.alerts = [];
             }
+            alert(context+"/tipos");
+            $http.get(context+"/tipos").then(function(response){
+                $scope.tipos=response.data;
+            });
 
-
-            this.saveRecord = function (id) {
+            this.saveRecord = function (id) 
+            {
                 currentRecord = $scope.currentRecord;
                 
                 // si el id es null, es un registro nuevo, entonces lo crea

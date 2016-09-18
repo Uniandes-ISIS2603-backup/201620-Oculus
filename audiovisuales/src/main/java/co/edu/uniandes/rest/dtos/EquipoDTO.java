@@ -18,10 +18,10 @@ import java.util.logging.Logger;
     public class EquipoDTO 
 {
     private Long id;
-    private String tipo;
+    private TipoDTO tipo;
     private String caracteristicas;
     
-    public static final String [] tipos={"Computador portatil", "Audífonos", "Cámara de video", "Apuntador" };
+    public static final TipoDTO [] tipos={new TipoDTO("Computador portatil",1), new TipoDTO("Audífonos",2), new TipoDTO("Cámara de video",3), new TipoDTO("Apuntador",4) };
    
 
     /**
@@ -39,7 +39,7 @@ import java.util.logging.Logger;
      * @param tipo tipo del equipo
      * @param descripcion descripción del equipo
      */
-    public EquipoDTO(Long id, String tipo,String pCaracteristicas) 
+    public EquipoDTO(Long id, TipoDTO tipo,String pCaracteristicas) 
     {
 		super();
 		this.id = id;
@@ -68,7 +68,7 @@ import java.util.logging.Logger;
     /**
      * @return tipo
      */
-    public String getTipo() 
+    public TipoDTO getTipo() 
     {
         return tipo;
     }
@@ -76,7 +76,7 @@ import java.util.logging.Logger;
     /**
      * @param tipo el tipo del equipo
      */
-    public void setTipo(String tipo) 
+    public void setTipo(TipoDTO tipo) 
     {
         this.tipo = tipo;
     }
