@@ -7,7 +7,7 @@
             var basePath = 'src/modules/administradorGeneral/';
             $urlRouterProvider.otherwise("/administradoresList");
      
-            $stateProvider.state('adminGeneralreservasCanceladas', 
+            $stateProvider.state('adminGeneralReservasCanceladas', 
             {
                 url: '/administradorGeneral/reservasCanceladas',
                 views: {
@@ -18,7 +18,7 @@
                         templateUrl: basePath + '..AUN NO SE QUE VA AQUI....html.....'
                     }
                 }
-            }).state('adminGeneralreservasPendientes', {
+            }).state('adminGeneralReservasPendientes', {
                 url: '/administradorGeneral/reservasPendientes',
                 views: {
                     'mainView': {   
@@ -28,36 +28,6 @@
                     }
                 }
 
-            }).state('administradorEdit', {
-                url: '/administradores/edit/{administradorId:int}',
-                param: {
-                    administradorId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'administradoresCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'administradores.create.html'
-                    }
-                }
-            }).state('administradoresReservasPendientes', {
-               url: '/administradores/reservasPendientes',
-              views: {
-                    'mainView': {
-                        controller: 'administradoresCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'administradores.reservasPendientes.html'
-                    }
-                }
-            }).state('administradoresReservasCanceladas', {
-                url: '/administradores/reservasCanceladas',
-                views: {
-                    'mainView': {
-                        controller: 'administradoresCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'administradores.reservasCanceladas.html'
-                    }
-                }
             });
         }]);
 })(window.angular);

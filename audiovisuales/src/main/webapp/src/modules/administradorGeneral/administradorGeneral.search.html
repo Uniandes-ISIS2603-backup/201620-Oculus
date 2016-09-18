@@ -1,0 +1,39 @@
+<div class="col-md-6 well">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
+    <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+        
+        <div ng-messages="form.$error">
+            <div ng-message="required">Complete el siguiente formulario:</div>
+        </div>
+   
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+
+                <label for="nombre" class="col-md-4 control-label">Identificador del Punto de Atencion: </label>
+                <div class="col-md-10">
+                    <input id="IdPuntoAtencion" name="IdPuntoAtencion" />
+                </div>
+                
+                <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="PublishingDate" class="col-md-2 control-label">Fecha Inicial:</label>
+                <div class="col-md-10">
+                    <date-picker model="currentRecord.publishingdate"></date-picker>
+                </div>
+                </div>
+                
+                <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="PublishingDate" class="col-md-2 control-label">Fecha Final:</label>
+                    <div class="col-md-10">
+                        <date-picker model="currentRecord.publishingdate"></date-picker>
+                    </div>
+                </div>
+ 
+                
+            </div>
+            
+            <button type="button" ui-sref='adminGeneralReservasCanceladas'>Cancel</button>
+            <button type="submit" >Save</button>    
+        </fieldset>
+    </form>
+</div>
