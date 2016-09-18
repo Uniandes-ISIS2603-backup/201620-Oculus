@@ -100,11 +100,13 @@ public class PuntoDeAtencionResource {
     }
     
     
-    /////////////////////////////////
-    /// RECURSOS NUEVOS DE SNEIDER///
-    /////////////////////////////////
     
-    /**
+    
+    
+    //recursos sneider
+    
+    
+   /**
      * Lista las reservas PENDIENTES de un Punto de atencion en una fecha dada.
      * @param idPA identificador del punto de atencion.
      * @return lista con las reservas pendientes en la locacion en la fecha dada.
@@ -115,7 +117,7 @@ public class PuntoDeAtencionResource {
     public List<ReservaDTO> getReservasPendientesPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
     {
         return reservaLogic.getReservas();
-    }
+    }  
     
     /**
      * Lista las reservas CANCELADAS de un Punto de atencion en una fecha dada.
@@ -124,7 +126,7 @@ public class PuntoDeAtencionResource {
      * @throws CityLogicException 
      */
     @GET
-    @Path("{idPuntoAtencion: \\d+}/ReservasPendientes")  //faltan los parametros de las fechas
+    @Path("{idPuntoAtencion: \\d+}/ReservasCanceladas")  //faltan los parametros de las fechas
     public List<ReservaDTO> getReservasCanceladasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
     {
         return reservaLogic.getReservas();
@@ -137,9 +139,10 @@ public class PuntoDeAtencionResource {
      * @throws CityLogicException 
      */
     @GET
-    @Path("{idPuntoAtencion: \\d+}/ReservasPendientes") 
+    @Path("{idPuntoAtencion: \\d+}/TodasLasReservasDeUnPuntoA") 
     public List<ReservaDTO> getReservasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
     {
         return reservaLogic.getReservas();
     }
+   
 }
