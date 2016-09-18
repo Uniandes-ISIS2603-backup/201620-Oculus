@@ -5,6 +5,8 @@
             // inicialmente el listado de equipos está vacio
             $scope.records = {};
             // carga los equipos
+            $scope.actual=$stateParams.administradorId;
+            //alert($scope.actual);
             $http.get(administradoresContext + "/" + id + "/equipos").then(function(response)
             {
                 $scope.records = response.data;    
@@ -14,14 +16,11 @@
                 $scope.tipos=response.data;
             }); 
             
-            this.saveRecord = function (id) 
+            this.saveRecord = function () 
             {
                 currentRecord = $scope.currentRecord;
-                
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) 
-                {
-                    alert(administradoresContext+ "/" + currentRecord.id + "/equipos");
+
+                    //alert(administradoresContext+ "/" + $scope.actual + "/equipos");
                     // ejecuta POST en el recurso REST
                     return $http.post(administradoresContext+ "/" + id + "/equipos", currentRecord)
                         .then(function () {
@@ -29,9 +28,7 @@
                             // cuando termine bien, cambie de estado
                             $state.go('administradorEquiposList');
                         }, responseError);
-                        
-                // si el id no es null, es un registro existente entonces lo actualiza
-                } 
+
             };
             
            
