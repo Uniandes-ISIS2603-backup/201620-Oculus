@@ -15,6 +15,9 @@ public class ReservaDTO {
     private Long id;
     private Date fecha;
     private String estado;
+    
+    public final static String RESERVA_CANCELADA = "Reserva Cancelada";
+    public final static String RESERVA_APROBADA = "Reserva Aprobada";
 
     /**
      * Constructor por defecto

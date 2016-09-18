@@ -22,6 +22,7 @@ public class ReservaLogicMock {
     // objeto para presentar logs de las operaciones
 	private final static Logger logger = Logger.getLogger(ReservaLogicMock.class.getName());
         public final static String RESERVA_INEXISTENTE = "No existe reserva con ese id";
+        
 	
 	// listado de reservas
     private static ArrayList<ReservaDTO> reservas;
@@ -34,9 +35,9 @@ public class ReservaLogicMock {
 
     	if (reservas == null) {
             reservas = new ArrayList<>();
-            reservas.add(new ReservaDTO(1L, date, "rechazada"));
-            reservas.add(new ReservaDTO(2L, date, "en espera"));
-            reservas.add(new ReservaDTO(3L, date, "aprobada"));
+            reservas.add(new ReservaDTO(1L, date, ReservaDTO.RESERVA_CANCELADA));
+            reservas.add(new ReservaDTO(2L, date, ReservaDTO.RESERVA_APROBADA));
+            reservas.add(new ReservaDTO(3L, date, ReservaDTO.RESERVA_APROBADA));
         }
         
     	// indica que se muestren todos los mensajes
@@ -116,7 +117,7 @@ public class ReservaLogicMock {
     public ReservaDTO updateReserva(Long id, ReservaDTO newReserva) throws CityLogicException {
         for(ReservaDTO reserva : reservas)
         {
-            if(reserva.getId()==id)
+            if(Objects.equals(reserva.getId(), id))
             {
                 reserva.setFecha(newReserva.getFecha());
                 reserva.setEstado(newReserva.getEstado());
@@ -138,4 +139,18 @@ public class ReservaLogicMock {
         throw new CityLogicException(RESERVA_INEXISTENTE);
     }
 
+       
+    public ReservaDTO cancelarReserva(Long id) throws CityLogicException {
+        for(ReservaDTO reserva : reservas)
+        {
+            if(reserva.getId()==id)
+            {
+                reserva.setEstado(ReservaDTO.RESERVA_CANCELADA);
+                return reserva;
+            }     
+        }
+        throw new CityLogicException(RESERVA_INEXISTENTE);
+    }
+
 }
+
