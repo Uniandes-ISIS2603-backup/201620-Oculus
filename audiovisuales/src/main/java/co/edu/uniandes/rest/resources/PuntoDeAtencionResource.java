@@ -6,8 +6,10 @@
 package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
+import co.edu.uniandes.rest.dtos.ReservaDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.mocks.PuntoDeAtencionLogicMock;
+import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -38,6 +40,7 @@ public class PuntoDeAtencionResource {
 
 	
 	PuntoDeAtencionLogicMock puntoLogic = new PuntoDeAtencionLogicMock();
+        ReservaLogicMock reservaLogic = new ReservaLogicMock();
 
 	/**
 	 * Obtiene el listado de los puntos de atencion. 
@@ -95,5 +98,48 @@ public class PuntoDeAtencionResource {
     public void deletePuntoDeAtencion(@PathParam("id") Long id) throws CityLogicException {
     	puntoLogic.deletePuntoDeAtencion(id);
     }
-
+    
+    
+    /////////////////////////////////
+    /// RECURSOS NUEVOS DE SNEIDER///
+    /////////////////////////////////
+    
+    /**
+     * Lista las reservas PENDIENTES de un Punto de atencion en una fecha dada.
+     * @param idPA identificador del punto de atencion.
+     * @return lista con las reservas pendientes en la locacion en la fecha dada.
+     * @throws CityLogicException 
+     */
+    @GET
+    @Path("{idPuntoAtencion: \\d+}/ReservasPendientes")  //faltan los parametros de las fechas
+    public List<ReservaDTO> getReservasPendientesPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
+    {
+        return reservaLogic.getReservas();
+    }
+    
+    /**
+     * Lista las reservas CANCELADAS de un Punto de atencion en una fecha dada.
+     * @param idPA identificador del punto de atencion 
+     * @return lista con las reservas canceladas en la locacion en la fecha dada.
+     * @throws CityLogicException 
+     */
+    @GET
+    @Path("{idPuntoAtencion: \\d+}/ReservasPendientes")  //faltan los parametros de las fechas
+    public List<ReservaDTO> getReservasCanceladasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
+    {
+        return reservaLogic.getReservas();
+    }
+    
+    /**
+     * Lista TODAS las reservas de un Punto de atencion.
+     * @param idPA identificador del punto de atencion. 
+     * @return lista con las reservas la locacion 
+     * @throws CityLogicException 
+     */
+    @GET
+    @Path("{idPuntoAtencion: \\d+}/ReservasPendientes") 
+    public List<ReservaDTO> getReservasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
+    {
+        return reservaLogic.getReservas();
+    }
 }
