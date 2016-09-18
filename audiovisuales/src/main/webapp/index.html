@@ -44,6 +44,9 @@
         <script src="src/modules/reservas/reservas.mod.js" type="text/javascript"></script>
         <script src="src/modules/reservas/reservas.ctrl.js" type="text/javascript"></script>
         
+        <script src="src/modules/administradorGeneral/administradorGeneral.mod.js" type="text/javascript"></script>
+        <script src="src/modules/administradorGeneral/administradorGeneral.ctrl.js" type="text/javascript"></script>
+        
         <script src="src/modules/administradores/administradoresEquipos/administradoresEquipo.ctrl.js" type="text/javascript"></script>
         
 
@@ -78,8 +81,8 @@
                     <ul class="dropdown-menu">
                         <li><a ui-sref="equipoCreate">Agregar punto de atención</a></li>    
                         <li><a ui-sref="equiposList">Puntos de atención</a></li>
-                        <li><a ui-sref="equipoCreate">Ver reservas pendientes</a></li>    
-                        <li><a ui-sref="equiposList">Ver reservas canceladas</a></li>
+                        <li><a ui-sref="adminGeneralReservasPendientes">Ver reservas pendientes</a></li>    
+                        <li><a ui-sref="adminGeneralReservasCanceladas">Ver reservas canceladas</a></li>
                     </ul>
                 </li>
                 
@@ -97,9 +100,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a ui-sref="administradoresCreate">Crear Administrador</a></li>    
-                         <li><a ui-sref="administradoresList">Lista de Administradores</a></li> 
-                         <li><a ui-sref="administradoresReservasPendientes">Reservas Pendientes</a></li>
-                         <li><a ui-sref="administradoresReservasCanceladas">Reservas Canceladas</a></li>
+                         <li><a ui-sref="administradoresList">Lista de Administradores</a></li>
                     </ul>
                 </li>
                 

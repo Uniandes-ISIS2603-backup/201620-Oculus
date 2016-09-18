@@ -15,7 +15,7 @@
                         
                         controller: 'administradorGenralCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + '..AUN NO SE QUE VA AQUI....html.....'
+                        templateUrl: basePath + 'administradorGeneral.search.html'
                     }
                 }
             }).state('adminGeneralReservasPendientes', {
@@ -24,7 +24,7 @@
                     'mainView': {   
                         controller: 'administradorGenralCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + '..AUN NO SE QUE VA AQUI....html.....'
+                        templateUrl: basePath + 'administradorGeneral.search.html'
                     }
                 }
 
