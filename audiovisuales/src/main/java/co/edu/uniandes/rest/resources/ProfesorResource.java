@@ -114,8 +114,8 @@ public class ProfesorResource
      * suministrado
      */
     @POST
-    @Path("{idP: \\d+}/equipos")
-    public ReservaDTO createTeacfher(@PathParam("idP") Long idP, ReservaDTO reserva) throws CityLogicException {
+    @Path("{idP: \\d+}/reservas")
+    public ReservaDTO createTeacher(@PathParam("idP") Long idP, ReservaDTO reserva) throws CityLogicException {
         //viene por un Json
         //Dto datos que manda el usuario
         //lo agrega a un arreglo dentro de profesores
@@ -133,8 +133,8 @@ public class ProfesorResource
      * @throws CityLogicException 
      */
     @PUT
-    @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}")
-    public ReservaDTO updateReserva(@PathParam("idP") Long idP, @PathParam("idR") Long idR) throws CityLogicException 
+    @Path("{idP: \\d+}/cancelarReserva/{idR: \\d+}")
+    public ReservaDTO cancelarReserva(@PathParam("idP") Long idP, @PathParam("idR") Long idR) throws CityLogicException 
     {
             logger.info("Trata de hacer put");
             return reservaLogic.cancelarReserva(idR);
@@ -147,11 +147,11 @@ public class ProfesorResource
      * @param fechaI  fecha inicial del rango
      * @param fechaF  fecha final del rango
      * @return lista de reservas
-     * @throws CityLogicExceptionn excepcion retornada por la logica
+     * @throws CityLogicException excepcion retornada por la logica
      */
         @GET
         @Path("{idP: \\d+}/reservasRangoFechas")
-        public List<ReservaDTO> getReservasRangoFechas(@PathParam("idP") Long idP , Date fechaI, Date fechaF) throws CityLogicException
+        public List<ReservaDTO> getReservasRangoFechas(@PathParam("idP") Long idP /*, Long fechaI, Long fechaF*/) throws CityLogicException
         {
             //Por ahora retorna todas las reservas
             //Debe pedirle al logic de profesores que le de sus reservas y pasarle tambien fechaI y fechaF
