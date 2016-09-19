@@ -36,7 +36,7 @@
               
                 $scope.alerts = [];
             }
-            alert(context+"/tipos");
+            //alert(context+"/tipos");
             $http.get(context+"/tipos").then(function(response){
                 $scope.tipos=response.data;
             });
