@@ -141,7 +141,8 @@ public class ProfesorResource
     }
     
     /**
-     *Obtiene las reservas de un profesor dado su id
+     * R3
+     *Obtiene las reservas de un profesor dado su id en un rango de fechas
      * @param idP id del profesor que posee las reservas
      * @param fechaI  fecha inicial del rango
      * @param fechaF  fecha final del rango
