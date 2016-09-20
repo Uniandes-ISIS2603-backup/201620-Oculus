@@ -18,7 +18,6 @@
             {
                 currentRecord = $scope.currentRecord;
 
-                    //alert(profesoresContext+ "/" + $scope.actual + "/reservas");
                     // ejecuta POST en el recurso REST
                     return $http.post(profesoresContext+ "/" + id + "/reservas", currentRecord)
                         .then(function () {
