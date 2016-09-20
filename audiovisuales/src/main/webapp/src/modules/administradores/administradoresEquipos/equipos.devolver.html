@@ -5,13 +5,14 @@
         <div ng-messages="form.$error">
             <div ng-message="required">Devolver equipo</div>
         </div>
+        <h2>Devolver equipo </h2>
    
         <fieldset>
             
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
 
 
-                <label for="id_Equipo" class="col-md-4 control-label">idEquipo</label>
+                <label for="id_Equipo" class="col-md-4 control-label">Id equipo</label>
                 <div class="col-md-10">
                     <input id="id_Equipo" name="id_Equipo" class="form-control" type="number" ng-model="idEquipo" ng-init="idEquipo" required />
                 </div>
