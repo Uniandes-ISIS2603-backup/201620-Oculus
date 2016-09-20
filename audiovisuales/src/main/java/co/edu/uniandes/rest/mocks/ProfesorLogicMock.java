@@ -33,9 +33,9 @@ public class ProfesorLogicMock
         if (profesores == null)
         {
             profesores = new ArrayList<>();
-            profesores.add(new ProfesorDTO(1, "Juan Pablo Arjona", "Contasena",24));
-            profesores.add(new ProfesorDTO(2, "Fernanda Velasquez", "Clave123",25));
-            profesores.add(new ProfesorDTO(3, "Rogelio Diaz", "OtroLogin",26));
+            profesores.add(new ProfesorDTO(1, "Juan Pablo Arjona", "jpArjona10",24));
+            profesores.add(new ProfesorDTO(2, "Fernanda Velasquez", "fvelasquez11",25));
+            profesores.add(new ProfesorDTO(3, "Rogelio Diaz", "rdiaz20",26));
         }
         
     	logger.setLevel(Level.INFO);

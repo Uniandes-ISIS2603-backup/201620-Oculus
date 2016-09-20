@@ -6,8 +6,9 @@
             $scope.records = {};
             // carga los reservas
             $scope.actual=$stateParams.profesorId;
+            var idP = $scope.actual;
             //alert($scope.actual);
-            $http.get(profesoresContext + "/" + id + "/reservas").then(function(response)
+            $http.get(profesoresContext + "/" + idP + "/reservas").then(function(response)
             {
                 $scope.records = response.data;    
             }, responseError);
@@ -19,7 +20,7 @@
                 currentRecord = $scope.currentRecord;
 
                     // ejecuta POST en el recurso REST
-                    return $http.post(profesoresContext+ "/" + id + "/reservas", currentRecord)
+                    return $http.post(profesoresContext+ "/" + idP + "/reservas", currentRecord)
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
@@ -27,6 +28,18 @@
                         }, responseError);
 
             };
+            
+            this.cancelarRecord = function (record) {
+                //currentRecord = $scope.currentRecord;
+                var idR = record.id;
+                
+                // ejecuta DELETE en el recurso REST
+                return $http.put(profesoresContext+ "/" + idP + "/cancelarReserva/" + idR)
+                        .then(function () {
+                            $state.reload();
+                }, responseError);
+                
+            }
             
            
             
