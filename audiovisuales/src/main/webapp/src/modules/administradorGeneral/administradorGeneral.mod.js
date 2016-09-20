@@ -5,7 +5,7 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) 
         {
             var basePath = 'src/modules/administradorGeneral/';
-            $urlRouterProvider.otherwise("/administradoresList");
+            $urlRouterProvider.otherwise("/adminGeneralReservasCanceladas");
      
             $stateProvider.state('adminGeneralReservasCanceladas', 
             {
@@ -13,7 +13,7 @@
                 views: {
                     'mainView': {
                         
-                        controller: 'administradorGenralCtrl',
+                        controller: 'administradorGeneralCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'administradorGeneral.search.html'
                     }
@@ -22,7 +22,7 @@
                 url: '/administradorGeneral/reservasPendientes',
                 views: {
                     'mainView': {   
-                        controller: 'administradorGenralCtrl',
+                        controller: 'administradorGeneralCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'administradorGeneral.search.html'
                     }

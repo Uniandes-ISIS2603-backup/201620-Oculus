@@ -5,11 +5,12 @@
         {
            
             
-            this.saveRecord = function (idPA,fi,ff) 
+             $scope.records = {};
+           
+            $http.get(context).then(function(response)
             {
-                
-            };
-            
+                $scope.records = response.data;    
+            }, responseError);          
             
 
             // -----------------------------------------------------------------
