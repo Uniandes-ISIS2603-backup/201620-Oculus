@@ -18,7 +18,7 @@ public class ReservaDTO {
     
     public final static String RESERVA_CANCELADA = "Reserva Cancelada";
     public final static String RESERVA_APROBADA = "Reserva Aprobada";
-
+    public final static String RESERVA_FINALIZADA = "Reserva Finalizada";
     /**
      * Constructor por defecto
      */

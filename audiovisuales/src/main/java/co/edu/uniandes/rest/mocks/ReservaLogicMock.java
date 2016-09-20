@@ -151,6 +151,18 @@ public class ReservaLogicMock {
         }
         throw new CityLogicException(RESERVA_INEXISTENTE);
     }
+    
+    public ReservaDTO devolver(Long id) throws CityLogicException {
+            for(ReservaDTO reserva : reservas)
+        {
+            if(reserva.getId()==id)
+            {
+                reserva.setEstado(ReservaDTO.RESERVA_FINALIZADA);
+                return reserva;
+            }     
+        }
+        throw new CityLogicException(RESERVA_INEXISTENTE);
+    }
 
 }
 

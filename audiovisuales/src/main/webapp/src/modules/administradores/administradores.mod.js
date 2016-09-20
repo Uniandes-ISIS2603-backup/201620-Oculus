@@ -87,7 +87,21 @@
                                 templateUrl: basePath + 'administradoresEquipos/'+'equipos.create.html'
                             }
                         }
+            }).state('administradorEquipoDevolver',
+            {
+                url:"/equipos/devolver",
+                parent: 'administradorEdit',
+                views:
+                        {
+                            'EquipoInstanceView':
+                            {
+                                controller: 'administradoresEquipoCtrl',
+                                controllerAs: 'ctrl',
+                                templateUrl: basePath + 'administradoresEquipos/'+'equipos.devolver.html'
+                            }
+                        }
             });
         }]);
 })(window.angular);
 //administradorEquipoCreate
+//

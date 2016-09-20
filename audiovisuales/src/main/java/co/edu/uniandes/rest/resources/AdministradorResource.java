@@ -11,6 +11,7 @@ import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.AdministradorLogicMock;
 import co.edu.uniandes.rest.mocks.EquipoLogicMock;
+import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ws.rs.DELETE;
@@ -35,6 +36,8 @@ public class AdministradorResource
     AdministradorLogicMock administradorLogic = new AdministradorLogicMock();
     
     EquipoLogicMock equipoLogicMock = new EquipoLogicMock();
+    
+    ReservaLogicMock reservaLogicMock = new ReservaLogicMock();
 
     /**
      *  NUEVOS PARA CICLO 2 
@@ -104,6 +107,14 @@ public class AdministradorResource
     {
             logger.info("Trata de borrar");
             equipoLogicMock.deleteEquipo(idEquipo);
+    }
+    @PUT
+    @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}/devuelto")
+    public EquipoDTO devolverEquipo(@PathParam("idEquipo") Long idEquipo, EquipoDTO equipo) throws EquipoLogicException, CityLogicException 
+    {
+            logger.info("Trata de devolver equipo");
+            reservaLogicMock.devolver(idEquipo);
+            return null;
     }
     
     /**

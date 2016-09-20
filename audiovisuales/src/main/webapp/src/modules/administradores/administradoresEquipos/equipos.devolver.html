@@ -1,28 +1,24 @@
 <div class="col-md-6 well">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
-    <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+    <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.devolver()">
         
         <div ng-messages="form.$error">
-            <div ng-message="required">Llene el formulario</div>
+            <div ng-message="required">Devolver equipo</div>
         </div>
    
         <fieldset>
             
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
 
-                <label for="tipo" class="col-md-4 control-label">Tipo</label>
-                <div class="col-md-10">
-                    <select id="tipo" name="tipo" ng-model="currentRecord.tipo" ng-options="tipo.nombre for tipo in tipos track by tipo.id" class="form-control" type="text" ng-model="currentRecord.tipo"></select>
-                </div>
 
-                <label for="caracteristicas" class="col-md-4 control-label">Caracteristicas</label>
+                <label for="id_Equipo" class="col-md-4 control-label">idEquipo</label>
                 <div class="col-md-10">
-                    <input id="caracteristicas" name="caracteristicas" class="form-control" type="text" ng-model="currentRecord.caracteristicas" ng-init="currentRecord.caracteristicas" required />
+                    <input id="id_Equipo" name="id_Equipo" class="form-control" type="number" ng-model="idEquipo" ng-init="idEquipo" required />
                 </div>
                                 
             </div>
             
-            <button type="button" ui-sref='administradorEquiposList'>Cancel</button>
+            <button type="button" ui-sref='reservasList'>Cancel</button>
             <button type="submit" >Save</button>    
         </fieldset>
     </form>

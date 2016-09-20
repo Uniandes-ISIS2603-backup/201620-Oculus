@@ -15,6 +15,7 @@
             $http.get(equiposContext+"/tipos").then(function(response){
                 $scope.tipos=response.data;
             }); 
+            $scope.idEquipo=0;
             
             this.saveRecord = function () 
             {
@@ -30,7 +31,20 @@
                         }, responseError);
 
             };
+            this.devolver=function()
             
+            {
+                currentRecord = $scope.currentRecord;
+                alert($scope.idEquipo);
+                //administradores/{idAdministrador: \d+}/equipos/{idEquipo: \d+}/devuelto
+                return $http.put(administradoresContext+ "/" + id + "/equipos/"+ $scope.idEquipo+"/devuelto",currentRecord)
+                        .then(function () {
+                            // $http.post es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('reservasList');
+                  
+                  }, responseError);
+            };
            
             
            
