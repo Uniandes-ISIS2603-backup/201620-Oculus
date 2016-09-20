@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<!--profesores.create.html-->
-<div class="col-md-6 well" ui-view="mainView">
-
-  <form novalidate name="form" id="profesor-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
-
-    <div ng-messages="form.$error">
-      <div ng-message="required">Fill the required fields!</div>
-    </div>
-
-    <fieldset>
-      <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
-      <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-        <label for="name" class="col-md-2 control-label">Name</label>
-        <div class="col-md-10">
-          <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.name" required />
+<div class="col-md-6 well">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
+    <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+        
+        <div ng-messages="form.$error">
+            <div ng-message="required">Complete el siguiente formulario:</div>
         </div>
-      </div>
-      <button type="button" ui-sref='profesoresList'>Cancel</button>
-      <button type="submit">Save</button>
-    </fieldset>
-  </form>
+   
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+
+                <label for="nombre" class="col-md-4 control-label">Nombre</label>
+                <div class="col-md-10">
+                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
+                </div>
+                
+                
+                <label for="login" class="col-md-8 control-label">Login</label>
+                <div class="col-md-10">
+                    <input id="login" name="login" class="form-control" type="text" ng-model="currentRecord.login" ng-init="currentRecord.login" required />
+                </div>
+                
+                <label for="login" class="col-md-8 control-label">Codigo</label>
+                <div class="col-md-10">
+                    <input id="codigo" name="codigo" class="form-control" type="text" ng-model="currentRecord.codigo" ng-init="currentRecord.codigo" required />
+                </div>
+                
+            </div>
+            
+            <button type="button" ui-sref='profesoresList'>Cancel</button>
+            <button type="submit" >Save</button>    
+        </fieldset>
+    </form>
+</div>

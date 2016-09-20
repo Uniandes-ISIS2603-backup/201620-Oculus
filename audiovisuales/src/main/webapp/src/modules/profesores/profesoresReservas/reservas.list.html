@@ -1,0 +1,19 @@
+<div class="container-fluid" >
+    <button class="btn btn--default" ui-sref="profesorReservaCreate">Crear Reserva</button>
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Estado</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-fecha">{{record.fecha}}</td>
+                <td id="{{$index}}-estado">{{record.estado}}</td>
+
+                </tr>
+        </tbody>
+    </table>
+</div>
