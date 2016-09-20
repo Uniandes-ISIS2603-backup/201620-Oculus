@@ -161,13 +161,12 @@ public class ProfesorResource
     /**
      *Obtiene las reservas de un profesor dado su id
      * @param idP
-     * @param idR
      * @return lista de reservas
      * @throws CityLogicException excepcion retornada por la logica
      */
     @GET
     @Path("{idP: \\d+}/reservas")
-    public List<ReservaDTO> getReservas(@PathParam("idP") Long idP , @PathParam("idR") Long idR) throws CityLogicException
+    public List<ReservaDTO> getReservas(@PathParam("idP") Long idP ) throws CityLogicException
     {
         return reservaLogic.getReservas();
     }

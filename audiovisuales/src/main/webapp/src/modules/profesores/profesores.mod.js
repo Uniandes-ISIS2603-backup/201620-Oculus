@@ -73,7 +73,7 @@
                                 templateUrl: basePath + 'profesoresReservas/'+'reservas.list.html'
                             }
                         }
-            }).state('profesoresReservaCreate',
+            }).state('profesorReservaCreate',
             {
                 url:"/reservas/create",
                 parent: 'profesorEdit',
