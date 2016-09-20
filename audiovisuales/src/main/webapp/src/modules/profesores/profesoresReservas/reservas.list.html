@@ -5,15 +5,18 @@
             <tr>
                 <th>Fecha</th>
                 <th>Estado</th>
-                
+                    
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
                 <td id="{{$index}}-fecha">{{record.fecha}}</td>
                 <td id="{{$index}}-estado">{{record.estado}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.cancelarRecord(record)"><span class="glyphicon glyphicon-minus"></span> Cancelar</button>
 
-                </tr>
+                </td>    
+            </tr>
         </tbody>
     </table>
 </div>
