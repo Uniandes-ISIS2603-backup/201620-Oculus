@@ -31,7 +31,7 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
+                    caracteristicas: '' /*Tipo String*/
                 };
               
                 $scope.alerts = [];
@@ -46,7 +46,7 @@
                 currentRecord = $scope.currentRecord;
                 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                if (id === null) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
@@ -76,12 +76,12 @@
                         .then(function(){
                             $state.reload();
                         },responseError);
-            }
+            };
 
 
 
             // -----------------------------------------------------------------
-            // Funciones para manejra los mensajes en la aplicación
+            // Funciones para manejar los mensajes en la aplicación
 
 
             //Alertas

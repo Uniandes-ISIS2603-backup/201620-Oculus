@@ -15,7 +15,7 @@
         }]);
 
     mod.config(['$urlRouterProvider', function ($urlRouterProvider) {
-            $urlRouterProvider.otherwise('/equiposList');
+            $urlRouterProvider.otherwise('/default');
         }]);
 
   

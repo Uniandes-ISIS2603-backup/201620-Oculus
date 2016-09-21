@@ -49,7 +49,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('administradores');
+                            $state.go('administradoresList');
                         }, responseError);
                         
                 // si el id no es null, es un registro existente entonces lo actualiza

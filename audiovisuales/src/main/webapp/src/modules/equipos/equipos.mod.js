@@ -5,12 +5,13 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) 
         {
             var basePath = 'src/modules/equipos/';
-            $urlRouterProvider.otherwise("/equiposList");
+            $urlRouterProvider.otherwise("/equiposDefault");
      
             $stateProvider.state('equiposList', 
             {
                 url: '/equipos',
-                views: {
+                views: 
+                {
                     'mainView': {
                         
                         controller: 'equiposCtrl',

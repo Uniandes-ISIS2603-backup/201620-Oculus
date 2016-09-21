@@ -164,7 +164,6 @@ public class AdministradorResource
      * suministrado
      */
     @POST
-    @Path("a")
     public AdministradorDTO creatAdministrador(AdministradorDTO administrador) throws CityLogicException
     {
          logger.info("Se trata de agregar "+administrador);
