@@ -37,6 +37,12 @@
                         templateUrl: 'src/modules/reservas/reservas.list.html'
                     }
                 
-            }})
+            }}).state('adminGeneralPuntosDeAtencion', {
+                url: '/administradorGeneral/puntosDeAtencion',
+                views: {
+                    'mainView': {   
+                        controller: 'puntosDeAtencionCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: 'src/modules/puntosDeAtencion/puntosDeAtencion.list.html'}}});
         }]);
 })(window.angular);
