@@ -3,14 +3,28 @@
 
     mod.controller("administradorGeneralCtrl", ['$scope', '$state', '$stateParams', '$http', 'administradorGeneralContext', function ($scope, $state, $stateParams, $http, context) 
         {
+            $scope.currentRecord = {};
+            $scope.alerts = [];
             // acceso al GET de puntos de atencion 
-             $http.get(administradorGeneralContext+'/PuntosDeAtencion//ReservasPendientes')
+            
+            //guarda info
+            this.saveRecord = function(idPa)
+            {
+                alert("entro");
+                currentRecord = $scope.currentRecord;
+                
+                $http.get(context+'/puntosDeAtencion/'+1+'/ReservasPendientes')
                      .then(function(response)
                 {
                 $scope.records = response.data;
-                $state.go('listarConsulta');
+                $state.go('listarConsulta' );
                 }, responseError); 
-            
+                
+                
+                // el idPA buscamos el punto de atencion
+                // return $hhtp.get();
+                $state.go('listarConsulta');
+            };
 
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación
