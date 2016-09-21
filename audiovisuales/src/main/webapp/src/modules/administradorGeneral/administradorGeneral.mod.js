@@ -28,6 +28,15 @@
                     }
                 }
 
-            });
+            }).state('listarConsulta',{
+                url: '/administradorGeneral/reservasPoC/List',
+                views: {
+                    'mainView': {   
+                        controller: 'administradorGeneralCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: 'src/modules/reservas/reservas.list.html'
+                    }
+                
+            }})
         }]);
 })(window.angular);

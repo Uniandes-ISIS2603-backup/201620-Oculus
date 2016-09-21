@@ -3,20 +3,17 @@
 
     mod.controller("administradorGeneralCtrl", ['$scope', '$state', '$stateParams', '$http', 'administradorGeneralContext', function ($scope, $state, $stateParams, $http, context) 
         {
-           
-            
-             $scope.records = {};
-           
-            $http.get(context).then(function(response)
-            {
-                $scope.records = response.data;    
-            }, responseError);          
+            // acceso al GET de puntos de atencion 
+             $http.get(administradorGeneralContext+'/PuntosDeAtencion//ReservasPendientes')
+                     .then(function(response)
+                {
+                $scope.records = response.data;
+                $state.go('listarConsulta');
+                }, responseError); 
             
 
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación
-
-
             //Alertas
             this.closeAlert = function (index) {
                 $scope.alerts.splice(index, 1);
