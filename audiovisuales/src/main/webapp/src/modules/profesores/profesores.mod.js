@@ -73,6 +73,19 @@
                                 templateUrl: basePath + 'profesoresReservas/'+'reservas.list.html'
                             }
                         }
+            }).state('profesorReservasRangoFechas',
+            {
+                url:"/reservas/rangoFechas",
+                parent: 'profesorEdit',
+                views:
+                        {
+                            'ReservaInstanceView':
+                            {
+                                controller: 'profesoresReservaCtrl',
+                                controllerAs: 'ctrl',
+                                templateUrl: basePath + 'profesoresReservas/'+'reservas.rangoFechas.html'
+                            }
+                        }
             }).state('profesorReservaCreate',
             {
                 url:"/reservas/create",

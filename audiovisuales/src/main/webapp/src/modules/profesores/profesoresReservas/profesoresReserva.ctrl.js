@@ -4,7 +4,8 @@
     mod.controller("profesoresReservaCtrl", ['$scope', '$state', '$stateParams', '$http', 'profesoresContext','reservasContext', function ($scope, $state, $stateParams, $http, profesoresContext,reservasContext) {
             // inicialmente el listado de reservas está vacio
             $scope.records = {};
-            // carga los reservas
+            $scope.recordsFechas = {};
+            // carga las reservas
             $scope.actual=$stateParams.profesorId;
             var idP = $scope.actual;
             //alert($scope.actual);
@@ -12,6 +13,12 @@
             {
                 $scope.records = response.data;    
             }, responseError);
+            
+            $http.get(profesoresContext + "/" + idP + "/reservasRangoFechas").then(function(response)
+            {
+                $scope.recordsFechas = response.data;    
+            }, responseError);
+
 
             ; 
             
@@ -41,6 +48,7 @@
                 
             }
             
+           
            
             
            
