@@ -36,7 +36,7 @@
             }).state('profesorCreate', {
                 url: '/profesores/create',
                 views: {
-                    'profesorView': {
+                    'mainView': {
                         controller: 'profesoresCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'profesores.create.html'
