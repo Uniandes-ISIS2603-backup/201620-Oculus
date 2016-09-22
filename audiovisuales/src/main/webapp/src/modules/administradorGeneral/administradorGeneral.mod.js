@@ -32,7 +32,7 @@
                 url: '/administradorGeneral/reservasPoC/List',
                 views: {
                     'mainView': {   
-                        controller: 'administradorGeneralCtrl',
+                        controller: 'reservasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: 'src/modules/reservas/reservas.list.html'
                     }

@@ -8,22 +8,25 @@
             // acceso al GET de puntos de atencion 
             
             //guarda info
+            
+            $scope.records={};
             this.saveRecord = function(idPa)
             {
-                alert("entro");
+                
                 currentRecord = $scope.currentRecord;
                 
-                $http.get(context+'/puntosDeAtencion/'+1+'/ReservasPendientes')
+
+                
+                
+                $http.get('/audiovisuales/api/puntosDeAtencion/'+1+'/ReservasPendientes')
+                
                      .then(function(response)
                 {
                 $scope.records = response.data;
-                $state.go('listarConsulta' );
+                
+                
                 }, responseError); 
-                
-                
-                // el idPA buscamos el punto de atencion
-                // return $hhtp.get();
-                $state.go('listarConsulta');
+                $state.go('listarConsulta' );
             };
 
             // -----------------------------------------------------------------
