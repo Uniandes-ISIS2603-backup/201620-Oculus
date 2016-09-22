@@ -1,36 +1,43 @@
-<div class="col-md-6 well">
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
-    <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord()">
+<div ng-messages="form.$error" multiple>
+            <ng-message when="required">
+                <alert type="warning">Ingrese los valores requeridos!</alert>
+            </ng-message>    <br>
+            <ng-message when="date">
+                <alert type="warning">No es una fecha válida!</alert>
+            </ng-message> 
+</div>
+
+<div class="col-md-12 well">
+    <form novalidate name="form" id="book-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+
         
-        <div ng-messages="form.$error">
-            <div ng-message="required">Llene el formulario</div>
-        </div>
-            
+
         <fieldset>
-            
-                        
-            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
-
-                <label for="PublishingDate" class="col-md-2 control-label">Fecha</label>
-                <div class="col-md-10">
-                    <p class="input-group">
-                        <input  id="publishingdate" name="publishingdate"  type="text" class="form-control" uib-datepicker-popup ng-model="currentRecord.fecha" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="ctrl.open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </p>
-                </div>
-
-                <label for="name" class="col-md-2 control-label">Estado</label>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <!-- Estado -->
+            <div class="form-group col-md-6" ng-class="{'has-success': form.estado.$valid && form.estado.$dirty, 'has-error': form.estado.$invalid && (form.estado.$dirty || form.$submitted)}" >
+                <label for="estado" class="col-md-2 control-label">Estado</label>
                 <div class="col-md-10">
                     <input id="estado" name="estado" class="form-control" type="text" ng-model="currentRecord.estado" ng-init="currentRecord.estado" required />
                 </div>
-                                
             </div>
-            
-      
-            <button type="button" ui-sref='profesorReservasList'>Cancel</button>
-            <button type="submit" >Save</button>    
-        </fieldset>
+            <!-- Fecha -->
+            <div class="form-group col-md-6" ng-class="{'has-success': form.fecha.$valid && form.fecha.$dirty, 'has-error': form.fecha.$invalid && (form.fecha.$dirty || form.$submitted)}" >
+
+                <label for="fecha" class="col-md-2 control-label">Fecha:</label>
+                <div class="col-md-10">
+                    <date-picker name="fecha" model="currentRecord.fecha"></date-picker>
+                    
+                </div>
+            </div>
+           
+           
+             </fieldset>
+            <div class="form-group col-md-12">
+                <button type="button" ui-sref='profesorReservasList'>Cancel</button>
+                <button type="submit" >Save</button>   
+            </div>
+       
     </form>
 </div>
+
