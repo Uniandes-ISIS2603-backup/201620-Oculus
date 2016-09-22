@@ -41,8 +41,30 @@
                 url: '/administradorGeneral/puntosDeAtencion',
                 views: {
                     'mainView': {   
-                        controller: 'puntosDeAtencionCtrl',
+                        controller: 'puntosDeAtencionAGCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: 'src/modules/puntosDeAtencion/puntosDeAtencion.list.html'}}});
+                        templateUrl: basePath + 'puntosAtencionAdminGeneral/' + 'puntosDeAtencionAG.list.html'}}
+            }
+                    ).state('adminGeneralPuntosDeAtencionCreate', {
+                url: '/administradorGeneral/puntosDeAtencion/create',
+                views: {
+                    'mainView': {   
+                        controller: 'puntosDeAtencionAGCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'puntosAtencionAdminGeneral/' + 'puntosDeAtencionAG.create.html'}}
+            }
+                    ).state('puntoDeAtencionAdminGeneralEdit', {
+                url: '/administradorGeneral/puntosDeAtencion/edit/{puntoDeAtencionId:int}',
+                param: {
+                    puntoDeAtencionId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'puntosDeAtencionAGCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'puntosAtencionAdminGeneral/' + 'puntosDeAtencionAG.create.html'
+                    }
+                }
+            });
         }]);
 })(window.angular);
