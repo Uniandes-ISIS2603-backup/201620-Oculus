@@ -2,9 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Oculus</groupId>                   <!-- //nombre de la empresa-->   
-    <artifactId>audiovisuales</artifactId>      <!-- //nombre del componente --> 
-    <version>1.0-SNAPSHOT</version>
+	<parent>
+	    <groupId>Oculus</groupId>
+    	<artifactId>audiovisuales</artifactId>
+		<version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>audiovisuales.web</artifactId>	<!-- //nombre del componente --> 
     <packaging>war</packaging>                  <!-- //aplicacion web -->
 
     <!-- Nombre para el archivo ejecutable / el contexto en Glassfish -->
@@ -16,39 +20,14 @@
     </properties>
     
     <dependencies>
-        
-        <!-- Esta dependencia no se requiere - se incluye en Java EE -->
-        <dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-            <artifactId>jersey-server</artifactId>
-            <version>2.22.1</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <!-- Esta dependencia no se requiere - se incluye en Java EE -->
-        <!-- solo se necesita si usan elementos no estándar -->
-        <dependency>
-           <groupId>org.eclipse.persistence</groupId>
-           <artifactId>eclipselink</artifactId>
-           <version>2.5.2</version>
-           <scope>provided</scope>
-        </dependency>
-        <!-- Esta dependencia no se requiere - se incluye en Java EE -->
-        <!-- solo se necesita si desean generar un JPA metamodel -->        
-        <dependency>
-           <groupId>org.eclipse.persistence</groupId>
-           <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-           <version>2.5.2</version>
-           <scope>provided</scope>
-        </dependency>
-        
-        
+               
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId> <!-- //java en version 7 -->
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
     </dependencies>
 
     <build>
