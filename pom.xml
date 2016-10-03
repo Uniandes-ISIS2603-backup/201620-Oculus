@@ -8,8 +8,8 @@
     <packaging>pom</packaging>
     
 	<modules>
-        <module>audiovisuales.back</module>
-        <module>audiovisuales.web</module>
+        <module>audiovisuales-back</module>
+        <module>audiovisuales-web</module>
     </modules>
 	
     <properties>

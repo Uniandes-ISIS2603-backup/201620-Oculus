@@ -8,7 +8,7 @@
 		<version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>audiovisuales.web</artifactId>	<!-- //nombre del componente --> 
+    <artifactId>audiovisuales-web</artifactId>	<!-- //nombre del componente --> 
     <packaging>war</packaging>                  <!-- //aplicacion web -->
 
     <!-- Nombre para el archivo ejecutable / el contexto en Glassfish -->
