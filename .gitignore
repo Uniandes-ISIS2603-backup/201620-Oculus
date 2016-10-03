@@ -9,6 +9,8 @@ tmp/
 
 # Binaries produced by Maven
 target/
+audiovisuales-back/target/
+audiovisuales-web/target/
 
 # Package Files
 *.jar
@@ -37,6 +39,8 @@ node_modules/
 # NetBeans
 nbactions.xml
 /nb-configuration.xml
+audiovisuales-back/nb-configuration.xml
+audiovisuales-web/nb-configuration.xml
 
 # Eclipse 
 .project
