@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.rest.dtos;
 
+import java.util.ArrayList;
+
 /**
  * Class that implements the teacher that will provide the equipment of the order
  * @author ac.fandino10
@@ -15,6 +17,7 @@ public class ProfesorDTO
     private String nombre;
     private String login;
     private int codigo;
+    private ArrayList<ReservaDTO> reservas;
     
     /**
      * Constructor por defecto
