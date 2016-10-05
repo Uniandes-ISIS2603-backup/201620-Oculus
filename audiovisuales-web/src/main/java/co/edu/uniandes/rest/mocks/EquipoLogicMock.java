@@ -41,9 +41,9 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
 
     	if (equipos == null) {
             equipos = new ArrayList<>();
-            equipos.add(new EquipoDTO(1L, tipos[1], "LG"));
-            equipos.add(new EquipoDTO(2L, tipos[2], "Dell"));
-            equipos.add(new EquipoDTO(3L, tipos[3], "Toshiba"));
+            equipos.add(new EquipoDTO(1L, getTipos()[1], "LG"));
+            equipos.add(new EquipoDTO(2L, getTipos()[2], "Dell"));
+            equipos.add(new EquipoDTO(3L, getTipos()[3], "Toshiba"));
         }
         
     	// indica que se muestren todos los mensajes
@@ -70,7 +70,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
     }
     
     public TipoDTO[] getTipos() throws EquipoLogicException {
-    	return EquipoDTO.tipos;
+    	return EquipoDTO.getTipos();
     	
     }
 
