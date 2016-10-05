@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.dtos;
 
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,11 +18,40 @@ import java.util.logging.Logger;
 //objeto json
     public class EquipoDTO 
 {
+
+    /**
+     * @return the tipos
+     */
+    public static TipoDTO[] getTipos() {
+        return tipos;
+    }
+
+    /**
+     * @param aTipos the tipos to set
+     */
+    public static void setTipos(TipoDTO[] aTipos) {
+        tipos = aTipos;
+    }
+
+    /**
+     * @return the logger
+     */
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    /**
+     * @param aLogger the logger to set
+     */
+    public static void setLogger(Logger aLogger) {
+        logger = aLogger;
+    }
     private Long id;
     private TipoDTO tipo;
     private String caracteristicas;
+    private ArrayList<ReservaDTO> reservas;
     
-    public static final TipoDTO [] tipos={new TipoDTO("Computador portatil",1), new TipoDTO("Audífonos",2), new TipoDTO("Cámara de video",3), new TipoDTO("Apuntador",4) };
+    private static TipoDTO [] tipos={new TipoDTO("Computador portatil",1), new TipoDTO("Audífonos",2), new TipoDTO("Cámara de video",3), new TipoDTO("Apuntador",4) };
    
 
     /**
@@ -30,7 +60,7 @@ import java.util.logging.Logger;
     public EquipoDTO() 
     {
     }
-    private final static Logger logger = Logger.getLogger(AdministradorDTO.class.getName());
+    private static Logger logger = Logger.getLogger(AdministradorDTO.class.getName());
 
     /**
      * Constructor con parámetros.
@@ -45,7 +75,7 @@ import java.util.logging.Logger;
 		this.id = id;
 		this.tipo = tipo; 
                 this.caracteristicas = pCaracteristicas; 
-          
+                this.reservas = new ArrayList();
 
 	}
 
@@ -98,6 +128,8 @@ import java.util.logging.Logger;
     }
     
     
+    
+    
     /**
      * Convierte el objeto a una cadena
      * @return 
@@ -106,10 +138,26 @@ import java.util.logging.Logger;
     public String toString() 
     {
         String formato="{ id : " + getId() + ", tipo : \"" + getTipo() + "\", descripcion : \""+getCaracteristicas()+" }" ; 
-    	logger.setLevel(Level.INFO);
-        logger.info("toStrimg:"+formato);
+    	getLogger().setLevel(Level.INFO);
+        getLogger().info("toStrimg:"+formato);
         return  formato;
         
     }
+
+    /**
+     * @return the reservas
+     */
+    public ArrayList<ReservaDTO> getReservas() {
+        return reservas;
+    }
+
+    /**
+     * @param reservas the reservas to set
+     */
+    public void setReservas(ArrayList<ReservaDTO> reservas) {
+        this.reservas = reservas;
+    }
+    
+    
     
 }
