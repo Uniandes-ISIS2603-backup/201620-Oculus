@@ -48,7 +48,7 @@
             {
                 currentRecord = $scope.currentRecord;
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id === null) 
+                if (id === null || id === undefined) 
                 {
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
