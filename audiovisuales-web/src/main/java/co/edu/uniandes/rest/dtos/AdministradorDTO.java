@@ -19,6 +19,7 @@ public class AdministradorDTO
     private String nombre;
     private Long id;
     private String login;
+    private PuntoDeAtencionDTO puntoDeAtencion;
     
     //constructor 
     public AdministradorDTO(){}
@@ -26,12 +27,13 @@ public class AdministradorDTO
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     
     //constructor con parametros
-    public AdministradorDTO(String nomb, Long id, String log)
+    public AdministradorDTO(String nomb, Long id, String log, PuntoDeAtencionDTO puntoDAtencion)
     {
         super();
         this.nombre = nomb;
         this.id = id;
         this.login = log;
+        this.puntoDeAtencion = puntoDAtencion;
     }
     
     //METODOS .GET
@@ -47,6 +49,10 @@ public class AdministradorDTO
     {
         return login;
     }
+    public PuntoDeAtencionDTO getPuntoDeAtencion()
+    {
+        return puntoDeAtencion;
+    }
     
     //METODOS .SET
     public void setNombre(String nomb)
@@ -61,7 +67,10 @@ public class AdministradorDTO
     {
         this.login = log;
     }
-    
+    public void setPuntoDeAtencion(PuntoDeAtencionDTO pda)
+    {
+        this.puntoDeAtencion = pda;
+    }
     //Convierte el objeto a una cadena
     @Override
     public String toString() 
