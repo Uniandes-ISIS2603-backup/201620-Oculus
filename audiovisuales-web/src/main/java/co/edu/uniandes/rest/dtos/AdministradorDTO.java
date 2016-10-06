@@ -27,13 +27,12 @@ public class AdministradorDTO
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     
     //constructor con parametros
-    public AdministradorDTO(String nomb, Long id, String log, PuntoDeAtencionDTO puntoDAtencion)
+    public AdministradorDTO(String nomb, Long id, String log)
     {
         super();
         this.nombre = nomb;
         this.id = id;
         this.login = log;
-        this.puntoDeAtencion = puntoDAtencion;
     }
     
     //METODOS .GET

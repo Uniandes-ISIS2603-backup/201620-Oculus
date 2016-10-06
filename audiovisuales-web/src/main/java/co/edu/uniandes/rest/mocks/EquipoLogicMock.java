@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 
 
 import co.edu.uniandes.rest.dtos.EquipoDTO;
-import static co.edu.uniandes.rest.dtos.EquipoDTO.tipos;
 import co.edu.uniandes.rest.dtos.TipoDTO;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 
@@ -69,7 +68,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
     	return equipos;
     }
     
-    public TipoDTO[] getTipos() throws EquipoLogicException {
+    public TipoDTO[] getTipos(){
     	return EquipoDTO.getTipos();
     	
     }
