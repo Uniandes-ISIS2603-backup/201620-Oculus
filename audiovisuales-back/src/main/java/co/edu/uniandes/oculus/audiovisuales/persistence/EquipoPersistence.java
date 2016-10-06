@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
+import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,5 +22,6 @@ public class EquipoPersistence
  
     @PersistenceContext(unitName = "OculusPU")
     protected EntityManager em;
+    
     
 }

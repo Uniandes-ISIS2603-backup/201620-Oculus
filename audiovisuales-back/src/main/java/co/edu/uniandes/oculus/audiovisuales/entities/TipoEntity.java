@@ -6,18 +6,13 @@
 package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  *
  * @author gc.andrade10
  */
-public class EquipoEntity extends BaseEntity implements Serializable
+public class TipoEntity extends BaseEntity implements Serializable
 {
-    
-    private TipoEntity tipo;
-    private String caracteristicas;
-    private ArrayList<ReservaEntity> reservas;
     
     
 }
