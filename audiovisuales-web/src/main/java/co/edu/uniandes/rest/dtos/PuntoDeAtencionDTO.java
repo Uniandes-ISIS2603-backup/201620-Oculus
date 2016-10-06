@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.rest.dtos;
-
+import java.util.ArrayList;
 /**
  *
  * @author am.espinosa11
@@ -12,6 +12,7 @@ package co.edu.uniandes.rest.dtos;
 public class PuntoDeAtencionDTO {
     private Long id;
     private String ubicacion;
+    private ArrayList<AdministradorDTO> administradores;
 
     /**
      * Constructor por defecto
@@ -58,6 +59,51 @@ public class PuntoDeAtencionDTO {
     public void setUbicacion(String ubic) {
         this.ubicacion = ubic;
     }
+
+    public ArrayList<AdministradorDTO> getAdministradores() 
+    {
+        return administradores;
+    }
+
+     /**
+     * @param administradores lista de administradores
+     */
+    public void setAdministradores(ArrayList<AdministradorDTO> administradores)
+    {
+        this.administradores = administradores;
+    }
+    
+     /**
+     * @param admin administrador para agregar
+     */
+    public void agregarAdministrador(AdministradorDTO admin)
+    {
+        this.administradores.add(admin);
+    }
+    
+     /**
+     * elimina admin que se da por parametro
+     */
+    public void eliminarAdministrador(AdministradorDTO admin)
+    {
+        this.administradores.remove(admin);
+    }
+    
+     /**
+     * @param pLogin Login del administrador a eliminar
+     */
+    public void eliminarAdministradorPorLogin(String pLogin)
+    {
+        for(int i = 0; i < administradores.size(); i++)
+        {
+            if(administradores.get(i).getLogin().equals(pLogin))
+            {
+                administradores.remove(i);
+            }
+        }
+    }
+    
+    
     
     /**
      * Convierte el objeto a una cadena
