@@ -50,6 +50,7 @@ import java.util.logging.Logger;
     private TipoDTO tipo;
     private String caracteristicas;
     private ArrayList<ReservaDTO> reservas;
+    private PuntoDeAtencionDTO puntoDeAtencion; 
     
     private static TipoDTO [] tipos={new TipoDTO("Computador portatil",1), new TipoDTO("Audífonos",2), new TipoDTO("Cámara de video",3), new TipoDTO("Apuntador",4) };
    
