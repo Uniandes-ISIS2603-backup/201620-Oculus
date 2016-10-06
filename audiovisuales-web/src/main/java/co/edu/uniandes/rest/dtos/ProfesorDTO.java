@@ -10,6 +10,7 @@ import java.util.ArrayList;
 /**
  * Class that implements the teacher that will provide the equipment of the order
  * @author ac.fandino10
+ * @author fa.lopez10
  */
 public class ProfesorDTO
 {

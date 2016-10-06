@@ -16,6 +16,7 @@ public class ReservaDTO {
     private Date fecha;
     private String estado;
     private EquipoDTO equipo;
+    private ProfesorDTO profesor;
     
     public final static String RESERVA_CANCELADA = "Reserva Cancelada";
     public final static String RESERVA_APROBADA = "Reserva Aprobada";
