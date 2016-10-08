@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 
 import co.edu.uniandes.rest.dtos.EquipoDTO;
+import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
 import co.edu.uniandes.rest.dtos.TipoDTO;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 
@@ -40,9 +41,10 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
 
     	if (equipos == null) {
             equipos = new ArrayList<>();
-            equipos.add(new EquipoDTO(1L, getTipos()[1], "LG"));
-            equipos.add(new EquipoDTO(2L, getTipos()[2], "Dell"));
-            equipos.add(new EquipoDTO(3L, getTipos()[3], "Toshiba"));
+            PuntoDeAtencionDTO e = new PuntoDeAtencionDTO(1L, "W201");
+            equipos.add(new EquipoDTO(1L, getTipos()[1], "LG",e));
+            equipos.add(new EquipoDTO(2L, getTipos()[2], "Dell",e));
+            equipos.add(new EquipoDTO(3L, getTipos()[3], "Toshiba",e));
         }
         
     	// indica que se muestren todos los mensajes

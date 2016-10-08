@@ -70,13 +70,14 @@ import java.util.logging.Logger;
      * @param tipo tipo del equipo
      * @param descripcion descripción del equipo
      */
-    public EquipoDTO(Long id, TipoDTO tipo,String pCaracteristicas) 
+    public EquipoDTO(Long id, TipoDTO tipo,String pCaracteristicas, PuntoDeAtencionDTO puntoDeAtencion ) 
     {
 		super();
 		this.id = id;
 		this.tipo = tipo; 
                 this.caracteristicas = pCaracteristicas; 
                 this.reservas = new ArrayList();
+                this.puntoDeAtencion=puntoDeAtencion;
 
 	}
 
