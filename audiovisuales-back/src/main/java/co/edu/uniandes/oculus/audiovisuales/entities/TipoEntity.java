@@ -6,13 +6,15 @@
 package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author gc.andrade10
  */
+@Entity
 public class TipoEntity extends BaseEntity implements Serializable
 {
-    
+   //No lleva atributos porque solamente tiene nombre e id y esos ya los incluye BaseEntity. 
     
 }

@@ -7,17 +7,30 @@ package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author gc.andrade10
  */
+@Entity
 public class EquipoEntity extends BaseEntity implements Serializable
 {
-    
+    @OneToOne
     private TipoEntity tipo;
+    
+    
     private String caracteristicas;
+    
+    @OneToMany(mappedBy="equipo", cascade=CascadeType.ALL, orphanRemoval=true)
     private ArrayList<ReservaEntity> reservas;
+    
+    @ManyToOne
+    private PuntoDeAtencionEntity puntoDeAtencion;
     
     
 }
