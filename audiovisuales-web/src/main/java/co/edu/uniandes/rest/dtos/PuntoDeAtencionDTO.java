@@ -13,6 +13,7 @@ public class PuntoDeAtencionDTO {
     private Long id;
     private String ubicacion;
     private ArrayList<AdministradorDTO> administradores;
+    private ArrayList<EquipoDTO> equipos;
 
     /**
      * Constructor por defecto
@@ -60,6 +61,9 @@ public class PuntoDeAtencionDTO {
         this.ubicacion = ubic;
     }
 
+     /**
+     * devuelve los administradores
+     */
     public ArrayList<AdministradorDTO> getAdministradores() 
     {
         return administradores;
@@ -102,6 +106,25 @@ public class PuntoDeAtencionDTO {
             }
         }
     }
+
+     /**
+     * @param equipos lista de equipos
+     */
+    public void setEquipos(ArrayList<EquipoDTO> equipos) 
+    {
+        this.equipos = equipos;
+    }
+
+     /**
+     * devuelve los equipos
+     */
+    public ArrayList<EquipoDTO> getEquipos() 
+    {
+        return equipos;
+    }
+    
+    
+    
     
     
     
