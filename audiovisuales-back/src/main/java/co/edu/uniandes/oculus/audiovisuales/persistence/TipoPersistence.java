@@ -5,7 +5,7 @@
 */
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
-import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -17,26 +17,27 @@ import javax.persistence.PersistenceContext;
  * @author gc.andrade10
  */
 @Stateless
-public class EquipoPersistence
+public class TipoPersistence
 {
     
-    private static final Logger LOGGER = Logger.getLogger(EquipoPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TipoPersistence.class.getName());
     
     @PersistenceContext(unitName = "OculusPU")
     protected EntityManager em;
     
-    public EquipoEntity find(Long id)
+    public TipoEntity find(Long id)
     {
-        LOGGER.log(Level.INFO, "Consultando Equipo con id={0}", id);
-        return em.find(EquipoEntity.class, id);
+        LOGGER.log(Level.INFO, "Consultando Tipo con id={0}", id);
+        return em.find(TipoEntity.class, id);
     }
     
-        public EquipoEntity create(EquipoEntity entity) 
-        {
-        LOGGER.info("Creando un equipo nuevo");
+    public TipoEntity create(TipoEntity entity)
+    {
+        LOGGER.info("Creando un tipo nuevo");
         em.persist(entity);
-        LOGGER.info("Equipo creado");
+        LOGGER.info("Tipo creado");
         return entity;
     }
+    
     
 }
