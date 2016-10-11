@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -23,6 +23,25 @@ public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
     
     @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<EquipoEntity> equipos = new ArrayList<>();
-    
-    
+
+    public void setAdministradores(ArrayList<AdministradorEntity> administradores) 
+    {
+        this.administradores = administradores;
+    }
+
+    public void setEquipos(ArrayList<EquipoEntity> equipos)
+    {
+        this.equipos = equipos;
+    }
+
+    public ArrayList<AdministradorEntity> getAdministradores() 
+    {
+        return administradores;
+    }
+
+    public ArrayList<EquipoEntity> getEquipos() 
+    {
+        return equipos;
+    }
+     
 }
