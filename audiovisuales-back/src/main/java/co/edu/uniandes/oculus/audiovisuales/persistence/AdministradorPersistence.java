@@ -26,4 +26,24 @@ public class AdministradorPersistence
         return em.find(AdministradorEntity.class, id);
     }
     
+    public AdministradorEntity create (AdministradorEntity entity)
+    {
+        LOGGER.info("Creando un administrador nuevo");
+        em.persist(entity);
+        LOGGER.info("Administrador creado");
+        return entity;
+    }
+    
+    public AdministradorEntity update (AdministradorEntity entity)
+    {
+        LOGGER.log(Level.INFO, "Actualizando Administrador con id={0}", entity.getId());
+        return em.merge(entity);
+    }
+      
+    public void delete(Long id) 
+    {
+        LOGGER.log(Level.INFO, "Borrando Administrador con id={0}", id);
+        AdministradorEntity entity = em.find(AdministradorEntity.class, id);
+        em.remove(entity);
+    }
 }
