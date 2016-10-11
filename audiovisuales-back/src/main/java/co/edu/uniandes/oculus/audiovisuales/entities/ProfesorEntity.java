@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -18,6 +19,36 @@ import javax.persistence.OneToMany;
 public class ProfesorEntity extends BaseEntity implements Serializable{
     private String login;
     private int codigo;
-    @OneToMany(mappedBy = "profesor")
+    @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<ReservaEntity> reservas;
+    
+    public String getLogin()
+    {
+        return login;
+    }
+    
+    public void setLogin(String login)
+    {
+        this.login=login;
+    }
+    
+    public int getCodigo()
+    {
+        return codigo;
+    }
+    
+    public void setCodigo(int codigo)
+    {
+        this.codigo=codigo;
+    }
+    
+    public ArrayList<ReservaEntity> getReservas()
+    {
+        return reservas;
+    }
+    
+    public void setReservas(ArrayList<ReservaEntity> reservas)
+    {
+       this.reservas=reservas;
+    }
 }

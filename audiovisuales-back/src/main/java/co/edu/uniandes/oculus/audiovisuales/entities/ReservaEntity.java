@@ -20,9 +20,39 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     private Date fecha;
     private String estado;
     @ManyToOne
-    EquipoEntity equipo;
+    private EquipoEntity equipo;
     
     @ManyToOne
-    ProfesorEntity profesor;
+    private ProfesorEntity profesor;
+    
+    public Date getFecha()
+    {
+        return fecha;
+    }
+    
+    public void setFecha( Date fecha)
+    {
+        this.fecha = fecha;
+    }
+    
+    public String getEstado()
+    {
+        return estado;
+    }
+    
+    public void setEstado( String estado)
+    {
+        this.estado = estado;
+    }
+    
+    public EquipoEntity getEquipo()
+    {
+        return equipo;
+    }
+    
+    public void getProfesor(ProfesorEntity profesor)
+    {
+        this.profesor = profesor;
+    }
     
 }
