@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,16 +22,51 @@ import javax.persistence.OneToOne;
 public class EquipoEntity extends BaseEntity implements Serializable
 {
     @OneToOne
+    @PodamExclude
     private TipoEntity tipo;
     
     
     private String caracteristicas;
     
+    @PodamExclude
     @OneToMany(mappedBy="equipo", cascade=CascadeType.ALL, orphanRemoval=true)
     private ArrayList<ReservaEntity> reservas;
     
     @ManyToOne
+    @PodamExclude
     private PuntoDeAtencionEntity puntoDeAtencion;
+
+    public TipoEntity getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoEntity tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(String caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public ArrayList<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(ArrayList<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
+
+    public PuntoDeAtencionEntity getPuntoDeAtencion() {
+        return puntoDeAtencion;
+    }
+
+    public void setPuntoDeAtencion(PuntoDeAtencionEntity puntoDeAtencion) {
+        this.puntoDeAtencion = puntoDeAtencion;
+    }
     
     
 }

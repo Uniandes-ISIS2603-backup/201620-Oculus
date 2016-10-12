@@ -8,6 +8,11 @@
     <class>co.edu.uniandes.oculus.audiovisuales.entities.ProfesorEntity</class>
     <class>co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity</class>
     <class>co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity</class>
+    <class>co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity</class>
+    <class>co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity</class>
+    <class>co.edu.uniandes.oculus.audiovisuales.entities.BaseEntity</class>
+    <class>co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity</class>
+
     <properties>
       <property name="eclipselink.logging.level" value="FINE"/>
       <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>

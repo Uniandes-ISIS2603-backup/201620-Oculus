@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.oculus.audiovisuales.test.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
@@ -19,6 +19,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,7 +33,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author gc.andrade10
  */
 @RunWith(Arquillian.class)
-public class EquipoPersistenceTest 
+public class EquipoPersistenceTest
 {
     
     @Deployment
@@ -52,11 +53,11 @@ public class EquipoPersistenceTest
     private EntityManager em;
     
     @Inject
-    UserTransaction utx;
+            UserTransaction utx;
     
     private List<EquipoEntity> data = new ArrayList<EquipoEntity>();
     
-    public EquipoPersistenceTest() 
+    public EquipoPersistenceTest()
     {
         
     }
@@ -70,24 +71,24 @@ public class EquipoPersistenceTest
     }
     
     @Before
-    public void setUp() 
+    public void setUp()
     {
-        try 
+        try
         {
             utx.begin();
             em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
-              
-        } 
-        catch (Exception e) 
+            
+        }
+        catch (Exception e)
         {
-            try 
+            try
             {
                 utx.rollback();
-            } 
-            catch (Exception e1) 
+            }
+            catch (Exception e1)
             {
                 e1.printStackTrace();
                 fail("Configuración en la base de datos falló");
@@ -98,36 +99,47 @@ public class EquipoPersistenceTest
     @After
     public void tearDown() {
     }
-
+    
     /**
      * Test of find method, of class EquipoPersistence.
      */
     @Test
-    public void testFind() throws Exception 
+    public void testFind() throws Exception
     {
         fail("testFind");
     }
-
+    
     /**
      * Test of create method, of class EquipoPersistence.
      */
     @Test
-    public void testCreate() throws Exception 
+    public void testCreate() throws Exception
     {
-        fail("testCreate");
+        
+        PodamFactory factory = new PodamFactoryImpl();
+        EquipoEntity nuevaEntidad = factory.manufacturePojo(EquipoEntity.class);
+        EquipoEntity resultado = equipoPersistence.create(nuevaEntidad);
+        Assert.assertNotNull(resultado);
+        
+        EquipoEntity entidad = equipoPersistence.find(resultado.getId());
+        Assert.assertEquals(nuevaEntidad.getName(), entidad.getName());
+        Assert.assertEquals(nuevaEntidad.getCaracteristicas(), entidad.getCaracteristicas());
+        Assert.assertEquals(nuevaEntidad.getPuntoDeAtencion(), entidad.getPuntoDeAtencion());
+                
+                
     }
-
-    private void clearData() 
+    
+    private void clearData()
     {
         em.createQuery("DELETE FROM EquipoEntity").executeUpdate();
         em.createQuery("DELETE FROM PuntoDeAtencionEntity").executeUpdate();
         em.createQuery("DELETE FROM ReservaEntity").executeUpdate();
     }
-
-    private void insertData() 
+    
+    private void insertData()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) 
+        for (int i = 0; i < 3; i++)
         {
             EquipoEntity entity= factory.manufacturePojo(EquipoEntity.class);
             em.persist(entity);

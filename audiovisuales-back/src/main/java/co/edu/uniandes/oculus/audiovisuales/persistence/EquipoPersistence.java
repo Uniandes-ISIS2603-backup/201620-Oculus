@@ -31,8 +31,8 @@ public class EquipoPersistence
         return em.find(EquipoEntity.class, id);
     }
     
-        public EquipoEntity create(EquipoEntity entity) 
-        {
+    public EquipoEntity create(EquipoEntity entity)
+    {
         LOGGER.info("Creando un equipo nuevo");
         em.persist(entity);
         LOGGER.info("Equipo creado");
