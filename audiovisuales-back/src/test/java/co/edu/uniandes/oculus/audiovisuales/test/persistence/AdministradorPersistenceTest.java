@@ -17,7 +17,9 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -42,15 +44,19 @@ public class AdministradorPersistenceTest
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
+    
+    // genera la conexion con mi clase persistence, evita que hagamos el new
     @Inject
     private AdministradorPersistence administradorPersistence;
-
+    
+    // es el oraculo... va y mira a la base de datos
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-
+    
+    //contiene los datos que va a tener la base de datos
     private List<AdministradorEntity> data = new ArrayList<AdministradorEntity>();
     
     /**
@@ -76,15 +82,17 @@ public class AdministradorPersistenceTest
     
     /**
      * Limpia las tablas que están implicadas en la prueba.
+     * se borra primero los hijos y despues su padre 
      */
     private void clearData() {
-        em.createQuery("delete from AdministradorEntity").executeUpdate();
-        em.createQuery("delete from PuntoDeAtencionEntity").executeUpdate();
+        em.createQuery("DELETE FROM PuntoDeAtencionEntity").executeUpdate();
+        em.createQuery("DELETE FORM AdministradorEntity").executeUpdate();
     }
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
+     *                 ¿ como creo hijos ? no es necesario
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -94,4 +102,54 @@ public class AdministradorPersistenceTest
             data.add(entity);
         }
     }
+    
+    /// pruebas sobre el CRUD ///
+    
+    /**
+     * Prueba para crear un Administrador.
+     */
+    @Test
+    public void createAdministradorTest() 
+    {
+        PodamFactory factory = new PodamFactoryImpl();
+        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
+        
+        AdministradorEntity result = administradorPersistence.create(newEntity);
+                
+        Assert.assertNotNull(result);
+        AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+    }
+    
+     /**
+     * Prueba para eliminar un Administrador.
+     */
+    @Test
+    public void deleteAdministradorTest() {
+        AdministradorEntity entity = data.get(0);
+        administradorPersistence.delete(entity.getId());
+        AdministradorEntity deleted = em.find(AdministradorEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    /**
+     * Prueba para actualizar un Administrador.
+     */
+    @Test
+    public void updateAdministradorTest() {
+        AdministradorEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        administradorPersistence.update(newEntity);
+
+        AdministradorEntity resp = em.find(AdministradorEntity.class, entity.getId());
+        
+        //comparamos que el que esta en la base de datos es igual al que esta generado por el PODAM
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+    }
+    
 }

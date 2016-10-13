@@ -3,6 +3,7 @@ package co.edu.uniandes.oculus.audiovisuales.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * @author Sneider Velandia G
@@ -11,6 +12,7 @@ import javax.persistence.OneToOne;
 public class AdministradorEntity extends BaseEntity implements Serializable
 {
     //atributo que representa el punto de atencion que pertenece un administrador
+    @PodamExclude
     @OneToOne
     private PuntoDeAtencionEntity puntoDeAtencion;
     

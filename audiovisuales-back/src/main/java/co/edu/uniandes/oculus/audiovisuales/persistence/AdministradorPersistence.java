@@ -1,11 +1,13 @@
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,12 +22,22 @@ public class AdministradorPersistence
     @PersistenceContext(unitName = "OculusPU")
     protected EntityManager em;
     
+    /// CRUD ///
+
+    //devuelve solo un administrador
     public AdministradorEntity find(Long id) 
     {
         LOGGER.log(Level.INFO, "Consultando Administrador con id={0}", id);
         return em.find(AdministradorEntity.class, id);
     }
     
+    //devuelve todos los administradores
+    public List<AdministradorEntity> findAll() {
+        LOGGER.info("Consultando todos los Administradores");
+        Query q = em.createQuery("select u from AdministradorEntity u");
+        return q.getResultList();
+    }
+         
     public AdministradorEntity create (AdministradorEntity entity)
     {
         LOGGER.info("Creando un administrador nuevo");
