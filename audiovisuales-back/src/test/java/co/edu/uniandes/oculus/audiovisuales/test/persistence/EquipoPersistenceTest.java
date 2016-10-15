@@ -57,19 +57,6 @@ public class EquipoPersistenceTest
     
     private List<EquipoEntity> data = new ArrayList<EquipoEntity>();
     
-    public EquipoPersistenceTest()
-    {
-        
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp()
     {
@@ -84,6 +71,7 @@ public class EquipoPersistenceTest
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             try
             {
                 utx.rollback();
@@ -95,25 +83,53 @@ public class EquipoPersistenceTest
             }
         }
     }
+    /*
+    public EquipoPersistenceTest()
+    {
     
-    @After
-    public void tearDown() {
     }
     
-    /**
-     * Test of find method, of class EquipoPersistence.
-     */
-    @Test
-    public void testFind() throws Exception
+    @BeforeClass
+    public static void setUpClass()
     {
-        fail("testFind");
+    }
+    
+    @AfterClass
+    public static void tearDownClass()
+    {
+    }
+    
+    
+    @After
+    public void tearDown()
+    {
+    }
+    */
+    
+    @Test
+    public void getEquiposTest()
+    {
+        List<EquipoEntity> list = equipoPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (EquipoEntity equipoList : list)
+        {
+            boolean found = false;
+            for (EquipoEntity equipoData : data)
+            {
+                if (equipoData.getId().equals(equipoList.getId()))
+                {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
     }
     
     /**
      * Test of create method, of class EquipoPersistence.
      */
     @Test
-    public void testCreate() throws Exception
+    public void createEquipoTest() throws Exception
     {
         
         PodamFactory factory = new PodamFactoryImpl();
@@ -125,8 +141,54 @@ public class EquipoPersistenceTest
         Assert.assertEquals(nuevaEntidad.getName(), entidad.getName());
         Assert.assertEquals(nuevaEntidad.getCaracteristicas(), entidad.getCaracteristicas());
         Assert.assertEquals(nuevaEntidad.getPuntoDeAtencion(), entidad.getPuntoDeAtencion());
-                
-                
+        
+        
+    }
+    
+    @Test
+    public void getEquipoTest()
+    {
+        EquipoEntity entidad = data.get(0);
+        EquipoEntity nuevaEntidad = equipoPersistence.find(entidad.getId());
+        Assert.assertNotNull(nuevaEntidad);
+        Assert.assertEquals(entidad.getCaracteristicas(),nuevaEntidad.getCaracteristicas());
+        Assert.assertEquals(entidad.getName(), nuevaEntidad.getName());
+        Assert.assertEquals(entidad.getId(), nuevaEntidad.getId());
+    }
+    
+    @Test
+    public void getEquipoByNameTest()
+    {
+        EquipoEntity entidad  = data.get(0);
+        EquipoEntity nuevaEntidad = equipoPersistence.findByName(entidad.getName());
+        Assert.assertNotNull(nuevaEntidad);
+        Assert.assertEquals(entidad.getCaracteristicas(),nuevaEntidad.getCaracteristicas());
+        Assert.assertEquals(entidad.getName(), nuevaEntidad.getName());
+        Assert.assertEquals(entidad.getId(), nuevaEntidad.getId());
+    }
+    
+    public void deleteEquipoTest()
+    {
+        EquipoEntity entidad = data.get(0);
+        equipoPersistence.delete(entidad.getId());
+        EquipoEntity deleted = em.find(EquipoEntity.class ,entidad.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    @Test
+    
+    public void updateEquipoTest()
+    {
+        EquipoEntity entidad = data.get(0);
+        PodamFactory f = new PodamFactoryImpl();
+        EquipoEntity nuevaEntidad = f.manufacturePojo(EquipoEntity.class);
+        nuevaEntidad.setId(entidad.getId());
+        equipoPersistence.update(nuevaEntidad);
+        EquipoEntity r = em.find(EquipoEntity.class, entidad.getId());
+        Assert.assertNotNull(r);
+        Assert.assertEquals(r.getCaracteristicas(),nuevaEntidad.getCaracteristicas());
+        Assert.assertEquals(r.getName(), nuevaEntidad.getName());
+        Assert.assertEquals(r.getId(), nuevaEntidad.getId());
     }
     
     private void clearData()
@@ -146,5 +208,4 @@ public class EquipoPersistenceTest
             data.add(entity);
         }
     }
-    
 }
