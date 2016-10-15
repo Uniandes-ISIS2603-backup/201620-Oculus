@@ -103,7 +103,7 @@ public class AdministradorPersistenceTest
         }
     }
     
-    /// pruebas sobre el CRUD ///
+    /// pruebas sobre el CRUD \\\
     
     /**
      * Prueba para crear un Administrador.
@@ -152,4 +152,33 @@ public class AdministradorPersistenceTest
         Assert.assertEquals(newEntity.getName(), resp.getName());
     }
     
+    /**
+     * Prueba para consultar la lista de Adminsitradores.
+     */
+    @Test
+    public void getAdministradoresTest() {
+        List<AdministradorEntity> list = administradorPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (AdministradorEntity ent : list) {
+            boolean found = false;
+            for (AdministradorEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
+    /**
+     * Prueba para consultar un Administrador.
+     */
+    @Test
+    public void getAdministradorTest() {
+        AdministradorEntity entity = data.get(0);
+        AdministradorEntity newEntity = administradorPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+
 }
