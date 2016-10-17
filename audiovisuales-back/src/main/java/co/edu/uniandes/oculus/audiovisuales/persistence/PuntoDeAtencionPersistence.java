@@ -31,28 +31,28 @@ public class PuntoDeAtencionPersistence
     }
      
      public List<PuntoDeAtencionEntity> findAll() {
-        LOGGER.info("Consultando todos los companys");
-        Query q = em.createQuery("select u from CompanyEntity u");
+        LOGGER.info("Consultando todos los PuntosDeAtencion");
+        Query q = em.createQuery("select u from PuntoDeAtencionEntity u");
         return q.getResultList();
     }
 
     public PuntoDeAtencionEntity create(PuntoDeAtencionEntity pPunto) 
     {
-        LOGGER.info("Creando un company nuevo");
+        LOGGER.info("Creando un puntoDeAtencion nuevo");
         em.persist(pPunto);
-        LOGGER.info("Company creado");
+        LOGGER.info("PuntoDeAtencion creado");
         return pPunto;
     }
 
     public PuntoDeAtencionEntity update(PuntoDeAtencionEntity pPunto) 
     {
-        LOGGER.log(Level.INFO, "Actualizando el punto de atención con id={0}", pPunto.getId());
+        LOGGER.log(Level.INFO, "Actualizando el PuntoDeAtencion con id={0}", pPunto.getId());
         return em.merge(pPunto);
     }
 
     public void delete(Long id) 
     {
-        LOGGER.log(Level.INFO, "Borrando punto de atencióncon id={0}", id);
+        LOGGER.log(Level.INFO, "Borrando PuntoDeAtencion id={0}", id);
         PuntoDeAtencionEntity entity = em.find(PuntoDeAtencionEntity.class, id);
         em.remove(entity);
     }

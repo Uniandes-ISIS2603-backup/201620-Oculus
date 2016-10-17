@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,11 +19,14 @@ import javax.persistence.CascadeType;
 @Entity
 public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
 {
+    private String ubicacion;
+    @PodamExclude
     @OneToMany(mappedBy = "puntoDeAtencion")
-    private ArrayList<AdministradorEntity> administradores = new ArrayList<>() ; 
+    private ArrayList<AdministradorEntity> administradores  ; 
     
+    @PodamExclude
     @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<EquipoEntity> equipos = new ArrayList<>();
+    private ArrayList<EquipoEntity> equipos ;
 
     public void setAdministradores(ArrayList<AdministradorEntity> administradores) 
     {
@@ -43,5 +47,15 @@ public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
     {
         return equipos;
     }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+    
+    
      
 }
