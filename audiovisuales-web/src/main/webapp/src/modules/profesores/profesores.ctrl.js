@@ -24,7 +24,7 @@
                 $scope.currentRecord = {
                     id: undefined /*Tipo Int*/,
                     name: '' /*Tipo String*/,
-                    login: '' /*Tipo String*/,
+                    login: '' /*Tipo String*/
                 };
 
                 $scope.alerts = [];
