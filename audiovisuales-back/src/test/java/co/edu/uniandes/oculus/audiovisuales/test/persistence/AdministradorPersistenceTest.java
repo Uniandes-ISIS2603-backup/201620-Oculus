@@ -86,7 +86,7 @@ public class AdministradorPersistenceTest
      */
     private void clearData() {
         em.createQuery("DELETE FROM PuntoDeAtencionEntity").executeUpdate();
-        em.createQuery("DELETE FORM AdministradorEntity").executeUpdate();
+        em.createQuery("DELETE FROM AdministradorEntity").executeUpdate();
     }
     
     /**
@@ -120,6 +120,7 @@ public class AdministradorPersistenceTest
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getId(),entity.getId());
     }
     
      /**
@@ -150,6 +151,7 @@ public class AdministradorPersistenceTest
         
         //comparamos que el que esta en la base de datos es igual al que esta generado por el PODAM
         Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
     }
     
     /**
@@ -159,10 +161,13 @@ public class AdministradorPersistenceTest
     public void getAdministradoresTest() {
         List<AdministradorEntity> list = administradorPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (AdministradorEntity ent : list) {
+        for (AdministradorEntity ent : list) 
+        {
             boolean found = false;
-            for (AdministradorEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
+            for (AdministradorEntity entity : data) 
+            {
+                if (ent.getId().equals(entity.getId())) 
+                {
                     found = true;
                 }
             }
@@ -179,6 +184,7 @@ public class AdministradorPersistenceTest
         AdministradorEntity newEntity = administradorPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
     }
-
+    
 }

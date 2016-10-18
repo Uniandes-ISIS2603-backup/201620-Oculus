@@ -24,7 +24,7 @@ public class AdministradorPersistence
     
     /// CRUD ///
 
-    //devuelve solo un administrador
+    //devuelve solo un administrador identificado con algun id
     public AdministradorEntity find(Long id) 
     {
         LOGGER.log(Level.INFO, "Consultando Administrador con id={0}", id);
