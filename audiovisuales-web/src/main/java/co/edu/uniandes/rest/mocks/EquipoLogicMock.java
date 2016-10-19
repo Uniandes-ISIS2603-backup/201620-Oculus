@@ -37,7 +37,8 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
     /**
      * Constructor. Crea los datos de ejemplo.
      */
-    public EquipoLogicMock() {
+    public EquipoLogicMock() 
+    {
 
     	if (equipos == null) {
             equipos = new ArrayList<>();
@@ -60,7 +61,8 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
 	 * @return lista de equipos
 	 * @throws EquipoLogicException cuando no existe la lista en memoria  
 	 */    
-    public List<EquipoDTO> getEquipos() throws EquipoLogicException {
+    public List<EquipoDTO> getEquipos() throws EquipoLogicException 
+    {
     	if (equipos == null) {
     		logger.severe("Error interno: lista de equipos no existe.");
     		throw new EquipoLogicException("Error interno: lista de equipos no existe.");    		
@@ -131,7 +133,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
          EquipoDTO actualEquipo = null;
    for(int i = 0; i<equipos.size() && !encontrado ; i++)
    {
-       actualEquipo = ((EquipoDTO)equipos.get(i));
+       actualEquipo = (EquipoDTO)equipos.get(i);
        if(actualEquipo.getId()==id)
        {
            encontrado = true;
@@ -161,7 +163,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
          EquipoDTO actualEquipo = null;
         for(int i = 0; i<equipos.size() && !encontrado ; i++)
    {
-       actualEquipo = ((EquipoDTO)equipos.get(i));
+       actualEquipo = (EquipoDTO)equipos.get(i);
        if(actualEquipo.getId()==id)
        {
            equipos.remove(i);
@@ -188,7 +190,7 @@ private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getN
          EquipoDTO actualEquipo = null;
    for(int i = 0; i<equipos.size() && !encontrado ; i++)
    {
-       actualEquipo = ((EquipoDTO)equipos.get(i));
+       actualEquipo = (EquipoDTO)equipos.get(i);
        if(actualEquipo.getId()==id)
        {
            encontrado = true;

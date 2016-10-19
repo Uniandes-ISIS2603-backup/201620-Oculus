@@ -14,7 +14,10 @@ public class TipoDTO
     int id;
     String nombre;
     
-    public TipoDTO(){}
+    public TipoDTO()
+    {
+        // No hace nada porque es el constructor vacío.
+    }
     
     public TipoDTO(String pNombre,int pId)
     {

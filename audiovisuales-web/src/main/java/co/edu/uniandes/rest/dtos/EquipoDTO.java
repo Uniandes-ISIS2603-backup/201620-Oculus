@@ -60,6 +60,7 @@ import java.util.logging.Logger;
      */
     public EquipoDTO() 
     {
+    // No hace nada porque es el constructor vacío.
     }
     private static Logger logger = Logger.getLogger(AdministradorDTO.class.getName());
 

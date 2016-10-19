@@ -167,6 +167,7 @@ public class EquipoPersistenceTest
         Assert.assertEquals(entidad.getId(), nuevaEntidad.getId());
     }
     
+    
     public void deleteEquipoTest()
     {
         EquipoEntity entidad = data.get(0);
@@ -190,6 +191,7 @@ public class EquipoPersistenceTest
         Assert.assertEquals(r.getName(), nuevaEntidad.getName());
         Assert.assertEquals(r.getId(), nuevaEntidad.getId());
     }
+    
     
     private void clearData()
     {
