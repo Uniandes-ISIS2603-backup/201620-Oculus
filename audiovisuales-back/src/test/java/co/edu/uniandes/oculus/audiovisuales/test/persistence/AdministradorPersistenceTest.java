@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.test.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
 import co.edu.uniandes.oculus.audiovisuales.persistence.AdministradorPersistence;
+import co.edu.uniandes.oculus.audiovisuales.persistence.PuntoDeAtencionPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -48,6 +49,7 @@ public class AdministradorPersistenceTest
     // genera la conexion con mi clase persistence, evita que hagamos el new
     @Inject
     private AdministradorPersistence administradorPersistence;
+    private PuntoDeAtencionPersistence puntoDeAtencionPersistence;
     
     // es el oraculo... va y mira a la base de datos
     @PersistenceContext
@@ -185,6 +187,29 @@ public class AdministradorPersistenceTest
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getId(), newEntity.getId());
+    }
+    
+    /**
+     * Prueba para consultar un Administrador 
+     */
+    @Test
+    public void getAdministradorByNameTest()
+    {
+        AdministradorEntity adminEnti  = data.get(0);
+        AdministradorEntity nuevaEntidadAdmin = administradorPersistence.findByName(adminEnti.getName());
+        Assert.assertNotNull(nuevaEntidadAdmin);
+        Assert.assertEquals(adminEnti.getPuntoDeAtencion(),nuevaEntidadAdmin.getPuntoDeAtencion());
+        Assert.assertEquals(adminEnti.getName(), nuevaEntidadAdmin.getName());
+        Assert.assertEquals(adminEnti.getId(), nuevaEntidadAdmin.getId());
+    }
+    
+    /**
+     * Prueba para consultar un Administrador por un punto de atencion 
+     */
+    public void getAdministradorByPuntoDeAtencion()
+    {
+        //????????
+        
     }
     
 }
