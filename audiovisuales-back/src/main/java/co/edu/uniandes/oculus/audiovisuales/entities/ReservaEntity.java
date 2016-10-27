@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ReservaEntity extends BaseEntity implements Serializable{
     
+    public final static String RESERVA_CANCELADA = "Reserva Cancelada";
+    
     private Date fecha;
     private String estado;
     @ManyToOne
@@ -50,9 +52,15 @@ public class ReservaEntity extends BaseEntity implements Serializable{
         return equipo;
     }
     
-    public void getProfesor(ProfesorEntity profesor)
+    public void setProfesor(ProfesorEntity profesor)
     {
         this.profesor = profesor;
     }
+    
+    public ProfesorEntity getProfesor()
+    {
+        return profesor;
+    }
+
     
 }

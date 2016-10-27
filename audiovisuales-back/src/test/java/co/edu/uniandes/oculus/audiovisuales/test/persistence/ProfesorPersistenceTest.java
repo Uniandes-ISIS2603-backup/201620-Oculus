@@ -131,12 +131,23 @@ public class ProfesorPersistenceTest {
     }
 
     /**
-     * Prueba para consultar una Profesor.
+     * Prueba para consultar un Profesor.
      */
     @Test
     public void getProfesorTest() {
         ProfesorEntity entity = data.get(0);
         ProfesorEntity newEntity = profesorPersistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+    
+    /**
+     * Prueba para consultar un profesor segun su nombre
+     */
+    @Test
+    public void getProfesorByNameTest1() {
+        ProfesorEntity entity = data.get(0);
+        ProfesorEntity newEntity = profesorPersistence.findByName(entity.getName());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
