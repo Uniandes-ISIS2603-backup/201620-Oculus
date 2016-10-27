@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -22,9 +23,11 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     private Date fecha;
     private String estado;
     @ManyToOne
+    @PodamExclude
     private EquipoEntity equipo;
     
     @ManyToOne
+    @PodamExclude
     private ProfesorEntity profesor;
     
     public Date getFecha()

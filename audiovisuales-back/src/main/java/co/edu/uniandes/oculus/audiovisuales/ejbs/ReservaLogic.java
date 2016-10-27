@@ -12,6 +12,7 @@ import co.edu.uniandes.oculus.audiovisuales.entities.ProfesorEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.ReservaPersistence;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -43,7 +44,8 @@ public class ReservaLogic implements IReservaLogic{
     public ReservaEntity createReserva(Long profesorid, ReservaEntity entity) throws BusinessLogicException {
         ProfesorEntity  profesor = profesorLogic.getProfesor(profesorid);
         entity.setProfesor(profesor);
-        
+        if(entity.getFecha().before(new Date()))
+            throw new BusinessLogicException("La fecha de la reserva debe se posterior a la actual");
         return entity = persistence.create(entity);
     }
     
@@ -67,8 +69,8 @@ public class ReservaLogic implements IReservaLogic{
     }
     
     @Override
-    public EquipoEntity getEquipo(Long reservaId, Long equipoId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EquipoEntity getEquipo(Long reservaId) {
+        return persistence.find(reservaId).getEquipo();
     }
     
 }

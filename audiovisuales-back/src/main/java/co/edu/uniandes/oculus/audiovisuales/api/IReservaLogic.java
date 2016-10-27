@@ -21,5 +21,5 @@ public interface IReservaLogic {
     public ReservaEntity updateReserva(Long profesorid, ReservaEntity entity);
     public ReservaEntity cancelarReserva(Long reservaid);
     public void deleteReserva(Long id);
-    public EquipoEntity getEquipo(Long reservaId, Long equipoId);
+    public EquipoEntity getEquipo(Long reservaId);
 }

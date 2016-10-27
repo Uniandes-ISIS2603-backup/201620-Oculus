@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,6 +22,7 @@ public class ProfesorEntity extends BaseEntity implements Serializable{
     private String login;
     private int codigo;
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PodamExclude
     private ArrayList<ReservaEntity> reservas;
     
     public String getLogin()
