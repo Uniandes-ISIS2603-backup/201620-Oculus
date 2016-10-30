@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,12 +18,16 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ReservaEntity extends BaseEntity implements Serializable{
     
+    public final static String RESERVA_CANCELADA = "Reserva Cancelada";
+    
     private Date fecha;
     private String estado;
     @ManyToOne
+    @PodamExclude
     private EquipoEntity equipo;
     
     @ManyToOne
+    @PodamExclude
     private ProfesorEntity profesor;
     
     public Date getFecha()
@@ -50,9 +55,15 @@ public class ReservaEntity extends BaseEntity implements Serializable{
         return equipo;
     }
     
-    public void getProfesor(ProfesorEntity profesor)
+    public void setProfesor(ProfesorEntity profesor)
     {
         this.profesor = profesor;
     }
+    
+    public ProfesorEntity getProfesor()
+    {
+        return profesor;
+    }
+
     
 }

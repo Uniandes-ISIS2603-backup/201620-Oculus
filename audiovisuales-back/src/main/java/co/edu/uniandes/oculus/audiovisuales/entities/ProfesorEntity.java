@@ -7,9 +7,11 @@ package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -20,6 +22,7 @@ public class ProfesorEntity extends BaseEntity implements Serializable{
     private String login;
     private int codigo;
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @PodamExclude
     private ArrayList<ReservaEntity> reservas;
     
     public String getLogin()
@@ -50,5 +53,15 @@ public class ProfesorEntity extends BaseEntity implements Serializable{
     public void setReservas(ArrayList<ReservaEntity> reservas)
     {
        this.reservas=reservas;
+    }
+    
+    public ArrayList<ReservaEntity> getReservasRangoFechas(Date fecha1, Date fecha2)
+    {
+        ArrayList<ReservaEntity> reservasFech = new ArrayList<ReservaEntity>();
+        for (ReservaEntity reserva : reservas) {
+            if(reserva.getFecha().after(fecha1) && reserva.getFecha().before(fecha2))
+                reservasFech.add(reserva);
+        }
+        return reservasFech;
     }
 }

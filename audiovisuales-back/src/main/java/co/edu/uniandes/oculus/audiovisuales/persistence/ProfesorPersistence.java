@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -30,6 +31,20 @@ public class ProfesorPersistence {
     {
         LOGGER.log(Level.INFO, "Consultando Profesor con id={0}", id);
         return em.find(ProfesorEntity.class, id);
+    }
+    
+    public ProfesorEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando profesor con name = {0}", name);
+        TypedQuery<ProfesorEntity> q
+                = em.createQuery("select u from ProfesorEntity u where u.name = :name", ProfesorEntity.class);
+        q = q.setParameter("name", name);
+        
+       List<ProfesorEntity> profesoresSimilarName = q.getResultList();
+        if (profesoresSimilarName.isEmpty() ) {
+            return null; 
+        } else {
+            return profesoresSimilarName.get(0);
+        }
     }
     
     public ProfesorEntity create(ProfesorEntity entity)

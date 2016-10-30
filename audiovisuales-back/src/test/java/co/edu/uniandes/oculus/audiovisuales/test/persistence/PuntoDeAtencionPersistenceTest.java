@@ -206,4 +206,14 @@ public class PuntoDeAtencionPersistenceTest
         //fail("testUpdate");
     }
     
+    @Test
+    public void testGetByUbicacion()
+    {
+        PuntoDeAtencionEntity punto1 = data.get(0);
+        PuntoDeAtencionEntity punto2 = puntoDeAtencionPersistence.findByUbicacion(punto1.getUbicacion());
+        Assert.assertNotNull(punto2);
+        Assert.assertEquals(punto2.getUbicacion(), punto1.getUbicacion());
+        Assert.assertEquals(punto2.getId(), punto1.getId());
+    }
+    
 }

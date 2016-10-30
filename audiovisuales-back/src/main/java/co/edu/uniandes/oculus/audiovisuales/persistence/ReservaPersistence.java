@@ -50,6 +50,13 @@ public class ReservaPersistence {
         LOGGER.log(Level.INFO, "Actualizando reserva con id={0}", entity.getId());
         return em.merge(entity);
     }
+    
+    public ReservaEntity cancelar(Long id) {
+        LOGGER.log(Level.INFO, "Cancelando reserva con id={0}", id);
+        ReservaEntity entity = em.find(ReservaEntity.class, id);
+        entity.setEstado(ReservaEntity.RESERVA_CANCELADA);
+        return em.merge(entity);
+    }
 
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando reserva con id={0}", id);
