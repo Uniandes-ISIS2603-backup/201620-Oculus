@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import java.util.List;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 /**
  *
  * @author am.espinosa11
@@ -55,6 +56,21 @@ public class PuntoDeAtencionPersistence
         LOGGER.log(Level.INFO, "Borrando PuntoDeAtencion id={0}", id);
         PuntoDeAtencionEntity entity = em.find(PuntoDeAtencionEntity.class, id);
         em.remove(entity);
+    }
+    
+    public PuntoDeAtencionEntity findByUbicacion(String ubicacion)
+    {
+         LOGGER.log(Level.INFO, "Consultando punto de atencion con ubicacion= ", ubicacion);
+        TypedQuery<PuntoDeAtencionEntity> q
+                = em.createQuery("select u from PuntoDeAtencionEntity u where u.ubicacion = :ubicacion", PuntoDeAtencionEntity.class);
+        q = q.setParameter("ubicacion", ubicacion);
+        
+        List<PuntoDeAtencionEntity> puntoEncontrado = q.getResultList();
+        if (puntoEncontrado.isEmpty() ) {
+            return null; 
+        } else {
+            return puntoEncontrado.get(0);
+        }
     }
 
 }

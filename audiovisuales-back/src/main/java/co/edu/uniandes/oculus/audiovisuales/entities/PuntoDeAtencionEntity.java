@@ -24,7 +24,7 @@ public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
     @OneToMany(mappedBy = "puntoDeAtencion")
     private ArrayList<AdministradorEntity> administradores  ; 
     
-    @PodamExclude
+    //@PodamExclude
     @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<EquipoEntity> equipos ;
 
