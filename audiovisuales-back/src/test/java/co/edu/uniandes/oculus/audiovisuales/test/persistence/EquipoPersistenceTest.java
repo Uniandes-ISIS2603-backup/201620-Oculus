@@ -6,6 +6,7 @@
 package co.edu.uniandes.oculus.audiovisuales.test.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import co.edu.uniandes.oculus.audiovisuales.persistence.EquipoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class EquipoPersistenceTest
     private EntityManager em;
     
     @Inject
-            UserTransaction utx;
+           UserTransaction utx;
     
     private List<EquipoEntity> data = new ArrayList<EquipoEntity>();
     
@@ -190,6 +191,26 @@ public class EquipoPersistenceTest
         Assert.assertEquals(r.getCaracteristicas(),nuevaEntidad.getCaracteristicas());
         Assert.assertEquals(r.getName(), nuevaEntidad.getName());
         Assert.assertEquals(r.getId(), nuevaEntidad.getId());
+    }
+    
+    @Test
+    
+    public void buscarEquiposPuntoDeAtencionTest()
+    {
+        PodamFactory f = new PodamFactoryImpl();
+        EquipoEntity nuevaEntidad = f.manufacturePojo(EquipoEntity.class);
+        List<EquipoEntity> l =equipoPersistence.buscarEquiposPorIdPuntoDeAtencion(nuevaEntidad.getPuntoDeAtencion().getId());
+        Assert.assertNotNull(l);
+            boolean encontrado = false;
+        for (EquipoEntity actual : l) 
+        {
+            if(actual.getId()==nuevaEntidad.getId())
+            {
+            encontrado=true;
+            }
+        }
+        Assert.assertEquals(encontrado, true);
+        
     }
     
     

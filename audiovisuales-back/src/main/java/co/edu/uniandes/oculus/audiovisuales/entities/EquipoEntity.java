@@ -24,16 +24,15 @@ public class EquipoEntity extends BaseEntity implements Serializable
     @OneToOne
     @PodamExclude
     private TipoEntity tipo;
-    
-    
+   
     private String caracteristicas;
     
     @PodamExclude
     @OneToMany(mappedBy="equipo", cascade=CascadeType.ALL, orphanRemoval=true)
     private ArrayList<ReservaEntity> reservas;
     
-    @ManyToOne
-    @PodamExclude
+    @ManyToOne( cascade=CascadeType.ALL)
+    //@PodamExclude
     private PuntoDeAtencionEntity puntoDeAtencion;
 
     public TipoEntity getTipo() {

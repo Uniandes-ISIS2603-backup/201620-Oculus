@@ -71,4 +71,12 @@ public class EquipoPersistence
         em.remove(entidad);
     }
     
+    public List<EquipoEntity> buscarEquiposPorIdPuntoDeAtencion(Long id1)
+    {
+        LOGGER.log(Level.INFO, "Consultar equipos del Punto de atención con el id dado: "+id1);
+        TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id",EquipoEntity.class);
+        q = q.setParameter("id", id1);
+        return q.getResultList();
+    }
+    
 }

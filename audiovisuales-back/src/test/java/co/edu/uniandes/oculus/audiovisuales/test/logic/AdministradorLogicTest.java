@@ -9,6 +9,7 @@ package co.edu.uniandes.oculus.audiovisuales.test.logic;
  *
  * @author Sneider Velandia G
  */
-public class AdministradorLogicTest {
+public class AdministradorLogicTest 
+{
     
 }
