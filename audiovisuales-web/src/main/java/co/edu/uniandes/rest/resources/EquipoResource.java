@@ -8,6 +8,7 @@ package co.edu.uniandes.rest.resources;
 import co.edu.uniandes.oculus.audiovisuales.api.IEquipoLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.rest.dtos.EquipoDTO;
 import co.edu.uniandes.rest.dtos.EquipoDetailDTO;
 import co.edu.uniandes.rest.dtos.TipoDTO;
@@ -60,7 +61,7 @@ public class EquipoResource
     
     private List<TipoDTO> listEntityTipo2DTO(List<TipoEntity> listaEntidades)
     {
-        List<EquipoDetailDTO> lista = new ArrayList<>();
+        List<TipoDTO> lista = new ArrayList<>();
         for (TipoEntity   e: listaEntidades) 
         {
             lista.add(new TipoDTO(e));
@@ -101,7 +102,7 @@ public class EquipoResource
     @Path("tipos")
     public List<TipoDTO> getTipos() throws EquipoLogicException 
     {
-            return equipoLogic.getTipos();
+            return listEntityTipo2DTO(equipoLogic.getTipos());
     }
 
    
@@ -114,13 +115,13 @@ public class EquipoResource
      * suministrado
      */
     @POST //metodo no importa el nombre del método la anotación es la que utiliza el servidor
-    public EquipoDTO createEquipo(EquipoDTO equipo) throws EquipoLogicException 
+    public EquipoDetailDTO createEquipo(EquipoDTO equipo) throws BusinessLogicException 
     {
         //viene por un Json
         //Dto datos que manda el usuario
         //lo agrega a un arreglo
         logger.info("Se trata de agregar "+equipo);
-        return equipoLogic.createEquipo(equipo);
+        return new EquipoDetailDTO( equipoLogic.createEquipo(equipo.toEntity()) );
     }
 
      /**
@@ -130,10 +131,12 @@ public class EquipoResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public EquipoDTO updateCity(@PathParam("id") Long id, EquipoDTO equipo) throws EquipoLogicException 
+    public EquipoDetailDTO updateCity(@PathParam("id") Long id, EquipoDTO equipo) throws BusinessLogicException 
     {
             logger.info("Trata de hacer put");
-            return equipoLogic.updateEquipo(id,equipo);
+            EquipoEntity e = equipo.toEntity();
+            e.setId(id);
+            return new EquipoDetailDTO(equipoLogic.updateEquipo(e));
     }
     
          /**

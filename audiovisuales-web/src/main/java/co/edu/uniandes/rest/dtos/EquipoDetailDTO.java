@@ -27,19 +27,20 @@ public class EquipoDetailDTO extends EquipoDTO
         super(e);
         if(e.getPuntoDeAtencion()!=null)
         {
-        //this.puntoDeAtencion=PuntoDeAtencionDTO(e.getPuntoDeAtencion());
+            this.puntoDeAtencion= new PuntoDeAtencionDTO(e.getPuntoDeAtencion());
+            
         }
         if(e.getReservas()!=null)
         {
             this.reservas=new  ArrayList<>();
-            for (ReservaEntity r : e.getReservas()) 
+            for (ReservaEntity r : e.getReservas())
             {
-                 //this.reservas.add(ReservaDTO(r));            
+                //this.reservas.add( new ReservaDTO(r));
             }
         }
         if(e.getTipo()!=null)
         {
-        //this.tipo=TipoDTO(e.getTipo());
+            this.tipo= new TipoDTO(e.getTipo());
         }
         
     }
@@ -47,29 +48,28 @@ public class EquipoDetailDTO extends EquipoDTO
     @Override
     public EquipoEntity toEntity()
     {
-    EquipoEntity entidad = super.toEntity();
-    if(this.getPuntoDeAtencionDTO()!=null)
+        EquipoEntity entidad = super.toEntity();
+        if(this.getPuntoDeAtencionDTO()!=null)
         {
-            //entidad.setPuntoDeAtencion(this.getPuntoDeAtencionDTO()toEntity());
+            entidad.setPuntoDeAtencion(this.getPuntoDeAtencionDTO().toEntity());
         }
         if(this.getReservas()!=null)
         {
-          ArrayList<ReservaEntity> re = new ArrayList<ReservaEntity>();
-            for (ReservaDTO r : this.getReservas()) 
+            ArrayList<ReservaEntity> re = new ArrayList<ReservaEntity>();
+            for (ReservaDTO r : this.getReservas())
             {
                 //re.add(r.toEntity());
             }
-                entidad.setReservas(re);
+            entidad.setReservas(re);
         }
         if(this.getTipo()!=null)
         {
-        //this.tipo=TipoDTO(e.getTipo());
             entidad.setTipo(this.getTipo().toEntity());
         }
-    return entidad;
+        return entidad;
     }
     
-     /**
+    /**
      * @return the reservas
      */
     public ArrayList<ReservaDTO> getReservas() {
@@ -84,7 +84,7 @@ public class EquipoDetailDTO extends EquipoDTO
         this.reservas = reservas;
     }
     
-     /**
+    /**
      * @return tipo
      */
     public TipoDTO getTipo()
@@ -100,7 +100,7 @@ public class EquipoDetailDTO extends EquipoDTO
         this.tipo = tipo;
     }
     
-     /**
+    /**
      * @return tipo
      */
     public PuntoDeAtencionDTO getPuntoDeAtencionDTO()
@@ -109,9 +109,8 @@ public class EquipoDetailDTO extends EquipoDTO
     }
     
     /**
-     * @param tipo el tipo del equipo
      */
-    public void setTipo(PuntoDeAtencionDTO puntoDeAtencion)
+    public void setPuntoDeAtencionDTO(PuntoDeAtencionDTO puntoDeAtencion)
     {
         this.puntoDeAtencion = puntoDeAtencion;
     }
