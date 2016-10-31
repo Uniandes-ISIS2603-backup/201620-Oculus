@@ -5,15 +5,23 @@
  */
 package co.edu.uniandes.rest.resources;
 
+import co.edu.uniandes.oculus.audiovisuales.api.IAdministradorLogic;
+import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
+import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
+
 import co.edu.uniandes.rest.dtos.AdministradorDTO;
+import co.edu.uniandes.rest.dtos.AdministradorDetailDTO;
 import co.edu.uniandes.rest.dtos.EquipoDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.AdministradorLogicMock;
 import co.edu.uniandes.rest.mocks.EquipoLogicMock;
 import co.edu.uniandes.rest.mocks.ReservaLogicMock;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,6 +29,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "administrador".
@@ -29,16 +38,29 @@ import javax.ws.rs.Produces;
  */
 @Path("administradores") // api/administradores
 @Produces("application/json") // todos retornan Jsons
+@Consumes(MediaType.APPLICATION_JSON)
 
 public class AdministradorResource 
 {
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
-    AdministradorLogicMock administradorLogic = new AdministradorLogicMock();
     
-    EquipoLogicMock equipoLogicMock = new EquipoLogicMock();
+     //AdministradorLogicMock administradorLogic = new AdministradorLogicMock();
+     //EquipoLogicMock equipoLogicMock = new EquipoLogicMock();
+     //ReservaLogicMock reservaLogicMock = new ReservaLogicMock();
     
-    ReservaLogicMock reservaLogicMock = new ReservaLogicMock();
-
+        //inyectamos la interfaz de la logica de admnistrador para omitir los mocks !!!
+    @Inject
+    private IAdministradorLogic administradorLogic;
+    
+    
+    private List<AdministradorDetailDTO> listAdminEntityToDTO(List<AdministradorEntity> adminEntityList) {
+        List<AdministradorDetailDTO> adminList = new ArrayList<>();
+        for (AdministradorEntity adminEntity : adminEntityList) {
+            adminList.add(new AdministradorDetailDTO(adminEntity));
+        }
+        return adminList;
+    }
+    
     /**
      *  NUEVOS PARA CICLO 2 
      */
@@ -117,18 +139,19 @@ public class AdministradorResource
             return null;
     }
     
-    /**
-     * Antiguos
-     */
+    
+    /***************************\
+    ///// PRIMEROS RECURSOS \\\\\
+     
      /**
      * Obtiene el listado de administradores asociados.
      * @return lista de administradores
      * @throws CityLogicException excepción retornada por la lógica
      */
     @GET
-    public List<AdministradorDTO> getAdministradores() throws CityLogicException
+    public List<AdministradorDetailDTO> getAdministradores() 
     {
-        return administradorLogic.getAdministradores();
+        return listAdminEntityToDTO(administradorLogic.getAdministradores());
     }
     
    /**
@@ -138,9 +161,9 @@ public class AdministradorResource
      */
     @GET
     @Path("{id: \\d+}")
-    public AdministradorDTO getAdministrador(@PathParam("id") Long id) throws CityLogicException
+    public AdministradorDetailDTO getAdministrador(@PathParam("id") Long id)
     {
-        return administradorLogic.getAdministrador(id);
+        return new AdministradorDetailDTO(administradorLogic.getAdministrador(id));
     }
     
    /**
@@ -150,10 +173,12 @@ public class AdministradorResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public AdministradorDTO updateAdministrador(@PathParam("id") Long id , AdministradorDTO administradorUp) throws CityLogicException
+    public AdministradorDetailDTO updateAdministrador(@PathParam("id") Long id , AdministradorDTO administradorUp) 
     {
         logger.info("trata de hacer PUT");
-        return administradorLogic.updateAdministrador(id, administradorUp);
+        AdministradorEntity adminEntity = administradorUp.AdminDTOtoEntity();
+        adminEntity.setId(id);
+        return new AdministradorDetailDTO(administradorLogic.updateAdministrador(adminEntity));
     }
  
     /**
@@ -164,10 +189,10 @@ public class AdministradorResource
      * suministrado
      */
     @POST
-    public AdministradorDTO creatAdministrador(AdministradorDTO administrador) throws CityLogicException
+    public AdministradorDTO creatAdministrador(AdministradorDetailDTO administrador) throws BusinessLogicException
     {
          logger.info("Se trata de agregar "+administrador);
-        return administradorLogic.createAdministrador(administrador);
+         return new AdministradorDetailDTO(administradorLogic.createAdministrador(administrador.AdminDTOtoEntity()));
     }
     
    /**
@@ -178,7 +203,7 @@ public class AdministradorResource
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteAdminitrador(@PathParam("id") Long id) throws CityLogicException
+    public void deleteAdminitrador(@PathParam("id") Long id) throws BusinessLogicException
     {
           logger.info("Trata de borrar");
             administradorLogic.deleteAdministrador(id);
