@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.resources;
 
+import co.edu.uniandes.oculus.audiovisuales.api.IEquipoLogic;
 import co.edu.uniandes.rest.dtos.EquipoDTO;
 import co.edu.uniandes.rest.dtos.TipoDTO;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
@@ -12,6 +13,7 @@ import co.edu.uniandes.rest.mocks.EquipoLogicMock;
 
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 
 
@@ -35,10 +37,12 @@ import javax.ws.rs.Produces;
 @Produces("application/json") // todos retornan Jsons
 public class EquipoResource 
 {
+    @Inject
+    private IEquipoLogic equipoLogic;
 
     private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getName());
 
-    EquipoLogicMock equipoLogic = new EquipoLogicMock();
+    //EquipoLogicMock equipoLogic = new EquipoLogicMock();
 
     /**
      * Obtiene el listado de equipos.

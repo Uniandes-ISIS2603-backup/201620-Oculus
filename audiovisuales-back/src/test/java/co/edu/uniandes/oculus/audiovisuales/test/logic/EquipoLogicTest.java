@@ -10,6 +10,7 @@ import co.edu.uniandes.oculus.audiovisuales.ejbs.EquipoLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.EquipoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,14 +100,15 @@ public class EquipoLogicTest
     private void insertData()
     {
         for (int i = 0; i < 3; i++)
-        {ArrayList<ReservaEntity> reservas = new ArrayList<>();
-        for (int j = 0; j < 3; j++)
         {
-            ReservaEntity reserva = factory.manufacturePojo(ReservaEntity.class);
-            em.persist(reserva);
-            reservas.add(reserva);
-        }
-        reservasData.add(reservas);
+            ArrayList<ReservaEntity> reservas = new ArrayList<>();
+            for (int j = 0; j < 3; j++)
+            {
+                ReservaEntity reserva = factory.manufacturePojo(ReservaEntity.class);
+                em.persist(reserva);
+                reservas.add(reserva);
+            }
+            reservasData.add(reservas);
         }
         for (int i = 0; i < 3; i++)
         {
@@ -125,15 +127,23 @@ public class EquipoLogicTest
     }
     
     @Test
-    public void createEquipoTest()
+    public void createEquipoTest()throws BusinessLogicException
     {
         EquipoEntity nuevaEntidad = factory.manufacturePojo(EquipoEntity.class);
         EquipoEntity resultado = equipoLogic.createEquipo(nuevaEntidad);
         Assert.assertNotNull(resultado);
+        data.add(resultado);
         EquipoEntity entidad = em.find(EquipoEntity.class, resultado.getId());
         Assert.assertEquals(nuevaEntidad.getName(),entidad.getName());
         Assert.assertEquals(nuevaEntidad.getCaracteristicas(),entidad.getCaracteristicas());
         Assert.assertEquals(nuevaEntidad.getId(),entidad.getId());
+    }
+    @Test (expected = BusinessLogicException.class)
+    public void createEquipoTestFail()throws BusinessLogicException
+    {
+        EquipoEntity newEntity = factory.manufacturePojo(EquipoEntity.class);
+        newEntity.setName(data.get(0).getName());
+        EquipoEntity result = equipoLogic.createEquipo(newEntity);
     }
     
     @Test
@@ -171,11 +181,12 @@ public class EquipoLogicTest
     {
         EquipoEntity entidad = data.get(1);
         equipoLogic.deleteEquipo(entidad.getId());
+        data.remove(entidad);
         EquipoEntity deleted = em.find(EquipoEntity.class, entidad.getId());
         Assert.assertNull(deleted);
     }
     
-    @Test 
+    @Test
     public void updateEquipoTest()
     {
         EquipoEntity entidad = data.get(0);

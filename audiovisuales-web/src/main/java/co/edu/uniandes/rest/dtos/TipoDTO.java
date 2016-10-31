@@ -5,13 +5,16 @@
  */
 package co.edu.uniandes.rest.dtos;
 
+import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
+
 /**
  *
  * @author gc.andrade10
  */
 public class TipoDTO 
 {
-    int id;
+    long id;
     String nombre;
     
     public TipoDTO()
@@ -35,11 +38,11 @@ public class TipoDTO
         this.nombre = nomb;
     }
         
-        public int getId()
+        public long getId()
     {
         return id;
     }
-        public void setId(int pId)
+        public void setId(long pId)
     {
         this.id = pId;
     }
@@ -51,5 +54,13 @@ public class TipoDTO
         String formato="{ nombre : " + getNombre() +" }" ; 
 
         return  formato;
+    }
+
+    TipoEntity toEntity() 
+    {
+        TipoEntity e = new TipoEntity();
+        e.setId(this.getId());
+        e.setName(this.getNombre());
+        return e;
     }
 }
