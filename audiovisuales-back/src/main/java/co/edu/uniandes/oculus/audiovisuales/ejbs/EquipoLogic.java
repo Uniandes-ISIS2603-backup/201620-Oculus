@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.ejbs;
 
 import co.edu.uniandes.oculus.audiovisuales.api.IEquipoLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.EquipoPersistence;
 import java.util.List;
@@ -73,6 +74,12 @@ public class EquipoLogic implements IEquipoLogic
     public List<EquipoEntity> getEquiposByIdPuntoDeAtencion(Long idPuntoDeAtencion)
     {
         return persistence.buscarEquiposPorIdPuntoDeAtencion(idPuntoDeAtencion);
+    }
+
+    @Override
+    public List<TipoEntity> getTipos() 
+    {
+        return persistence.darTipos();
     }
     
 }

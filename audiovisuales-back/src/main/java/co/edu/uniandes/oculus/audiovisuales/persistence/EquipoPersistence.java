@@ -6,6 +6,7 @@
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,6 +78,13 @@ public class EquipoPersistence
         TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id",EquipoEntity.class);
         q = q.setParameter("id", id1);
         return q.getResultList();
+    }
+
+    public List<TipoEntity> darTipos() 
+    {
+        LOGGER.info("Consultando todos los equipos");
+        Query consulta = em.createQuery("SELECT u FROM TipoEntity u");
+        return consulta.getResultList();
     }
     
 }

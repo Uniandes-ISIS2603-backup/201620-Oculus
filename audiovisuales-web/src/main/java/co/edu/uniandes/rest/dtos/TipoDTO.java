@@ -15,27 +15,37 @@ import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 public class TipoDTO 
 {
     long id;
-    String nombre;
+    String name;
     
     public TipoDTO()
     {
         // No hace nada porque es el constructor vacío.
     }
     
+    public TipoDTO(TipoEntity e) 
+    {
+        if(e!=null)
+        {
+        this.name= e.getName();
+        this.id=e.getId();
+        }
+    }
+    
     public TipoDTO(String pNombre,int pId)
     {
         super();
-        nombre=pNombre;
+        name=pNombre;
         id = pId;
     }
+
     
     public String getNombre()
     {
-        return nombre;
+        return name;
     }
         public void setNombre(String nomb)
     {
-        this.nombre = nomb;
+        this.name = nomb;
     }
         
         public long getId()

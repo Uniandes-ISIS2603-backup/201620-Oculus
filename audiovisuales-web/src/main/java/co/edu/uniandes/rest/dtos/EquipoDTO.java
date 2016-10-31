@@ -51,6 +51,7 @@ public class EquipoDTO
         return entidad;
     }
     
+    
     /**
      * @return the tipos
      */

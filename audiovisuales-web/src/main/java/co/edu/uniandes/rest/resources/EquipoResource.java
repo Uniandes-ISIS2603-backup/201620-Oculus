@@ -6,10 +6,14 @@
 package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.oculus.audiovisuales.api.IEquipoLogic;
+import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import co.edu.uniandes.rest.dtos.EquipoDTO;
+import co.edu.uniandes.rest.dtos.EquipoDetailDTO;
 import co.edu.uniandes.rest.dtos.TipoDTO;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.EquipoLogicMock;
+import java.util.ArrayList;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -43,6 +47,26 @@ public class EquipoResource
     private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getName());
 
     //EquipoLogicMock equipoLogic = new EquipoLogicMock();
+    
+    private List<EquipoDetailDTO> listEntity2DTO(List<EquipoEntity> listaEntidades)
+    {
+        List<EquipoDetailDTO> lista = new ArrayList<>();
+        for (EquipoEntity   e: listaEntidades) 
+        {
+            lista.add(new EquipoDetailDTO(e));
+        }
+        return lista;
+    }
+    
+    private List<TipoDTO> listEntityTipo2DTO(List<TipoEntity> listaEntidades)
+    {
+        List<EquipoDetailDTO> lista = new ArrayList<>();
+        for (TipoEntity   e: listaEntidades) 
+        {
+            lista.add(new TipoDTO(e));
+        }
+        return lista;
+    }
 
     /**
      * Obtiene el listado de equipos.
@@ -51,9 +75,9 @@ public class EquipoResource
      * @throws EquipoLogicException excepción retornada por la lógica
      */
     @GET // metodo
-    public List<EquipoDTO> getEquipos() throws EquipoLogicException 
+    public List<EquipoDetailDTO> getEquipos() throws EquipoLogicException 
     {
-        return equipoLogic.getEquipos();
+        return listEntity2DTO(equipoLogic.getEquipos());
     }
 
     /**
@@ -63,9 +87,9 @@ public class EquipoResource
      */
     @GET
     @Path("{id: \\d+}")
-    public EquipoDTO getEquipo(@PathParam("id") Long id) throws EquipoLogicException 
+    public EquipoDetailDTO getEquipo(@PathParam("id") Long id) throws EquipoLogicException 
     {
-            return equipoLogic.getEquipo(id);
+            return new EquipoDetailDTO(equipoLogic.getEquipo(id));
     }
     
     /**
@@ -75,7 +99,7 @@ public class EquipoResource
      */
     @GET
     @Path("tipos")
-    public TipoDTO[] getTipos() throws EquipoLogicException 
+    public List<TipoDTO> getTipos() throws EquipoLogicException 
     {
             return equipoLogic.getTipos();
     }
