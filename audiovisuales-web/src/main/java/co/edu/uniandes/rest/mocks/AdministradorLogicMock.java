@@ -40,11 +40,11 @@ private final static Logger logger = Logger.getLogger(AdministradorLogicMock.cla
     	if (administradores == null) 
         {
              administradores = new ArrayList<>();
-            administradores.add(new AdministradorDTO("German A", 1L, "g.andrade10"));
-            administradores.add(new AdministradorDTO("Fabio L", 2L, "f.lopez20"));
-            administradores.add(new AdministradorDTO("Ana E", 3L, "a.espinosa30"));
-            administradores.add(new AdministradorDTO("Ana F", 4L, "a.fandino40"));
-            administradores.add(new AdministradorDTO("Sneider V", 5L, "e.velandia50"));
+            //administradores.add(new AdministradorDTO("German A", 1L, "g.andrade10"));
+            //administradores.add(new AdministradorDTO("Fabio L", 2L, "f.lopez20"));
+            //administradores.add(new AdministradorDTO("Ana E", 3L, "a.espinosa30"));
+            //administradores.add(new AdministradorDTO("Ana F", 4L, "a.fandino40"));
+            //administradores.add(new AdministradorDTO("Sneider V", 5L, "e.velandia50"));
         }
         
     	// indica que se muestren todos los mensajes
