@@ -4,16 +4,18 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.rest.dtos;
+import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author am.espinosa11
  */
+@XmlRootElement
 public class PuntoDeAtencionDTO {
     private Long id;
     private String ubicacion;
-    private ArrayList<AdministradorDTO> administradores;
-    private ArrayList<EquipoDTO> equipos;
+  
 
     /**
      * Constructor por defecto
@@ -23,17 +25,36 @@ public class PuntoDeAtencionDTO {
 	}
 
     /**
-     * Constructor con parámetros.
-     * @param id identificador del punto de atención
-     * @param ubicacion nombre del punto de atención
+     * Crea un objeto PuntoDeAtencionDTO a partir de un objeto PuntoDeAtencionEntity.
+     *
+     * @param entity Entidad CompanyEntity desde la cual se va a crear el nuevo
+     * objeto.
+     * 
      */
-    public PuntoDeAtencionDTO(Long id, String ubic) {
-		super();
-		this.id = id;
-		this.ubicacion = ubic;
-	}
-
-	/**
+    public PuntoDeAtencionDTO(PuntoDeAtencionEntity entity) 
+    {
+	if(entity != null)
+        {
+            this.id = entity.getId();
+            this.ubicacion = entity.getUbicacion();
+        }
+    }
+    
+     /**
+     * Convierte un objeto PuntoDeAtencionDTO a PuntoDeAtencionEntity.
+     *
+     * @return Nueva objeto PuntoDeAtencionEntity.
+     * 
+     */
+    public PuntoDeAtencionEntity toEntity()
+    {
+        PuntoDeAtencionEntity newPunto = new PuntoDeAtencionEntity();
+        newPunto.setId(id);
+        newPunto.setUbicacion(ubicacion);
+        return newPunto;
+    }
+    
+    /**
      * @return the id
      */
     public Long getId() {
@@ -61,72 +82,6 @@ public class PuntoDeAtencionDTO {
         this.ubicacion = ubic;
     }
 
-     /**
-     * devuelve los administradores
-     */
-    public ArrayList<AdministradorDTO> getAdministradores() 
-    {
-        return administradores;
-    }
-
-     /**
-     * @param administradores lista de administradores
-     */
-    public void setAdministradores(ArrayList<AdministradorDTO> administradores)
-    {
-        this.administradores = administradores;
-    }
-    
-     /**
-     * @param admin administrador para agregar
-     */
-    public void agregarAdministrador(AdministradorDTO admin)
-    {
-        this.administradores.add(admin);
-    }
-    
-     /**
-     * elimina admin que se da por parametro
-     */
-    public void eliminarAdministrador(AdministradorDTO admin)
-    {
-        this.administradores.remove(admin);
-    }
-    
-     /**
-     * @param pLogin Login del administrador a eliminar
-     */
-    public void eliminarAdministradorPorLogin(String pLogin)
-    {
-        for(int i = 0; i < administradores.size(); i++)
-        {
-            if(administradores.get(i).getLogin().equals(pLogin))
-            {
-                administradores.remove(i);
-            }
-        }
-    }
-
-     /**
-     * @param equipos lista de equipos
-     */
-    public void setEquipos(ArrayList<EquipoDTO> equipos) 
-    {
-        this.equipos = equipos;
-    }
-
-     /**
-     * devuelve los equipos
-     */
-    public ArrayList<EquipoDTO> getEquipos() 
-    {
-        return equipos;
-    }
-    
-    
-    
-    
-    
     
     /**
      * Convierte el objeto a una cadena

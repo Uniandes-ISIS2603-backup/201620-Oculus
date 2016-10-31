@@ -5,14 +5,19 @@
  */
 package co.edu.uniandes.rest.resources;
 
+import co.edu.uniandes.oculus.audiovisuales.api.IPuntoDeAtencionLogic;
+import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
+import co.edu.uniandes.rest.dtos.PuntoDeAtencionDetailDTO;
 import co.edu.uniandes.rest.dtos.ReservaDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.mocks.PuntoDeAtencionLogicMock;
 import co.edu.uniandes.rest.mocks.ReservaLogicMock;
+import java.util.ArrayList;
 
 import java.util.List;
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 
 
@@ -22,6 +27,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 /**
  *
  * @author am.espinosa11
@@ -38,30 +45,65 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 public class PuntoDeAtencionResource {
 
+	@Inject 
+        private IPuntoDeAtencionLogic puntoDeAtencionLogic;        
 	
-	PuntoDeAtencionLogicMock puntoLogic = new PuntoDeAtencionLogicMock();
-        ReservaLogicMock reservaLogic = new ReservaLogicMock();
-
+    /**
+     * Convierte una lista de PuntoDeAtencionEntity a una lista de PuntoDeAtencionDetailDTO.
+     * @param listEntity Lista de PuntoDeAtencionEntity a convertir.
+     * @return lista de PuntoDeAtencionDetailDTO convertida.
+     *
+     */
+        public List<PuntoDeAtencionDetailDTO> lisEntityToDTO(List<PuntoDeAtencionEntity> listEntity)
+        {
+            List<PuntoDeAtencionDetailDTO> listaADevolver = new ArrayList<>();
+            for (PuntoDeAtencionEntity puntoDeAtencion : listEntity)
+            {
+              listaADevolver.add(new PuntoDeAtencionDetailDTO(puntoDeAtencion));
+            }
+            return listaADevolver;
+        }
 	/**
 	 * Obtiene el listado de los puntos de atencion. 
-	 * @return lista de puntos de atencion
-	 * @throws CityLogicException excepción retornada por la lógica  
+	 * @return lista de puntos de atencion 
 	 */
     @GET
-    public List<PuntoDeAtencionDTO> getPuntosDeAtencion() throws CityLogicException {
-        return puntoLogic.getPuntosDeAtencion();
+    public List<PuntoDeAtencionDetailDTO> getPuntosDeAtencion() 
+    {
+        return lisEntityToDTO(puntoDeAtencionLogic.getPuntosDeAtencion());
     }
 
     /**
      * Obtiene un punto de atencion
      * @param id identificador del punto de atencion
      * @return punto encontrado
-     * @throws CityLogicException cuando el editorial no existe
      */
     @GET
     @Path("{id: \\d+}")
-    public PuntoDeAtencionDTO getPuntoDeAtencion(@PathParam("id") Long id) throws CityLogicException {
-        return puntoLogic.getPuntoDeAtencion(id);
+    public PuntoDeAtencionDetailDTO getPuntoDeAtencion(@PathParam("id") Long id) 
+    {
+        return new PuntoDeAtencionDetailDTO(puntoDeAtencionLogic.getPuntoDeAtencion(id));
+    }
+    
+    /**
+     * Obtiene un punto de atencion con la ubicación dada por parametro
+     * @param ubic ubicación del punto de atencion
+     * @return punto encontrado
+     */
+    @GET
+    @Path("ubicacion")
+    public PuntoDeAtencionDetailDTO getPuntoDeAtencionByUbicacion(@QueryParam("ubicacion") String ubic)
+    {
+        PuntoDeAtencionEntity puntoEntity = puntoDeAtencionLogic.getByUbicacion(ubic);
+        if(puntoEntity == null)
+        {
+            throw new WebApplicationException("No existe un punto de atención con esa especificación", 404);
+            
+        }
+        else
+        {
+            return new PuntoDeAtencionDetailDTO(puntoEntity);
+        }
     }
 
     /**
@@ -71,8 +113,9 @@ public class PuntoDeAtencionResource {
      * @throws CityLogicException cuando ya existe un punto de atencion con el id suministrado
      */
     @POST
-    public PuntoDeAtencionDTO createPuntoDeAtencion(PuntoDeAtencionDTO punto) throws CityLogicException {
-        return puntoLogic.createPuntoDeAtencion(punto);
+    public PuntoDeAtencionDetailDTO createPuntoDeAtencion(PuntoDeAtencionDetailDTO punto) throws Exception 
+    {
+        return new PuntoDeAtencionDetailDTO(puntoDeAtencionLogic.createPuntoDeAtencion(punto.toEntity()));
     }
 
     /**
@@ -80,23 +123,25 @@ public class PuntoDeAtencionResource {
      * @param id identificador de el punto de atencion a modificar
      * @param punto punto de atencion a modificar
      * @return datos del punto de atencion modificada 
-     * @throws CityLogicException cuando no existe un punto de atencion con el id suministrado
      */
     @PUT
     @Path("{id: \\d+}")
-    public PuntoDeAtencionDTO updatePuntoDeAtencion(@PathParam("id") Long id, PuntoDeAtencionDTO punto) throws CityLogicException {
-        return puntoLogic.updatePuntoDeAtencion(id, punto);
+    public PuntoDeAtencionDetailDTO updatePuntoDeAtencion(@PathParam("id") Long id, PuntoDeAtencionDetailDTO punto) 
+    {
+        PuntoDeAtencionEntity puntoEntity = punto.toEntity();
+        puntoEntity.setId(id);
+        return new PuntoDeAtencionDetailDTO(puntoDeAtencionLogic.updatePuntoDeAtencion(puntoEntity));
     }
 
     /**
      * Elimina los datos de un punto de atencion
      * @param id identificador del punto de atencion a eliminar
-     * @throws CityLogicException cuando no existe un punto de atencion con el id suministrado
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deletePuntoDeAtencion(@PathParam("id") Long id) throws CityLogicException {
-    	puntoLogic.deletePuntoDeAtencion(id);
+    public void deletePuntoDeAtencion(@PathParam("id") Long id) 
+    {
+    	puntoDeAtencionLogic.deletePuntoDeAtencion(id);
     }
     
     
