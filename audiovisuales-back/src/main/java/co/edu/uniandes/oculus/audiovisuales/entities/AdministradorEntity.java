@@ -12,6 +12,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class AdministradorEntity extends BaseEntity implements Serializable
 {
+    //atributo que modela un login
+    private String login;
+    
     //atributo que representa el punto de atencion que pertenece un administrador
     @PodamExclude
     @ManyToOne
@@ -33,5 +36,23 @@ public class AdministradorEntity extends BaseEntity implements Serializable
     public void setPuntoDeAtencion(PuntoDeAtencionEntity pda)
     {
         puntoDeAtencion=pda;
+    }
+
+    /**
+     * retorna el login del administrador
+     * @return login del administrador
+     */
+    public String getLogin() 
+    {
+        return login;
+    }
+
+    /**
+     * asigna un login al atributo login
+     * @param login login a agregar
+     */
+    public void setLogin(String login) 
+    {
+        this.login = login;
     }
 }
