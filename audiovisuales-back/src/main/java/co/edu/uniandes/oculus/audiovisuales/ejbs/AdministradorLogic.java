@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.ejbs;
 
 import co.edu.uniandes.oculus.audiovisuales.api.IAdministradorLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
+import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.AdministradorPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -47,14 +48,16 @@ public class AdministradorLogic implements IAdministradorLogic
      * Se encarga de crear un Administrador en la base de datos.
      * @param adminEntity Objeto de AdministradorEntity con los datos nuevos
      * @return Objeto de AdministradorEntity con los datos nuevos y su ID.
+     * @throws co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException
      */
     @Override
-    public AdministradorEntity createAdministrador(AdministradorEntity adminEntity) 
+    public AdministradorEntity createAdministrador(AdministradorEntity adminEntity) throws BusinessLogicException
     {
         AdministradorEntity yaExiste = getAdministradorByName(adminEntity.getName());
-        if (yaExiste != null) {
-            // se debe generar una exception si ya existe 
-            //throw new Exception("Ya existe una compañía con ese nombre");
+        if (yaExiste != null) 
+        {
+            // se debe generar una exception si ya existe el administrador
+            throw new BusinessLogicException("Ya existe un Administrador con ese nombre");
         }
         //si no existe lo crea 
         else
