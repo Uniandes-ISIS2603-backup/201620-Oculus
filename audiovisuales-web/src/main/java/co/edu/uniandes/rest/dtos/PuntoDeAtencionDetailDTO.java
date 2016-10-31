@@ -49,7 +49,7 @@ public class PuntoDeAtencionDetailDTO extends PuntoDeAtencionDTO
         List<AdministradorDTO> admins = this.getAdministradores();
         for (AdministradorDTO admin : admins) 
         {
-          entity.getAdministradores().add(admin.toEntity());
+          entity.getAdministradores().add(admin.AdminDTOtoEntity());
         }
         
         List<EquipoDTO> equips = this.getEquipos();
