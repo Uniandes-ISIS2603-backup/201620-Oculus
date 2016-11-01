@@ -15,7 +15,7 @@ import co.edu.uniandes.rest.dtos.PuntoDeAtencionDetailDTO;
 import co.edu.uniandes.rest.dtos.ReservaDTO;
 import co.edu.uniandes.rest.dtos.ReservaDetailDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
-import co.edu.uniandes.rest.mocks.PuntoDeAtencionLogicMock;
+
 import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 import java.util.ArrayList;
 
