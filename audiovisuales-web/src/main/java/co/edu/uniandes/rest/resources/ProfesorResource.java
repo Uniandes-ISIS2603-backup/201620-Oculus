@@ -23,20 +23,15 @@ import co.edu.uniandes.rest.dtos.ProfesorDetailDTO;
 import co.edu.uniandes.rest.dtos.ReservaDTO;
 import co.edu.uniandes.rest.dtos.ReservaDetailDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
-import co.edu.uniandes.rest.exceptions.EquipoLogicException;
-import co.edu.uniandes.rest.mocks.ProfesorLogicMock;
-import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 import java.util.ArrayList;
 import java.util.Date;
 
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.PathParam;
 
 
 /**
  *
- * @author ac.fandino10
  * @author fa.lopez10
  */
 
