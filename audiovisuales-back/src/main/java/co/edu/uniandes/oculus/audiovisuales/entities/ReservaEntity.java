@@ -22,8 +22,8 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     
     private Date fecha;
     private String estado;
+    
     @ManyToOne
-    @PodamExclude
     private EquipoEntity equipo;
     
     @ManyToOne
@@ -58,6 +58,11 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     public void setProfesor(ProfesorEntity profesor)
     {
         this.profesor = profesor;
+    }
+    
+    public void setEquipo(EquipoEntity equipo)
+    {
+        this.equipo = equipo;
     }
     
     public ProfesorEntity getProfesor()

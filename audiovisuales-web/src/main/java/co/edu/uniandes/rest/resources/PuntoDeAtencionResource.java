@@ -16,13 +16,17 @@
  */
 package co.edu.uniandes.rest.resources;
 
+import co.edu.uniandes.oculus.audiovisuales.api.IAdministradorLogic;
 import co.edu.uniandes.oculus.audiovisuales.api.IPuntoDeAtencionLogic;
+import co.edu.uniandes.oculus.audiovisuales.api.IReservaLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
 import co.edu.uniandes.rest.dtos.PuntoDeAtencionDetailDTO;
 import co.edu.uniandes.rest.dtos.ReservaDTO;
+import co.edu.uniandes.rest.dtos.ReservaDetailDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
-import co.edu.uniandes.rest.mocks.PuntoDeAtencionLogicMock;
+
 import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 import java.util.ArrayList;
 
@@ -59,6 +63,18 @@ public class PuntoDeAtencionResource {
 	@Inject 
         private IPuntoDeAtencionLogic puntoDeAtencionLogic;        
 	
+        @Inject 
+        private IReservaLogic reservaLogic;
+        
+     public List<ReservaDetailDTO> listEntityToDTO(List<ReservaEntity> listEntity)
+        {
+            List<ReservaDetailDTO> listaADevolver = new ArrayList<>();
+            for (ReservaEntity res : listEntity)
+            {
+              listaADevolver.add(new ReservaDetailDTO(res));
+            }
+            return listaADevolver;
+        }    
     /**
      * Convierte una lista de PuntoDeAtencionEntity a una lista de PuntoDeAtencionDetailDTO.
      * @param listEntity Lista de PuntoDeAtencionEntity a convertir.
@@ -159,7 +175,7 @@ public class PuntoDeAtencionResource {
     
     
     
-    //recursos sneider
+    //Recursos de Administrador\\
     
     
    /**
@@ -170,10 +186,12 @@ public class PuntoDeAtencionResource {
      */
     @GET
     @Path("{idPuntoAtencion: \\d+}/ReservasPendientes")  //faltan los parametros de las fechas
-    public List<ReservaDTO> getReservasPendientesPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
+    public List<ReservaDetailDTO> getReservasPendientesPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
     {
-        return reservaLogic.getReservas();
-    }  
+        //return reservaLogic.getReservas();
+        //return listAdminEntityToDTO(administradorLogic.getAdministradores());
+        return listEntityToDTO(reservaLogic.getReservas(idPA));
+    }    
     
     /**
      * Lista las reservas CANCELADAS de un Punto de atencion en una fecha dada.
@@ -183,9 +201,9 @@ public class PuntoDeAtencionResource {
      */
     @GET
     @Path("{idPuntoAtencion: \\d+}/ReservasCanceladas")  //faltan los parametros de las fechas
-    public List<ReservaDTO> getReservasCanceladasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
+    public List<ReservaDetailDTO> getReservasCanceladasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
     {
-        return reservaLogic.getReservas();
+        return listEntityToDTO(reservaLogic.getReservas(idPA));
     }
     
     /**
@@ -196,9 +214,9 @@ public class PuntoDeAtencionResource {
      */
     @GET
     @Path("{idPuntoAtencion: \\d+}/TodasLasReservasDeUnPuntoA") 
-    public List<ReservaDTO> getReservasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
+    public List<ReservaDetailDTO> getReservasPuntoA(@PathParam("idPuntoAtencion")Long idPA) 
     {
-        return reservaLogic.getReservas();
+        return listEntityToDTO(reservaLogic.getReservas(idPA));
     }
    
 }

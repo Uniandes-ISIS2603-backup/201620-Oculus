@@ -5,20 +5,21 @@
  */
 package co.edu.uniandes.rest.dtos;
 
+import co.edu.uniandes.oculus.audiovisuales.entities.ProfesorEntity;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Class that implements the teacher that will provide the equipment of the order
- * @author ac.fandino10
  * @author fa.lopez10
  */
+@XmlRootElement
 public class ProfesorDTO
 {
-    private int id;
+    private Long id;
     private String nombre;
     private String login;
     private int codigo;
-    private ArrayList<ReservaDTO> reservas;
     
     /**
      * Constructor por defecto
@@ -29,25 +30,38 @@ public class ProfesorDTO
     
     /**
      * Constructor con parametros
-     * @param id
-     * @param nombre
-     * @param login 
-     * @param codigo 
+     * @param entity entidad de la que se traen los atributos para el DTO
      */
-    public ProfesorDTO(int id, String nombre, String login, int codigo)
+    public ProfesorDTO(ProfesorEntity entity)
     {
-        super();
-        this.id=id;
-        this.nombre=nombre;
-        this.login=login;
-        this.codigo=codigo;
+        if(entity != null)
+        {
+            this.id = entity.getId();
+            this.nombre = entity.getName();
+            this.login = entity.getLogin();
+            this.codigo = entity.getCodigo();
+        }
+    }
+    
+    /**
+     * 
+     * @return profeNuevo la entidad creada
+     */
+    public ProfesorEntity toEntity()
+    {
+        ProfesorEntity profeNuevo = new ProfesorEntity();
+        profeNuevo.setId(id);
+        profeNuevo.setName(nombre);
+        profeNuevo.setLogin(login);
+        profeNuevo.setCodigo(codigo);
+        return profeNuevo;
     }
     
     /**
      * Gets the id of the teacher
      * @return id
      */
-    public int getId()
+    public Long getId()
     {
         return this.id;
     }
@@ -55,7 +69,7 @@ public class ProfesorDTO
      * Sets the id to the teacher
      * @param id 
      */
-    public void setId(int id)
+    public void setId(Long id)
     {
         this.id = id;
     }
