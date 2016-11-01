@@ -5,17 +5,24 @@
  */
 package co.edu.uniandes.oculus.audiovisuales.test.logic;
 
+import co.edu.uniandes.oculus.audiovisuales.api.IProfesorLogic;
 import co.edu.uniandes.oculus.audiovisuales.api.IReservaLogic;
 import co.edu.uniandes.oculus.audiovisuales.ejbs.*;
 import co.edu.uniandes.oculus.audiovisuales.entities.ProfesorEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import co.edu.uniandes.oculus.audiovisuales.persistence.ProfesorPersistence;
+import co.edu.uniandes.oculus.audiovisuales.persistence.ReservaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -23,6 +30,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -30,6 +38,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author fa.lopez10
  */
+@RunWith(Arquillian.class)
 public class ReservaLogicTest {
     
     public ReservaLogicTest() {
@@ -48,6 +57,21 @@ public class ReservaLogicTest {
     
     private List<ReservaEntity> reservaData = new ArrayList<ReservaEntity>();
     private List<ProfesorEntity> profesorData = new ArrayList<ProfesorEntity>();
+    
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(ProfesorEntity.class.getPackage())
+                .addPackage(ProfesorLogic.class.getPackage())
+                .addPackage(IProfesorLogic.class.getPackage())
+                .addPackage(ProfesorPersistence.class.getPackage())
+                .addPackage(ReservaPersistence.class.getPackage())
+                .addPackage(ReservaEntity.class.getPackage())
+                .addPackage(ReservaLogic.class.getPackage())
+                .addPackage(IReservaLogic.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
     
     @Before
     public void setUp() {
