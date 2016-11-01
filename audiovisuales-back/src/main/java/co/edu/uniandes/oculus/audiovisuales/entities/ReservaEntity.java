@@ -22,8 +22,8 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     
     private Date fecha;
     private String estado;
+    
     @ManyToOne
-    @PodamExclude
     private EquipoEntity equipo;
     
     @ManyToOne

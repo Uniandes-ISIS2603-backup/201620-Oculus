@@ -59,7 +59,7 @@ public class ProfesorLogic implements IProfesorLogic{
 
     @Override
     public void deleteProfesor(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        persistence.delete(id);
     }
 
     @Override
