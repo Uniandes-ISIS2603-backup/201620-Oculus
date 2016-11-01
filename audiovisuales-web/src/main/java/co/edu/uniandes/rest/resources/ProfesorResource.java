@@ -5,7 +5,11 @@
 */
 package co.edu.uniandes.rest.resources;
 
-import co.edu.uniandes.rest.dtos.EquipoDTO;
+import co.edu.uniandes.oculus.audiovisuales.api.IProfesorLogic;
+import co.edu.uniandes.oculus.audiovisuales.api.IReservaLogic;
+import co.edu.uniandes.oculus.audiovisuales.entities.ProfesorEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,13 +19,18 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
 
 import co.edu.uniandes.rest.dtos.ProfesorDTO;
+import co.edu.uniandes.rest.dtos.ProfesorDetailDTO;
 import co.edu.uniandes.rest.dtos.ReservaDTO;
+import co.edu.uniandes.rest.dtos.ReservaDetailDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.ProfesorLogicMock;
 import co.edu.uniandes.rest.mocks.ReservaLogicMock;
+import java.util.ArrayList;
+import java.util.Date;
 
 import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.ws.rs.PathParam;
 
 
@@ -35,11 +44,37 @@ import javax.ws.rs.PathParam;
 @Produces("application/json")
 public class ProfesorResource
 {
-    private final static Logger logger = Logger.getLogger(ProfesorLogicMock.class.getName());
+    @Inject
+    private IProfesorLogic profesorLogic;
     
+    @Inject
+    private IReservaLogic reservaLogic;
     
-    ProfesorLogicMock profesorLogic = new ProfesorLogicMock();
-    ReservaLogicMock reservaLogic = new ReservaLogicMock();
+    /**
+     * Convierte lista de entidades de profesor a una lista de dtos de profesor
+     * @param entityList lista de entidades de profesor
+     * @return lista de dtos correspondientes
+     */
+    private List<ProfesorDetailDTO> listEntity2DTOProfesor(List<ProfesorEntity> entityList) {
+        List<ProfesorDetailDTO> list = new ArrayList<>();
+        for (ProfesorEntity entity : entityList) {
+            list.add(new ProfesorDetailDTO(entity));
+        }
+        return list;
+    }
+    
+    /**
+     * Convierte lista de entidades de profesor a una lista de dtos de profesor
+     * @param entityList lista de entidades de profesor
+     * @return lista de dtos correspondientes
+     */
+    private List<ReservaDetailDTO> listEntity2DTOReserva(List<ReservaEntity> entityList) {
+        List<ReservaDetailDTO> list = new ArrayList<>();
+        for (ReservaEntity entity : entityList) {
+            list.add(new ReservaDetailDTO(entity));
+        }
+        return list;
+    }
     
     /**
      * Obtiene los profesores
@@ -47,8 +82,8 @@ public class ProfesorResource
      * @throws CityLogicException
      */
     @GET
-    public List<ProfesorDTO> getTeachers() throws CityLogicException {
-        return profesorLogic.getProfesores();
+    public List<ProfesorDetailDTO> getProfesores() throws BusinessLogicException {
+        return listEntity2DTOProfesor(profesorLogic.getProfesores());
     }
     
     /**
@@ -59,9 +94,9 @@ public class ProfesorResource
      */
     @GET
     @Path("{id: \\d+}")
-    public ProfesorDTO getTeacher(@PathParam("id") int id) throws CityLogicException
+    public ProfesorDetailDTO getProfesor(@PathParam("id") Long id) throws BusinessLogicException
     {
-        return profesorLogic.findTeacher(id);
+        return new ProfesorDetailDTO(profesorLogic.getProfesor(id));
     }
     
     
@@ -72,8 +107,8 @@ public class ProfesorResource
      * @throws CityLogicException
      */
     @POST
-    public ProfesorDTO createTeacher(ProfesorDTO profesor) throws CityLogicException {
-        return profesorLogic.createProfesor(profesor);
+    public ProfesorDetailDTO createProfesor(ProfesorDTO profesor) throws BusinessLogicException {
+        return new ProfesorDetailDTO(profesorLogic.createProfesor(profesor.toEntity()));
     }
     
     /**
@@ -86,10 +121,11 @@ public class ProfesorResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public ProfesorDTO updateTeacher(@PathParam("id") int id, ProfesorDTO profe) throws CityLogicException {
+    public ProfesorDetailDTO updateProfesor(@PathParam("id") Long id, ProfesorDTO profe) throws BusinessLogicException {
         
-        logger.info("PUT");
-        return profesorLogic.updateInfo(id,profe);
+        ProfesorEntity entity = profe.toEntity();
+        entity.setId(id);
+        return new ProfesorDetailDTO(profesorLogic.updateProfesor(entity));
     }
     
     /**
@@ -99,10 +135,9 @@ public class ProfesorResource
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteTeacher(@PathParam("id") int id) throws CityLogicException
+    public void deleteProfesor(@PathParam("id") Long id) throws BusinessLogicException
     {
-        logger.info("proceso: intentando borrar");
-        profesorLogic.deleteTeacher(id);
+        profesorLogic.deleteProfesor(id);
     }
     
     /**
@@ -115,13 +150,14 @@ public class ProfesorResource
      */
     @POST
     @Path("{idP: \\d+}/reservas")
-    public ReservaDTO createTeacher(@PathParam("idP") Long idP, ReservaDTO reserva) throws CityLogicException {
+    public ReservaDetailDTO createReserva(@PathParam("idP") Long idP, ReservaDTO reserva) throws BusinessLogicException {
         //viene por un Json
         //Dto datos que manda el usuario
         //lo agrega a un arreglo dentro de profesores
         //debe llamar al logic de profesores y ahi si se modifica su arreglo de reservas
-        logger.info("Se trata de agregar "+reserva+" a "+idP);
-        return reservaLogic.createReserva(reserva);
+        
+        
+        return new ReservaDetailDTO(reservaLogic.createReserva(idP, reserva.toEntity()));
     }
     
     /**
@@ -134,10 +170,9 @@ public class ProfesorResource
      */
     @PUT
     @Path("{idP: \\d+}/cancelarReserva/{idR: \\d+}")
-    public ReservaDTO cancelarReserva(@PathParam("idP") Long idP, @PathParam("idR") Long idR) throws CityLogicException
+    public ReservaDetailDTO cancelarReserva(@PathParam("idP") Long idP, @PathParam("idR") Long idR) throws BusinessLogicException
     {
-        logger.info("Trata de hacer put");
-        return reservaLogic.cancelarReserva(idR);
+        return new ReservaDetailDTO(reservaLogic.cancelarReserva(idR));
     }
     
     /**
@@ -151,11 +186,11 @@ public class ProfesorResource
      */
     @GET
     @Path("{idP: \\d+}/reservasRangoFechas")
-    public List<ReservaDTO> getReservasRangoFechas(@PathParam("idP") Long idP /*, Long fechaI, Long fechaF*/) throws CityLogicException
+    public List<ReservaDetailDTO> getReservasRangoFechas(@PathParam("idP") Long idP /*, Long fechaI, Long fechaF*/) throws BusinessLogicException
     {
-        //Por ahora retorna todas las reservas
         //Debe pedirle al logic de profesores que le de sus reservas y pasarle tambien fechaI y fechaF
-        return reservaLogic.getReservas();
+//        return listEntity2DTOReserva(profesorLogic.listReservasRangoFechas(idP, new Date(fechaI), new Date(fechaF)));
+        return listEntity2DTOReserva(reservaLogic.getReservas(idP));
     }
     
     /**
@@ -166,9 +201,9 @@ public class ProfesorResource
      */
     @GET
     @Path("{idP: \\d+}/reservas")
-    public List<ReservaDTO> getReservas(@PathParam("idP") Long idP ) throws CityLogicException
+    public List<ReservaDetailDTO> getReservas(@PathParam("idP") Long idP ) throws BusinessLogicException
     {
-        return reservaLogic.getReservas();
+        return listEntity2DTOReserva(reservaLogic.getReservas(idP));
     }
     
     /**
@@ -180,9 +215,9 @@ public class ProfesorResource
      */
     @GET
     @Path("{idP: \\d+}/reservas/{idR: \\d+}")
-    public ReservaDTO getReserva(@PathParam("idP") Long idP , @PathParam("idR") Long idR) throws CityLogicException
+    public ReservaDetailDTO getReserva(@PathParam("idP") Long idP , @PathParam("idR") Long idR) throws BusinessLogicException
     {
-        return reservaLogic.getReserva(idR);
+        return new ReservaDetailDTO(reservaLogic.getReserva(idR));
     }
     
 }
