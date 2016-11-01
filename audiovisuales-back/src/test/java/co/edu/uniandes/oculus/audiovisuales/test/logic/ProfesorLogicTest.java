@@ -84,7 +84,6 @@ public class ProfesorLogicTest {
     
     private void insertData()
     {
-        System.out.print("entra a insrtData");
         for (int i = 0; i < 3; i++) {
             ProfesorEntity entity = factory.manufacturePojo(ProfesorEntity.class);
             for (ReservaEntity r : entity.getReservas()) {

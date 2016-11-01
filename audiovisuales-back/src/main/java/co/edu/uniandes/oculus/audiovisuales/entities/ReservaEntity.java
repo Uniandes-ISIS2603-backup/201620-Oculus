@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -23,11 +24,11 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     private Date fecha;
     private String estado;
     
-    @ManyToOne
+    @PodamExclude
+    @ManyToOne( cascade =CascadeType.ALL)
     private EquipoEntity equipo;
     
-    @ManyToOne
-    @PodamExclude
+    @ManyToOne( cascade =CascadeType.ALL)
     private ProfesorEntity profesor;
     
     public Date getFecha()
