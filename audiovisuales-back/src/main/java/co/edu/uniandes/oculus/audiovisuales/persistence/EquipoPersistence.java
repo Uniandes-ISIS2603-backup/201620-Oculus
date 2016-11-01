@@ -6,6 +6,7 @@
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -79,12 +80,39 @@ public class EquipoPersistence
         q = q.setParameter("id", id1);
         return q.getResultList();
     }
-
-    public List<TipoEntity> darTipos() 
+    
+    public List<TipoEntity> darTipos()
     {
         LOGGER.info("Consultando todos los equipos");
         Query consulta = em.createQuery("SELECT u FROM TipoEntity u");
         return consulta.getResultList();
+    }
+    
+    public List<EquipoEntity> buscarEquiposPorIdAdministrador(Long id1)
+    {
+        LOGGER.log(Level.INFO, "Consultar equipos del Punto de atención con el id dado: "+id1);
+        TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id",EquipoEntity.class);
+        q = q.setParameter("id", id1);
+        return q.getResultList();
+    }
+
+    public EquipoEntity buscarEquipoPorIdPuntoDeAtencion(Long idPuntoDeAtencion, Long idEquipo) 
+    {
+         LOGGER.log(Level.INFO, "Consultar equipo del Punto de atención con el id dado: "+idPuntoDeAtencion +"y el equipo con id:"+idEquipo);
+        TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id AND u.id=:ide",EquipoEntity.class);
+        q = q.setParameter("id", idPuntoDeAtencion);
+        q = q.setParameter("ide", idEquipo);
+        return q.getSingleResult();
+    }
+
+    public ReservaEntity getReservaActiva(long idEquipo) 
+    {
+        LOGGER.log(Level.INFO, "Consultar reserva activa del equipo con id:"+idEquipo);
+        TypedQuery<ReservaEntity> q = em.createQuery("SELECT u FROM ReservaEntity u WHERE  u.equipo.id = :id  AND"
+                + "u.estado = activo ",ReservaEntity.class);
+        q = q.setParameter("id", idEquipo);
+        q = q.setParameter("activo","Reserva Activa");
+        return q.getSingleResult();
     }
     
 }

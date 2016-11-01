@@ -72,5 +72,12 @@ public class ReservaLogic implements IReservaLogic{
     public EquipoEntity getEquipo(Long reservaId) {
         return persistence.find(reservaId).getEquipo();
     }
+
+    @Override
+    public void devolver(Long idEquipo , ReservaEntity r) 
+    {
+        r.setEstado("Reserva Activa");
+        persistence.update(r);
+    }
     
 }

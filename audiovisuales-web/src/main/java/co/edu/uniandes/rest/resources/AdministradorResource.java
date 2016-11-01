@@ -6,12 +6,18 @@
 package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.oculus.audiovisuales.api.IAdministradorLogic;
+import co.edu.uniandes.oculus.audiovisuales.api.IEquipoLogic;
+import co.edu.uniandes.oculus.audiovisuales.api.IReservaLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 
 import co.edu.uniandes.rest.dtos.AdministradorDTO;
 import co.edu.uniandes.rest.dtos.AdministradorDetailDTO;
 import co.edu.uniandes.rest.dtos.EquipoDTO;
+import co.edu.uniandes.rest.dtos.EquipoDetailDTO;
+import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
 import co.edu.uniandes.rest.mocks.AdministradorLogicMock;
@@ -42,6 +48,8 @@ import javax.ws.rs.core.MediaType;
 
 public class AdministradorResource 
 {
+    
+    
     private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
     
      //AdministradorLogicMock administradorLogic = new AdministradorLogicMock();
@@ -52,6 +60,21 @@ public class AdministradorResource
     @Inject
     private IAdministradorLogic administradorLogic;
     
+    @Inject
+    private IEquipoLogic equipoLogicMock;
+    
+    @Inject 
+    private IReservaLogic reservaLogicMock;
+    
+    private List<EquipoDetailDTO> listEntity2DTO(List<EquipoEntity> listaEntidades)
+    {
+        List<EquipoDetailDTO> lista = new ArrayList<>();
+        for (EquipoEntity   e: listaEntidades) 
+        {
+            lista.add(new EquipoDetailDTO(e));
+        }
+        return lista;
+    }
     
     private List<AdministradorDetailDTO> listAdminEntityToDTO(List<AdministradorEntity> adminEntityList) {
         List<AdministradorDetailDTO> adminList = new ArrayList<>();
@@ -72,9 +95,10 @@ public class AdministradorResource
      */
         @GET
         @Path("{idAdministrador: \\d+}/equipos")
-        public List<EquipoDTO> getEquipos(@PathParam("idAdministrador") Long id , @PathParam("idAdministrador") Long ide) throws EquipoLogicException
+        public List<EquipoDetailDTO> getEquipos(@PathParam("idAdministrador") Long id ) throws EquipoLogicException
         {
-            return equipoLogicMock.getEquipos();
+            AdministradorEntity a = administradorLogic.getAdministrador(id);
+            return listEntity2DTO(equipoLogicMock.getEquiposByIdPuntoDeAtencion(a.getId()));
         }
     
     /**
@@ -84,9 +108,10 @@ public class AdministradorResource
      */
     @GET
     @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}")
-    public EquipoDTO getEquipo(@PathParam("idAdministrador") Long idAdmin , @PathParam("idEquipo") Long idEquipo) throws EquipoLogicException
+    public EquipoDetailDTO getEquipo(@PathParam("idAdministrador") Long idAdmin , @PathParam("idEquipo") Long idEquipo) throws EquipoLogicException
     {
-        return equipoLogicMock.getEquipo(idEquipo);
+        AdministradorEntity a = administradorLogic.getAdministrador(idAdmin);
+        return new EquipoDetailDTO(equipoLogicMock.getEquipoByIdPuntoDeAtencion( a.getId(),idEquipo));
     }
     
     /**
@@ -100,21 +125,25 @@ public class AdministradorResource
     
     @POST
     @Path("{idAdministrador: \\d+}/equipos")
-    public EquipoDTO createEquipo(@PathParam("idAdministrador") Long idAdmin, EquipoDTO equipo) throws EquipoLogicException 
+    public EquipoDetailDTO createEquipo(@PathParam("idAdministrador") Long idAdmin, EquipoDetailDTO equipo) throws EquipoLogicException, BusinessLogicException 
     {
+        AdministradorEntity a = administradorLogic.getAdministrador(idAdmin);
+        equipo.setPuntoDeAtencionDTO( new PuntoDeAtencionDTO(a.getPuntoDeAtencion()));
         //viene por un Json
         //Dto datos que manda el usuario
         //lo agrega a un arreglo
         logger.info("Se trata de agregar "+equipo+" a "+idAdmin);
-        return equipoLogicMock.createEquipo(equipo);
+        return new EquipoDetailDTO(equipoLogicMock.createEquipo(equipo.toEntity()));
     }
     
     @PUT
     @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}")
-    public EquipoDTO updateEquipo(@PathParam("idEquipo") Long idEquipo, EquipoDTO equipo) throws EquipoLogicException 
+    public EquipoDetailDTO updateEquipo(@PathParam("idAdministrador") Long idAdmin,@PathParam("idEquipo") Long idEquipo, EquipoDetailDTO equipo) throws EquipoLogicException 
     {
             logger.info("Trata de hacer put");
-            return equipoLogicMock.updateEquipo(idEquipo,equipo);
+            equipo.setId(idEquipo);
+            AdministradorEntity a = administradorLogic.getAdministrador(idAdmin);
+            return new EquipoDetailDTO(equipoLogicMock.updateEquipo(equipo.toEntity()));
     }
     
          /**
@@ -135,7 +164,9 @@ public class AdministradorResource
     public EquipoDTO devolverEquipo(@PathParam("idEquipo") Long idEquipo, EquipoDTO equipo) throws EquipoLogicException, CityLogicException 
     {
             logger.info("Trata de devolver equipo");
-            reservaLogicMock.devolver(idEquipo);
+            EquipoEntity e = equipoLogicMock.getEquipo(idEquipo);
+            ReservaEntity r = equipoLogicMock.getReservaActiva(e.getId());
+            reservaLogicMock.devolver(idEquipo,r);
             return null;
     }
     
