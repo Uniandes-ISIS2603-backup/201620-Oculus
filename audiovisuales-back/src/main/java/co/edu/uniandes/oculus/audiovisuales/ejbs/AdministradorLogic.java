@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.ejbs;
 
 import co.edu.uniandes.oculus.audiovisuales.api.IAdministradorLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.AdministradorPersistence;
 import java.util.List;

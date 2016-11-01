@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.api;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import java.util.List;
@@ -25,4 +26,8 @@ public interface IEquipoLogic
     public void deleteEquipo(Long id);
     public List<EquipoEntity> getEquiposByIdPuntoDeAtencion(Long idPuntoDeAtencion);
     public List<TipoEntity> getTipos();
+
+    public EquipoEntity getEquipoByIdPuntoDeAtencion(Long id, Long idEquipo);
+
+    public ReservaEntity getReservaActiva(long idEquipo);
 }
