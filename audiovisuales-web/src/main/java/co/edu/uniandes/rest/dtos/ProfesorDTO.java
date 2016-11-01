@@ -7,11 +7,13 @@ package co.edu.uniandes.rest.dtos;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.ProfesorEntity;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Class that implements the teacher that will provide the equipment of the order
  * @author fa.lopez10
  */
+@XmlRootElement
 public class ProfesorDTO
 {
     private Long id;

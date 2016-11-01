@@ -7,11 +7,13 @@ package co.edu.uniandes.rest.dtos;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Objeto de transferencia de datos de Reservas.
  * @author fa.lopez10
  */
+@XmlRootElement
 public class ReservaDTO {
     private Long id;
     private Date fecha;

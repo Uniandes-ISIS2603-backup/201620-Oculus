@@ -60,6 +60,11 @@ public class ReservaEntity extends BaseEntity implements Serializable{
         this.profesor = profesor;
     }
     
+    public void setEquipo(EquipoEntity equipo)
+    {
+        this.equipo = equipo;
+    }
+    
     public ProfesorEntity getProfesor()
     {
         return profesor;
