@@ -31,8 +31,8 @@ public class EquipoEntity extends BaseEntity implements Serializable
     @OneToMany(mappedBy="equipo", cascade=CascadeType.ALL, orphanRemoval=true)
     private ArrayList<ReservaEntity> reservas;
     
-    @ManyToOne( cascade=CascadeType.ALL)
-    //@PodamExclude
+    @ManyToOne
+    @PodamExclude
     private PuntoDeAtencionEntity puntoDeAtencion;
 
     public TipoEntity getTipo() {

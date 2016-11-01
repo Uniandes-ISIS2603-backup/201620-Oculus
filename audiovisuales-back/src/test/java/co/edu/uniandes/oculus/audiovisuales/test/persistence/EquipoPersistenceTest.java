@@ -10,6 +10,8 @@ import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import co.edu.uniandes.oculus.audiovisuales.persistence.EquipoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,6 +38,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class EquipoPersistenceTest
 {
+    private static final Logger LOGGER = Logger.getLogger(EquipoPersistence.class.getName());
+    
     
     @Deployment
     public static JavaArchive createDeployment()
@@ -54,7 +58,7 @@ public class EquipoPersistenceTest
     private EntityManager em;
     
     @Inject
-           UserTransaction utx;
+            UserTransaction utx;
     
     private List<EquipoEntity> data = new ArrayList<EquipoEntity>();
     
@@ -84,29 +88,6 @@ public class EquipoPersistenceTest
             }
         }
     }
-    /*
-    public EquipoPersistenceTest()
-    {
-    
-    }
-    
-    @BeforeClass
-    public static void setUpClass()
-    {
-    }
-    
-    @AfterClass
-    public static void tearDownClass()
-    {
-    }
-    
-    
-    @After
-    public void tearDown()
-    {
-    }
-    */
-    
     @Test
     public void getEquiposTest()
     {
@@ -195,24 +176,64 @@ public class EquipoPersistenceTest
     
     @Test
     
-    public void buscarEquiposPuntoDeAtencionTest()
+    public void buscarEquiposPuntoDeAtencionTestVacio()
     {
         PodamFactory f = new PodamFactoryImpl();
         EquipoEntity nuevaEntidad = f.manufacturePojo(EquipoEntity.class);
+        PuntoDeAtencionEntity p = f.manufacturePojo(PuntoDeAtencionEntity.class);
+        nuevaEntidad.setPuntoDeAtencion(p);
         List<EquipoEntity> l =equipoPersistence.buscarEquiposPorIdPuntoDeAtencion(nuevaEntidad.getPuntoDeAtencion().getId());
         Assert.assertNotNull(l);
-            boolean encontrado = false;
-        for (EquipoEntity actual : l) 
-        {
-            if(actual.getId()==nuevaEntidad.getId())
-            {
-            encontrado=true;
-            }
-        }
-        Assert.assertEquals(encontrado, true);
-        
+        Assert.assertEquals(l.size(), 0);
     }
     
+    @Test
+    
+    public void buscarEquiposPuntoDeAtencionTest()
+    {
+        PodamFactory f = new PodamFactoryImpl();
+        PuntoDeAtencionEntity nuevaEntidad = f.manufacturePojo(PuntoDeAtencionEntity.class);
+        try
+        {
+            utx.begin();
+            em.joinTransaction();
+            em.persist(nuevaEntidad);
+            utx.commit();
+            
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        for (int i = 0; i < data.size(); i++)
+        {
+            Assert.assertNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
+            
+            data.get(i).setPuntoDeAtencion(nuevaEntidad);
+            equipoPersistence.update(data.get(i));
+            Assert.assertEquals( equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId() , nuevaEntidad.getId());
+            Assert.assertNotNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
+            LOGGER.log(Level.INFO, "Actual: "+i+" "+equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId()+" "+nuevaEntidad.getId());
+        }
+        List<EquipoEntity> l =equipoPersistence.buscarEquiposPorIdPuntoDeAtencion(nuevaEntidad.getId());
+        LOGGER.log(Level.INFO,"tam: "+l.size());
+        Assert.assertEquals( data.size(),l.size());
+        for (EquipoEntity actual : l)
+        {
+        boolean encontrado = false;
+            for (int i = 0; i < data.size(); i++)
+            {
+                EquipoEntity a = data.get(i);
+                if(actual.getId()==a.getId())
+                {
+                    encontrado=true;
+                }
+            }
+        Assert.assertEquals(encontrado, true);
+        }
+        
+    }
     
     private void clearData()
     {

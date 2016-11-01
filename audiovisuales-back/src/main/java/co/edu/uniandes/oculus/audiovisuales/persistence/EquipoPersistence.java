@@ -75,8 +75,8 @@ public class EquipoPersistence
     
     public List<EquipoEntity> buscarEquiposPorIdPuntoDeAtencion(Long id1)
     {
-        LOGGER.log(Level.INFO, "Consultar equipos del Punto de atención con el id dado: "+id1);
-        TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id",EquipoEntity.class);
+        LOGGER.log(Level.INFO, "buscarEquiposPorIdPuntoDeAtencionn con el id dado: "+id1);
+        Query q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id");
         q = q.setParameter("id", id1);
         return q.getResultList();
     }
@@ -88,14 +88,6 @@ public class EquipoPersistence
         return consulta.getResultList();
     }
     
-    public List<EquipoEntity> buscarEquiposPorIdAdministrador(Long id1)
-    {
-        LOGGER.log(Level.INFO, "Consultar equipos del Punto de atención con el id dado: "+id1);
-        TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id",EquipoEntity.class);
-        q = q.setParameter("id", id1);
-        return q.getResultList();
-    }
-
     public EquipoEntity buscarEquipoPorIdPuntoDeAtencion(Long idPuntoDeAtencion, Long idEquipo) 
     {
          LOGGER.log(Level.INFO, "Consultar equipo del Punto de atención con el id dado: "+idPuntoDeAtencion +"y el equipo con id:"+idEquipo);

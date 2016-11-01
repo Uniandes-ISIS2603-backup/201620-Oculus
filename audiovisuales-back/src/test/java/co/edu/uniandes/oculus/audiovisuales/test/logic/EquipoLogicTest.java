@@ -142,7 +142,7 @@ public class EquipoLogicTest
     public void createEquipoTestFail()throws BusinessLogicException
     {
         EquipoEntity newEntity = factory.manufacturePojo(EquipoEntity.class);
-        newEntity.setName(data.get(0).getName());
+        newEntity.setId(data.get(0).getId());
         EquipoEntity result = equipoLogic.createEquipo(newEntity);
     }
     

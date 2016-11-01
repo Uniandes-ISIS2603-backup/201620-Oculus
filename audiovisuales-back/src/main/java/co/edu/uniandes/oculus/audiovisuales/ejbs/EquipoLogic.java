@@ -51,7 +51,7 @@ public class EquipoLogic implements IEquipoLogic
     @Override
     public EquipoEntity createEquipo(EquipoEntity e) throws BusinessLogicException
     {
-        EquipoEntity equipo = persistence.findByName(e.getName());
+        EquipoEntity equipo = persistence.find(e.getId());
         if(equipo != null)
         {
             throw new BusinessLogicException("Ya existe un equipo con ese nombre");
