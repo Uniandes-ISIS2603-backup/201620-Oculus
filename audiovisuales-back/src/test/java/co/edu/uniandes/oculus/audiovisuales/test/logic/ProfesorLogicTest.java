@@ -46,6 +46,7 @@ public class ProfesorLogicTest {
     
     @Inject
     private IProfesorLogic profesorLogic;
+    @Inject ReservaPersistence reservaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -55,7 +56,7 @@ public class ProfesorLogicTest {
     
     private List<ProfesorEntity> profesorData = new ArrayList<ProfesorEntity>();
     
-    private List<ArrayList<ReservaEntity>> reservasData = new  ArrayList<ArrayList<ReservaEntity>>();
+//    private List<ArrayList<ReservaEntity>> reservasData = new  ArrayList<ArrayList<ReservaEntity>>();
     
     public ProfesorLogicTest() {
     }
@@ -78,8 +79,9 @@ public class ProfesorLogicTest {
     }
     private void clearData()
     {
-        em.createQuery("DELETE FROM ProfesorEntity").executeUpdate();
         em.createQuery("DELETE FROM ReservaEntity").executeUpdate();
+        em.createQuery("DELETE FROM ProfesorEntity").executeUpdate();
+        
     }
     
     private void insertData()
@@ -91,7 +93,7 @@ public class ProfesorLogicTest {
             }
             em.persist(entity);
             profesorData.add(entity);
-            System.out.print("size es" + profesorData.size());
+            
         }
         
         

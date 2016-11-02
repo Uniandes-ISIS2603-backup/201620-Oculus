@@ -41,11 +41,11 @@ public class ReservaLogic implements IReservaLogic{
     }
     
     @Override
-    public ReservaEntity createReserva(Long profesorid, ReservaEntity entity) throws BusinessLogicException {
+    public ReservaEntity createReserva(Long profesorid, ReservaEntity entity) /*throws BusinessLogicException */{
         ProfesorEntity  profesor = profesorLogic.getProfesor(profesorid);
         entity.setProfesor(profesor);
-        if(entity.getFecha().before(new Date()))
-            throw new BusinessLogicException("La fecha de la reserva debe se posterior a la actual");
+        /*if(entity.getFecha().before(new Date()))
+            throw new BusinessLogicException("La fecha de la reserva debe se posterior a la actual");*/
         return entity = persistence.create(entity);
     }
     
