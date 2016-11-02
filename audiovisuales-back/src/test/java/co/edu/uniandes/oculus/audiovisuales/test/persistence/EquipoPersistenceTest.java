@@ -191,31 +191,8 @@ public class EquipoPersistenceTest
     
     public void buscarEquiposPuntoDeAtencionTest()
     {
-        PodamFactory f = new PodamFactoryImpl();
-        PuntoDeAtencionEntity nuevaEntidad = f.manufacturePojo(PuntoDeAtencionEntity.class);
-        try
-        {
-            utx.begin();
-            em.joinTransaction();
-            em.persist(nuevaEntidad);
-            utx.commit();
-            
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+       PuntoDeAtencionEntity nuevaEntidad = setUp2();
         
-        for (int i = 0; i < data.size(); i++)
-        {
-            Assert.assertNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
-            
-            data.get(i).setPuntoDeAtencion(nuevaEntidad);
-            equipoPersistence.update(data.get(i));
-            Assert.assertEquals( equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId() , nuevaEntidad.getId());
-            Assert.assertNotNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
-            LOGGER.log(Level.INFO, "Actual: "+i+" "+equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId()+" "+nuevaEntidad.getId());
-        }
         List<EquipoEntity> l =equipoPersistence.buscarEquiposPorIdPuntoDeAtencion(nuevaEntidad.getId());
         LOGGER.log(Level.INFO,"tam: "+l.size());
         Assert.assertEquals( data.size(),l.size());
@@ -251,5 +228,35 @@ public class EquipoPersistenceTest
             em.persist(entity);
             data.add(entity);
         }
+    }
+
+    private PuntoDeAtencionEntity setUp2() 
+    {
+         PodamFactory f = new PodamFactoryImpl();
+        PuntoDeAtencionEntity nuevaEntidad = f.manufacturePojo(PuntoDeAtencionEntity.class);
+        try
+        {
+            utx.begin();
+            em.joinTransaction();
+            em.persist(nuevaEntidad);
+            utx.commit();
+            
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        for (int i = 0; i < data.size(); i++)
+        {
+            Assert.assertNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
+            
+            data.get(i).setPuntoDeAtencion(nuevaEntidad);
+            equipoPersistence.update(data.get(i));
+            Assert.assertEquals( equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId() , nuevaEntidad.getId());
+            Assert.assertNotNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
+            LOGGER.log(Level.INFO, "Actual: "+i+" "+equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId()+" "+nuevaEntidad.getId());
+        }
+        return nuevaEntidad;
     }
 }

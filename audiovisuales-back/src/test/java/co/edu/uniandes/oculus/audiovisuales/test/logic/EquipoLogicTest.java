@@ -14,6 +14,7 @@ import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.EquipoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,6 +41,9 @@ public class EquipoLogicTest
     private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
+    private EquipoPersistence equipoPersistence;
+    
+    @Inject
     private IEquipoLogic equipoLogic;
     
     @PersistenceContext
@@ -64,6 +68,34 @@ public class EquipoLogicTest
                 .addPackage(EquipoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
+    }
+    private PuntoDeAtencionEntity setUp2() 
+    {
+         PodamFactory f = new PodamFactoryImpl();
+        PuntoDeAtencionEntity nuevaEntidad = f.manufacturePojo(PuntoDeAtencionEntity.class);
+        try
+        {
+            utx.begin();
+            em.joinTransaction();
+            em.persist(nuevaEntidad);
+            utx.commit();
+            
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        for (int i = 0; i < data.size(); i++)
+        {
+            Assert.assertNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
+            
+            data.get(i).setPuntoDeAtencion(nuevaEntidad);
+            equipoPersistence.update(data.get(i));
+            Assert.assertEquals( equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId() , nuevaEntidad.getId());
+            Assert.assertNotNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
+        }
+        return nuevaEntidad;
     }
     
     @Before
@@ -101,6 +133,17 @@ public class EquipoLogicTest
     {
         for (int i = 0; i < 3; i++)
         {
+            EquipoEntity entity = factory.manufacturePojo(EquipoEntity.class);
+            /**
+            entity.setPuntoDeAtencion(puntoDeAtencionData.get(i));
+            entity.setReservas(reservasData.get(0));
+            */
+            em.persist(entity);
+            data.add(entity);
+        }
+        /**
+        for (int i = 0; i < 3; i++)
+        {
             ArrayList<ReservaEntity> reservas = new ArrayList<>();
             for (int j = 0; j < 3; j++)
             {
@@ -116,14 +159,7 @@ public class EquipoLogicTest
             em.persist(punto);
             puntoDeAtencionData.add(punto);
         }
-        for (int i = 0; i < 3; i++)
-        {
-            EquipoEntity entity = factory.manufacturePojo(EquipoEntity.class);
-            entity.setPuntoDeAtencion(puntoDeAtencionData.get(i));
-            entity.setReservas(reservasData.get(0));
-            em.persist(entity);
-            data.add(entity);
-        }
+        * */
     }
     
     @Test
@@ -212,7 +248,7 @@ public class EquipoLogicTest
     @Test
     public void getEquiposByIdPuntoDeAtencionTest()
     {
-        long idPA = puntoDeAtencionData.get(0).getId();
+        long idPA = setUp2().getId();
         List <EquipoEntity> list = equipoLogic.getEquiposByIdPuntoDeAtencion(idPA);
         TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.puntoDeAtencion.id = :id",EquipoEntity.class);
         q = q.setParameter("id", idPA);
@@ -231,11 +267,4 @@ public class EquipoLogicTest
             Assert.assertTrue(encontrado);
         }
     }
-    
-    
-    
-    
-    
-    
-    
 }
