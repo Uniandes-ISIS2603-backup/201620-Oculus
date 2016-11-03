@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,7 +16,6 @@ import co.edu.uniandes.rest.dtos.ReservaDTO;
 import co.edu.uniandes.rest.dtos.ReservaDetailDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 
-import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 import java.util.ArrayList;
 
 import java.util.List;
