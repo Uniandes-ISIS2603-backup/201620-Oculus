@@ -6,7 +6,6 @@
 package co.edu.uniandes.rest.dtos;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
-import co.edu.uniandes.rest.mocks.AdministradorLogicMock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.annotation.XmlRootElement;
