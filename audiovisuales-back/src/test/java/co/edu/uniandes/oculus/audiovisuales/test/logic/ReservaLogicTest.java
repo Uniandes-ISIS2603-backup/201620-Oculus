@@ -43,6 +43,7 @@ public class ReservaLogicTest {
     
     public ReservaLogicTest() {
     }
+    ProfesorEntity fatherEntity;
     
     private PodamFactory factory = new PodamFactoryImpl();
     
@@ -69,6 +70,7 @@ public class ReservaLogicTest {
                 .addPackage(ReservaEntity.class.getPackage())
                 .addPackage(ReservaLogic.class.getPackage())
                 .addPackage(IReservaLogic.class.getPackage())
+                .addPackage(ProfesorEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -90,39 +92,12 @@ public class ReservaLogicTest {
         }
     }
     
-    /*private PuntoDeAtencionEntity setUp2() 
-    {
-         PodamFactory f = new PodamFactoryImpl();
-        PuntoDeAtencionEntity nuevaEntidad = f.manufacturePojo(PuntoDeAtencionEntity.class);
-        try
-        {
-            utx.begin();
-            em.joinTransaction();
-            em.persist(nuevaEntidad);
-            utx.commit();
-            
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-        for (int i = 0; i < reservaData.size(); i++)
-        {
-            Assert.assertNull(reservaPersistence.find(reservaData.get(i).getId()).getPuntoDeAtencion());
-            
-            reservaData.get(i).setProfesor(nuevaEntidad);
-            reservaPersistence.update(data.get(i));
-            Assert.assertEquals( equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion().getId() , nuevaEntidad.getId());
-            Assert.assertNotNull(equipoPersistence.find(data.get(i).getId()).getPuntoDeAtencion());
-        }
-        return nuevaEntidad;
-    }*/
     
     private void clearData()
     {
-        em.createQuery("DELETE FROM ProfesorEntity").executeUpdate();
         em.createQuery("DELETE FROM ReservaEntity").executeUpdate();
+        em.createQuery("DELETE FROM ProfesorEntity").executeUpdate();
+        
         em.createQuery("DELETE FROM EquipoEntity").executeUpdate();
         
         
@@ -130,20 +105,19 @@ public class ReservaLogicTest {
     
     private void insertData()
     {
+        fatherEntity = factory.manufacturePojo(ProfesorEntity.class);
+        fatherEntity.setId(1L);
+        em.persist(fatherEntity);
         for (int i = 0; i < 3; i++) {
             ReservaEntity entity = factory.manufacturePojo(ReservaEntity.class);
-            
+            entity.setProfesor(fatherEntity);
             em.persist(entity);
             reservaData.add(entity);
+
+            
         }
-        
-        for (int i = 0; i < 3; i++)
-        {
-            ProfesorEntity profe = factory.manufacturePojo(ProfesorEntity.class);
-            em.persist(profe);
-            profesorData.add(profe);
-        }
-        
+        fatherEntity.setReservas((ArrayList<ReservaEntity>) reservaData);
+        em.persist(fatherEntity);
         
     }
     
@@ -151,9 +125,10 @@ public class ReservaLogicTest {
     /**
      * Test of getReservas method, of class ReservaLogic.
      */
-    //@Test
+    @Test
     public void testGetReservas() throws Exception {
-        List <ReservaEntity> list = reservaLogic.getReservas(profesorData.get(0).getId());
+        ProfesorEntity profe = factory.manufacturePojo(ProfesorEntity.class);
+        List <ReservaEntity> list = reservaLogic.getReservas(profe.getId());
         Assert.assertEquals(reservaData.size(), list.size());
         for (ReservaEntity  entidad :list)
         {
@@ -172,7 +147,7 @@ public class ReservaLogicTest {
     /**
      * Test of getReserva method, of class ReservaLogic.
      */
-    //@Test
+    @Test
     public void testGetReserva() throws Exception {
         ReservaEntity entidad = reservaData.get(0);
         ReservaEntity resultado = reservaLogic.getReserva(entidad.getId());
@@ -188,7 +163,7 @@ public class ReservaLogicTest {
     @Test
     public void testCreateReserva() throws Exception {
         ReservaEntity nuevaEntidad = factory.manufacturePojo(ReservaEntity.class);
-        ReservaEntity resultado = reservaLogic.createReserva(profesorData.get(0).getId(),nuevaEntidad);
+        ReservaEntity resultado = reservaLogic.createReserva(fatherEntity.getId(),nuevaEntidad);
         Assert.assertNotNull(resultado);
         reservaData.add(resultado);
         ReservaEntity entidad = em.find(ReservaEntity.class, resultado.getId());
@@ -200,12 +175,12 @@ public class ReservaLogicTest {
     /**
      * Test of updateReserva method, of class ReservaLogic.
      */
-    //@Test
+    @Test
     public void testUpdateReserva() throws Exception {
         ReservaEntity entidad = reservaData.get(0);
         ReservaEntity entidadGenerada = factory.manufacturePojo(ReservaEntity.class);
         entidadGenerada.setId(entidad.getId());
-        reservaLogic.updateReserva(profesorData.get(0).getId(),entidadGenerada);
+        reservaLogic.updateReserva(fatherEntity.getId(),entidadGenerada);
         ReservaEntity r = em.find(ReservaEntity.class, entidad.getId());
         Assert.assertEquals(entidadGenerada.getEstado(), r.getEstado());
         Assert.assertEquals(entidadGenerada.getId(), r.getId());
@@ -215,7 +190,7 @@ public class ReservaLogicTest {
     /**
      * Test of cancelarReserva method, of class ReservaLogic.
      */
-    //@Test
+    @Test
     public void testCancelarReserva() throws Exception {
         ReservaEntity entidad = reservaData.get(0);
         ReservaEntity entidadGenerada = factory.manufacturePojo(ReservaEntity.class);
@@ -225,7 +200,6 @@ public class ReservaLogicTest {
         ReservaEntity r = em.find(ReservaEntity.class, entidad.getId());
         Assert.assertEquals(entidadGenerada.getEstado(), r.getEstado());
         Assert.assertEquals(entidadGenerada.getId(), r.getId());
-        Assert.assertEquals(entidadGenerada.getFecha(), r.getFecha());
     }
 
     /**

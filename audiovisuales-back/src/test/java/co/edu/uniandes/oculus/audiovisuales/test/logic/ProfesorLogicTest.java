@@ -212,24 +212,6 @@ public class ProfesorLogicTest {
         Assert.assertNull(borrado);
     }
     
-    /**
-     * Test of listReservasRangoFechas method, of class ProfesorLogic.
-     */
-    //@Test
-    public void testListReservasRangoFechas() throws Exception {
-        ProfesorEntity result = profesorLogic.createProfesor(factory.manufacturePojo(ProfesorEntity.class));
-        
-        ProfesorEntity entity = em.find(ProfesorEntity.class, result.getId());
-        boolean found = false;
-        Date fecha1 = new Date(2000,12,12);
-        Date fecha2 = new Date();
-       
-        //La idea es calcular la lista con el resulty mirando una por una de las que
-        //se incluyen si son iguales a las obtenidas por el metodo
-        
-        Assert.assertTrue(found);
-        
-        
-    }
+    
     
 }
