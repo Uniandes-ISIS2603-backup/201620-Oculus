@@ -27,7 +27,7 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     private Date fecha;
     private String estado;
     
-    
+    @PodamExclude
     @ManyToOne( cascade =CascadeType.ALL)
     private EquipoEntity equipo;
     
