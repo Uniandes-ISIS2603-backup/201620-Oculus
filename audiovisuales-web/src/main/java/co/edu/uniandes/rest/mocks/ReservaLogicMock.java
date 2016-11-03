@@ -35,9 +35,11 @@ public class ReservaLogicMock {
 
     	if (reservas == null) {
             reservas = new ArrayList<>();
+            /**
             reservas.add(new ReservaDTO(1L, date, ReservaDTO.RESERVA_CANCELADA));
             reservas.add(new ReservaDTO(2L, date, ReservaDTO.RESERVA_APROBADA));
             reservas.add(new ReservaDTO(3L, date, ReservaDTO.RESERVA_APROBADA));
+            */
         }
         
     	// indica que se muestren todos los mensajes

@@ -33,9 +33,11 @@ public class ProfesorLogicMock
         if (profesores == null)
         {
             profesores = new ArrayList<>();
+            /**
             profesores.add(new ProfesorDTO(1, "Juan Pablo Arjona", "jpArjona10",24));
             profesores.add(new ProfesorDTO(2, "Fernanda Velasquez", "fvelasquez11",25));
             profesores.add(new ProfesorDTO(3, "Rogelio Diaz", "rdiaz20",26));
+            */
         }
         
     	logger.setLevel(Level.INFO);
@@ -89,7 +91,7 @@ public class ProfesorLogicMock
     	
         
     	logger.info("proceso: generando id para el profesor");
-	newTeacher.setId(profesores.size()+1);
+	//newTeacher.setId(profesores.size()+1);
     	logger.info("proceso: agregando profe " + newTeacher);
         profesores.add(newTeacher);
         return newTeacher;
@@ -109,12 +111,14 @@ public class ProfesorLogicMock
         
         for (int i=0; i<profesores.size(); i++) 
         {
-            int toCompare = ((ProfesorDTO)profesores.get(i)).getId();
+            //int toCompare = ((ProfesorDTO)profesores.get(i)).getId();
+            /*
             if(Objects.equals(toCompare, id))
             {
                 encontrado = true;
                 profesores.remove(i);
             }
+            */
         }
         if (encontrado == false)
         {
@@ -135,11 +139,13 @@ public class ProfesorLogicMock
         
         for (int i=0; i<profesores.size(); i++) 
         {
+            /*
             int toCompare = ((ProfesorDTO)profesores.get(i)).getId();
             if(Objects.equals(toCompare, id))
             {
                 actual=(ProfesorDTO)profesores.get(i);
             }
+            */
         }
         if (actual == null)
         {
@@ -171,9 +177,10 @@ public class ProfesorLogicMock
             throw new CityLogicException("No existe un profesor con ese id");
             
         }else{
-            profe.setId(id);
+/*            profe.setId(id);
             profesores.set(id-1, profe);
             logger.info("proceso: retornando el profesor "+ ((ProfesorDTO)profesores.get(id-1)).getNombre());
+*/
         }
         
        

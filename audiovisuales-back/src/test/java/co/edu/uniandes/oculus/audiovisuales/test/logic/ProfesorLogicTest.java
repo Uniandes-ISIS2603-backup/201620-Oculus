@@ -215,7 +215,7 @@ public class ProfesorLogicTest {
     /**
      * Test of listReservasRangoFechas method, of class ProfesorLogic.
      */
-    @Test
+    //@Test
     public void testListReservasRangoFechas() throws Exception {
         ProfesorEntity result = profesorLogic.createProfesor(factory.manufacturePojo(ProfesorEntity.class));
         
