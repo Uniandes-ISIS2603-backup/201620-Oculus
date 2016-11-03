@@ -5,9 +5,15 @@
  */
 package co.edu.uniandes.rest.resources;
 
+import co.edu.uniandes.oculus.audiovisuales.api.IReservaLogic;
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.rest.dtos.ReservaDTO;
+import co.edu.uniandes.rest.dtos.ReservaDetailDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -29,57 +35,20 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 public class ReservaResource {
     
-    ReservaLogicMock reservaLogic = new ReservaLogicMock();
+    @Inject
+    private IReservaLogic reservaLogic;
 
     /**
-     * Obtiene el listado de reservas.
-     *
-     * @return lista de reservas
-     * @throws CityLogicException excepción retornada por la lógica
+     * Convierte lista de entidades de reserva a una lista de dtos de reserva
+     * @param entityList lista de entidades de reserva
+     * @return lista de dtos correspondientes
      */
-    @GET
-    public List<ReservaDTO> getReservas() throws CityLogicException {
-        return reservaLogic.getReservas();
-    }
-    
-    /**
-     * obtiene una reserva segun id
-     * @param id identificador de la reserva
-     * @return la reserva deseada
-     * @throws CityLogicException 
-     */
-    @GET
-    @Path("{id: \\d+}")
-    public ReservaDTO getReserva(@PathParam("id") Long id) throws CityLogicException {
-        return reservaLogic.getReserva(id);
-    }
-        
-   
-    /**
-     * Agrega una reserva
-     *
-     * @param reserva reserva a agregar
-     * @return datos de la reserva a agregar
-     * @throws CityLogicException cuando ya existe una reserva con el id
-     * suministrado
-     */
-    @POST
-    public ReservaDTO createReserva(ReservaDTO reserva) throws CityLogicException {
-        return reservaLogic.createReserva(reserva);
-    }
-    
-    /**
-     * Actualiza una reserva
-     * 
-     * @param id id de la reserva a modificar
-     * @param newReserva objeto con los nuevos datos a ingresar
-     * @return el objeto una vez es modificado
-     * @throws CityLogicException 
-     */
-    @PUT
-    @Path("{id: \\d+}")
-    public ReservaDTO updateReserva(@PathParam("id") Long id, ReservaDTO newReserva) throws CityLogicException {
-        return reservaLogic.updateReserva(id, newReserva);
+    private List<ReservaDetailDTO> listEntity2DTOReserva(List<ReservaEntity> entityList) {
+        List<ReservaDetailDTO> list = new ArrayList<>();
+        for (ReservaEntity entity : entityList) {
+            list.add(new ReservaDetailDTO(entity));
+        }
+        return list;
     }
     
     /**
@@ -90,7 +59,7 @@ public class ReservaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteReserva(@PathParam("id") Long id) throws CityLogicException {
+    public void deleteReserva(@PathParam("id") Long id) throws BusinessLogicException {
         reservaLogic.deleteReserva(id);
     }
 }
