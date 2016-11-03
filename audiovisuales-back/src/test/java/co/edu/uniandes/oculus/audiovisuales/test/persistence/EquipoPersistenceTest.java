@@ -211,6 +211,17 @@ public class EquipoPersistenceTest
         }
         
     }
+    @Test
+    public void buscarEquipoPorIdPuntoDeAtencion()
+    {
+        PuntoDeAtencionEntity nuevaEntidad = setUp2();
+       EquipoEntity e = equipoPersistence.buscarEquipoPorIdPuntoDeAtencion(nuevaEntidad.getId(), data.get(0).getId());
+       Assert.assertNotNull(e);
+       Assert.assertEquals( e.getId(),data.get(0).getId());
+       Assert.assertEquals( e.getCaracteristicas(),data.get(0).getCaracteristicas());
+       Assert.assertEquals( e.getName(),data.get(0).getName());
+       
+    }
     
     private void clearData()
     {
