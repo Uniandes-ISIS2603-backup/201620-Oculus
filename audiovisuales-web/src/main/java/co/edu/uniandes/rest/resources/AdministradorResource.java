@@ -20,9 +20,6 @@ import co.edu.uniandes.rest.dtos.EquipoDetailDTO;
 import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
-import co.edu.uniandes.rest.mocks.AdministradorLogicMock;
-import co.edu.uniandes.rest.mocks.EquipoLogicMock;
-import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -50,7 +47,7 @@ public class AdministradorResource
 {
     
     
-    private final static Logger logger = Logger.getLogger(AdministradorLogicMock.class.getName());
+    private final static Logger logger = Logger.getLogger(IAdministradorLogic.class.getName());
     
      //AdministradorLogicMock administradorLogic = new AdministradorLogicMock();
      //EquipoLogicMock equipoLogicMock = new EquipoLogicMock();

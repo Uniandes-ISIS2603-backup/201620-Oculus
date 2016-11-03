@@ -7,7 +7,6 @@ package co.edu.uniandes.rest.resources;
 
 import co.edu.uniandes.rest.dtos.ReservaDTO;
 import co.edu.uniandes.rest.exceptions.CityLogicException;
-import co.edu.uniandes.rest.mocks.ReservaLogicMock;
 import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,6 +28,7 @@ import javax.ws.rs.Produces;
 @Path("reservas")
 @Produces("application/json")
 public class ReservaResource {
+    
     ReservaLogicMock reservaLogic = new ReservaLogicMock();
 
     /**

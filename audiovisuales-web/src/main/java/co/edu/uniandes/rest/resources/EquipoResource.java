@@ -13,7 +13,6 @@ import co.edu.uniandes.rest.dtos.EquipoDTO;
 import co.edu.uniandes.rest.dtos.EquipoDetailDTO;
 import co.edu.uniandes.rest.dtos.TipoDTO;
 import co.edu.uniandes.rest.exceptions.EquipoLogicException;
-import co.edu.uniandes.rest.mocks.EquipoLogicMock;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public class EquipoResource
     @Inject
     private IEquipoLogic equipoLogic;
 
-    private final static Logger logger = Logger.getLogger(EquipoLogicMock.class.getName());
+    private final static Logger logger = Logger.getLogger(IEquipoLogic.class.getName());
 
     //EquipoLogicMock equipoLogic = new EquipoLogicMock();
     
