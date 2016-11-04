@@ -215,4 +215,20 @@ public class ProfesorResource
         return new ReservaDetailDTO(reservaLogic.getReserva(idR));
     }
     
+    /**
+     * Actualiza una reserva
+     * 
+     * @param idP id del profesor dueño de la reserva a modificar
+     * @param newReserva objeto con los nuevos datos a ingresar
+     * @return el objeto una vez es modificado
+     * @throws BusinessLogicException 
+     */
+    @PUT
+    @Path("{idP: \\d+}/updateReserva}")
+    public ReservaDetailDTO updateReserva(@PathParam("idP") Long idP, ReservaDTO newReserva) throws BusinessLogicException {
+        ReservaEntity r = newReserva.toEntity();
+        r.setId(newReserva.getId());
+        return new ReservaDetailDTO(reservaLogic.updateReserva(idP, r));
+    }
+    
 }
