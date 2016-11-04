@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -24,7 +26,9 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     public final static String RESERVA_FINALIZADA = "Reserva Finalizada";
     public final static String RESERVA_ACTIVA = "Reserva Activa";
     
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
     private String estado;
     
     @PodamExclude
