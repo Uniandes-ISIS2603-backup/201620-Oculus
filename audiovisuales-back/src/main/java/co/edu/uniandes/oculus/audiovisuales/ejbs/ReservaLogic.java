@@ -80,4 +80,15 @@ public class ReservaLogic implements IReservaLogic{
         persistence.update(r);
     }
     
+    @Override
+    public List<ReservaEntity> getReservasCanceladas(Long profesorId) 
+    {
+        return persistence.findAllCanceladas();
+    }
+    
+    @Override
+    public List<ReservaEntity> getReservasPendientes(Long profesorId) 
+    {
+        return persistence.findAllPendientes();
+    }
 }

@@ -25,6 +25,7 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     public final static String RESERVA_APROBADA = "Reserva Aprobada";
     public final static String RESERVA_FINALIZADA = "Reserva Finalizada";
     public final static String RESERVA_ACTIVA = "Reserva Activa";
+    public final static String RESERVA_PENDIENTE = "Reserva Pendiente";
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;

@@ -178,7 +178,7 @@ public class PuntoDeAtencionResource {
     {
         //return reservaLogic.getReservas();
         //return listAdminEntityToDTO(administradorLogic.getAdministradores());
-        return listEntityToDTO(reservaLogic.getReservas(idPA));
+        return listEntityToDTO(reservaLogic.getReservasPendientes(idPA));
     }    
     
     /**
@@ -191,7 +191,7 @@ public class PuntoDeAtencionResource {
     @Path("{idPuntoAtencion: \\d+}/ReservasCanceladas")  //faltan los parametros de las fechas
     public List<ReservaDetailDTO> getReservasCanceladasPuntoA(@PathParam("idPuntoAtencion")Long idPA) throws CityLogicException
     {
-        return listEntityToDTO(reservaLogic.getReservas(idPA));
+        return listEntityToDTO(reservaLogic.getReservasCanceladas(idPA));
     }
     
     /**

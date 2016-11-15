@@ -63,4 +63,20 @@ public class ReservaPersistence {
         ReservaEntity entity = em.find(ReservaEntity.class, id);
         em.remove(entity);
     }
+    
+    public List<ReservaEntity> findAllCanceladas() 
+    {
+        LOGGER.info("Consultando todas los reservaes");
+        Query q = em.createQuery("select u from ReservaEntity u where u.estado = cancelado");
+        q.setParameter("cancelado", ReservaEntity.RESERVA_CANCELADA);
+        return q.getResultList();
+    }
+    
+    public List<ReservaEntity> findAllPendientes() 
+    {
+        LOGGER.info("Consultando todas los reservaes");
+        Query q = em.createQuery("select u from ReservaEntity u where u.estado = pendiente");
+        q.setParameter("pendiente", ReservaEntity.RESERVA_PENDIENTE);
+        return q.getResultList();
+    }
 }

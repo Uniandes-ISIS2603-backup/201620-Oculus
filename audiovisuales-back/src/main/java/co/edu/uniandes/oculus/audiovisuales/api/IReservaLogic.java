@@ -22,6 +22,9 @@ public interface IReservaLogic {
     public ReservaEntity cancelarReserva(Long reservaid);
     public void deleteReserva(Long id);
     public EquipoEntity getEquipo(Long reservaId);
+    
+    public List<ReservaEntity> getReservasCanceladas(Long paId);
+    public List<ReservaEntity> getReservasPendientes(Long paId);
 
     public void devolver(Long idEquipo, ReservaEntity r);
 }
