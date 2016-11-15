@@ -101,7 +101,14 @@ public class EquipoResource
     @Path("tipos")
     public List<TipoDTO> getTipos() throws EquipoLogicException 
     {
-            return listEntityTipo2DTO(equipoLogic.getTipos());
+        List<TipoDTO> l = listEntityTipo2DTO(equipoLogic.getTipos());
+        
+        if(l.size()==0)
+        {
+            equipoLogic.crearTipos();
+        }
+        
+            return l;
     }
 
    
@@ -151,6 +158,9 @@ public class EquipoResource
             logger.info("Trata de borrar");
             equipoLogic.deleteEquipo(id);
     }
+    
+    
+    
 
   
 }

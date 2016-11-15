@@ -12,7 +12,7 @@
     <packaging>war</packaging>                  <!-- //aplicacion web -->
 
     <!-- Nombre para el archivo ejecutable / el contexto en Glassfish -->
-    <name>audiovisuales-web</name>
+    <name>audiovisuales</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
