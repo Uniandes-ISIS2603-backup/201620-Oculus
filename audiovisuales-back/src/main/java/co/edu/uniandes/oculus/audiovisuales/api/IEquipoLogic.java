@@ -30,4 +30,6 @@ public interface IEquipoLogic
     public EquipoEntity getEquipoByIdPuntoDeAtencion(Long id, Long idEquipo);
 
     public ReservaEntity getReservaActiva(long idEquipo);
+
+    public void crearTipos();
 }

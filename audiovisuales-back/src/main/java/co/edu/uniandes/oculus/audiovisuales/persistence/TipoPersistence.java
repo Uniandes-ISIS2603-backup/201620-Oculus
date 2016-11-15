@@ -6,11 +6,13 @@
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -37,6 +39,13 @@ public class TipoPersistence
         em.persist(entity);
         LOGGER.info("Tipo creado");
         return entity;
+    }
+    
+    public List<TipoEntity> findAll()
+    {
+        LOGGER.info("Consultando todos los tipos");
+        Query consulta = em.createQuery("SELECT u FROM TipoEntity u");
+        return consulta.getResultList();
     }
     
     

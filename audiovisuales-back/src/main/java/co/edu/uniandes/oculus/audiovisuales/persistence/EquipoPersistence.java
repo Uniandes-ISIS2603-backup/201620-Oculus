@@ -106,5 +106,10 @@ public class EquipoPersistence
         q = q.setParameter("activo","Reserva Activa");
         return q.getSingleResult();
     }
+
+    public void crearTipos() 
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

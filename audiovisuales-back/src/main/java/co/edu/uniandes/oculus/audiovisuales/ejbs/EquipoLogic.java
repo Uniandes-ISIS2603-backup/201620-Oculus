@@ -11,8 +11,10 @@ import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.EquipoPersistence;
+import co.edu.uniandes.oculus.audiovisuales.persistence.TipoPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 
 /**
@@ -20,10 +22,15 @@ import javax.inject.Inject;
  * @author gc.andrade10
  */
 @Stateless
+@Default
 public class EquipoLogic implements IEquipoLogic
 {
     @Inject
     private EquipoPersistence persistence;
+    
+    @Inject
+    private TipoPersistence tipoPersistence;
+    
     @Override
     public List<EquipoEntity> getEquipos()
     {
@@ -93,6 +100,11 @@ public class EquipoLogic implements IEquipoLogic
     public ReservaEntity getReservaActiva(long idEquipo)
     {
         return persistence.getReservaActiva(idEquipo);
+    }
+
+    @Override
+    public void crearTipos() 
+    {
     }
     
 }
