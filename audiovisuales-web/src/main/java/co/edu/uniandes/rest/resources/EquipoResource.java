@@ -121,7 +121,7 @@ public class EquipoResource
      * suministrado
      */
     @POST //metodo no importa el nombre del método la anotación es la que utiliza el servidor
-    public EquipoDetailDTO createEquipo(EquipoDTO equipo) throws BusinessLogicException 
+    public EquipoDetailDTO createEquipo(EquipoDetailDTO equipo) throws BusinessLogicException 
     {
         //viene por un Json
         //Dto datos que manda el usuario
@@ -137,7 +137,7 @@ public class EquipoResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public EquipoDetailDTO updateCity(@PathParam("id") Long id, EquipoDTO equipo) throws BusinessLogicException 
+    public EquipoDetailDTO updateCity(@PathParam("id") Long id, EquipoDetailDTO equipo) throws BusinessLogicException 
     {
             logger.info("Trata de hacer put");
             EquipoEntity e = equipo.toEntity();

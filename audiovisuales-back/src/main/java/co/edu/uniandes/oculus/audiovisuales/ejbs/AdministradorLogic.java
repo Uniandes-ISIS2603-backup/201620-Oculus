@@ -1,15 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.oculus.audiovisuales.ejbs;
 
 import co.edu.uniandes.oculus.audiovisuales.api.IAdministradorLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.oculus.audiovisuales.persistence.AdministradorPersistence;
+import co.edu.uniandes.oculus.audiovisuales.persistence.PuntoDeAtencionPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -24,6 +26,9 @@ public class AdministradorLogic implements IAdministradorLogic
 {
     @Inject
     private AdministradorPersistence persistence;
+    
+    @Inject
+    private PuntoDeAtencionPersistence puntoDeAtencionPersistence;
     
     /**
      * obtiene la lista de los registros de Administrador
@@ -40,7 +45,7 @@ public class AdministradorLogic implements IAdministradorLogic
      * @param id Identificador de la instancia a consultar
      * @return Instancia de AdministradorEntity con los datos del Administrador consultado.
      */
-    public AdministradorEntity getAdministrador(Long id) 
+    public AdministradorEntity getAdministrador(Long id)
     {
         return persistence.find(id);
     }
@@ -55,44 +60,50 @@ public class AdministradorLogic implements IAdministradorLogic
     public AdministradorEntity createAdministrador(AdministradorEntity adminEntity) throws BusinessLogicException
     {
         AdministradorEntity yaExiste = getAdministradorByName(adminEntity.getName());
-        if (yaExiste != null) 
+        if (yaExiste != null)
         {
             // se debe generar una exception si ya existe el administrador
             throw new BusinessLogicException("Ya existe un Administrador con ese nombre");
         }
-        //si no existe lo crea 
+        //si no existe lo crea
         else
         {
-            persistence.create(adminEntity);
+            PuntoDeAtencionEntity a = new PuntoDeAtencionEntity();
+            a.setId(adminEntity.getId());
+            a.setName("Sin asignar");
+            PuntoDeAtencionEntity ab = puntoDeAtencionPersistence.create(a);
+            
+                    adminEntity.setPuntoDeAtencion(ab);
+                    persistence.create(adminEntity);
         }
         return adminEntity;
     }
-
+    
     /**
      * Actualiza la información de una instancia de Administrador.
      * @param adminEntity Instancia de AdministradorEntity con los nuevos datos.
      * @return Instancia de AdministradorEntity con los datos actualizados.
      */
     @Override
-    public AdministradorEntity updateAdministrador(AdministradorEntity adminEntity) 
+    public AdministradorEntity updateAdministrador(AdministradorEntity adminEntity)
     {
         return persistence.update(adminEntity);
     }
-
+    
     /**
      * Elimina una instancia de Administrador de la base de datos.
      * @param id Identificador de la instancia a eliminar.
      */
     @Override
-    public void deleteAdministrador(Long id) 
+    public void deleteAdministrador(Long id)
     {
         persistence.delete(id);
     }
-
+    
     @Override
-    public AdministradorEntity getAdministradorByName(String name) 
+    public AdministradorEntity getAdministradorByName(String name)
     {
         return persistence.findByName(name);
     }
-
+    
 }

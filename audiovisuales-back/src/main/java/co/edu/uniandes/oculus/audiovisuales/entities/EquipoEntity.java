@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -29,7 +30,7 @@ public class EquipoEntity extends BaseEntity implements Serializable
     
     @PodamExclude
     @OneToMany(mappedBy="equipo", cascade=CascadeType.ALL, orphanRemoval=true)
-    private ArrayList<ReservaEntity> reservas;
+    private List<ReservaEntity> reservas = new ArrayList<>();
     
     @ManyToOne
     @PodamExclude
@@ -51,11 +52,11 @@ public class EquipoEntity extends BaseEntity implements Serializable
         this.caracteristicas = caracteristicas;
     }
 
-    public ArrayList<ReservaEntity> getReservas() {
+    public List<ReservaEntity> getReservas() {
         return reservas;
     }
 
-    public void setReservas(ArrayList<ReservaEntity> reservas) {
+    public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }
 

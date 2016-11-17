@@ -109,7 +109,11 @@ public class EquipoPersistence
 
     public void crearTipos() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LOGGER.log(Level.INFO, "Crear tipo 1");
+        TipoEntity t = new TipoEntity();
+        t.setId(1L);
+        t.setName("Computador");
+        em.persist(t);
     }
     
 }

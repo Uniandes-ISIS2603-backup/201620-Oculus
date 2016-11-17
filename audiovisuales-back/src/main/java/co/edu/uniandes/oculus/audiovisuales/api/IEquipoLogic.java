@@ -32,4 +32,7 @@ public interface IEquipoLogic
     public ReservaEntity getReservaActiva(long idEquipo);
 
     public void crearTipos();
+
+    public TipoEntity getTipo(Long id);
+
 }

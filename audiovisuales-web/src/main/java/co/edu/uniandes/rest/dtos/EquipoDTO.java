@@ -7,8 +7,6 @@ package co.edu.uniandes.rest.dtos;
 
 
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
-import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -136,4 +134,12 @@ public class EquipoDTO
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() 
+    {
+        return "Name: "+name +" id: "+id;
+    }
+    
+    
 }

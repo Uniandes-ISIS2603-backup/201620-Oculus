@@ -58,8 +58,8 @@ public class EquipoLogic implements IEquipoLogic
     @Override
     public EquipoEntity createEquipo(EquipoEntity e) throws BusinessLogicException
     {
-        EquipoEntity equipo = persistence.find(e.getId());
-        if(equipo != null)
+        //persistence.create(e);
+        if(e.getId() != null)
         {
             throw new BusinessLogicException("Ya existe un equipo con ese nombre");
         }
@@ -101,10 +101,18 @@ public class EquipoLogic implements IEquipoLogic
     {
         return persistence.getReservaActiva(idEquipo);
     }
-
+    
     @Override
-    public void crearTipos() 
+    public void crearTipos()
     {
+        persistence.crearTipos();
     }
+    
+    @Override
+    public TipoEntity getTipo(Long id)
+    {
+        return tipoPersistence.find(id);
+    }
+
     
 }

@@ -11,6 +11,7 @@ import co.edu.uniandes.oculus.audiovisuales.api.IReservaLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.TipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 
 import co.edu.uniandes.rest.dtos.AdministradorDTO;
@@ -63,6 +64,7 @@ public class AdministradorResource
     @Inject 
     private IReservaLogic reservaLogicMock;
     
+    
     private List<EquipoDetailDTO> listEntity2DTO(List<EquipoEntity> listaEntidades)
     {
         List<EquipoDetailDTO> lista = new ArrayList<>();
@@ -95,7 +97,7 @@ public class AdministradorResource
         public List<EquipoDetailDTO> getEquipos(@PathParam("idAdministrador") Long id ) throws EquipoLogicException
         {
             AdministradorEntity a = administradorLogic.getAdministrador(id);
-            return listEntity2DTO(equipoLogicMock.getEquiposByIdPuntoDeAtencion(a.getId()));
+            return listEntity2DTO(equipoLogicMock.getEquiposByIdPuntoDeAtencion(a.getPuntoDeAtencion().getId()));
         }
     
     /**
@@ -125,12 +127,17 @@ public class AdministradorResource
     public EquipoDetailDTO createEquipo(@PathParam("idAdministrador") Long idAdmin, EquipoDetailDTO equipo) throws EquipoLogicException, BusinessLogicException 
     {
         AdministradorEntity a = administradorLogic.getAdministrador(idAdmin);
-        equipo.setPuntoDeAtencionDTO( new PuntoDeAtencionDTO(a.getPuntoDeAtencion()));
+        TipoEntity tipo = equipoLogicMock.getTipo(equipo.getTipo().getId());
+        
+        EquipoEntity e = equipo.toEntity();
+        e.setPuntoDeAtencion(a.getPuntoDeAtencion());
+        e.setTipo(tipo);
+        
         //viene por un Json
         //Dto datos que manda el usuario
         //lo agrega a un arreglo
         logger.info("Se trata de agregar "+equipo+" a "+idAdmin);
-        return new EquipoDetailDTO(equipoLogicMock.createEquipo(equipo.toEntity()));
+        return new EquipoDetailDTO(equipoLogicMock.createEquipo(e));
     }
     
     @PUT

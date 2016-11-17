@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
@@ -21,29 +22,29 @@ public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
 {
     private String ubicacion;
     @PodamExclude
-    @OneToMany(mappedBy = "puntoDeAtencion")
+    @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL)
     private ArrayList<AdministradorEntity> administradores  ; 
     
     //@PodamExclude
     @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<EquipoEntity> equipos ;
+    private List<EquipoEntity> equipos ;
 
     public void setAdministradores(ArrayList<AdministradorEntity> administradores) 
     {
         this.administradores = administradores;
     }
 
-    public void setEquipos(ArrayList<EquipoEntity> equipos)
+    public void setEquipos(List<EquipoEntity> equipos)
     {
         this.equipos = equipos;
     }
 
-    public ArrayList<AdministradorEntity> getAdministradores() 
+    public List<AdministradorEntity> getAdministradores() 
     {
         return administradores;
     }
 
-    public ArrayList<EquipoEntity> getEquipos() 
+    public List<EquipoEntity> getEquipos() 
     {
         return equipos;
     }

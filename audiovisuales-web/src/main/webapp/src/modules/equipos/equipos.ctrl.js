@@ -14,7 +14,7 @@
             // revisa los parámetros (ver el :equipoId en la definición de la ruta)
             if ($stateParams.equipoId !== null && $stateParams.equipoId !== undefined) 
             {   
-                alert($stateParams.equipoId);
+                //alert($stateParams.equipoId);
                 // toma el id del parámetro
                 id = $stateParams.equipoId;
                 // obtiene el dato del recurso REST
@@ -42,7 +42,7 @@
             //Carga los tipos.
             $http.get(context+"/tipos").then(function(response)
             {
-                alert(context+"/tipos");
+                //alert(context+"/tipos");
                 $scope.tipos=response.data;
             });
 
