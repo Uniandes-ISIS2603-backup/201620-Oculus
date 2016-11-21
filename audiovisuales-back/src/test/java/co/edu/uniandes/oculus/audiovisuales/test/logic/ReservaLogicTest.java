@@ -18,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -49,6 +50,9 @@ public class ReservaLogicTest {
     
     @Inject
     private IReservaLogic reservaLogic;
+    
+    @Inject
+    private ReservaPersistence reservaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -127,13 +131,16 @@ public class ReservaLogicTest {
      */
     @Test
     public void testGetReservasByIdProfesor() throws Exception {
-        ProfesorEntity profe = factory.manufacturePojo(ProfesorEntity.class);
-        List <ReservaEntity> list = reservaLogic.getReservasByIdProfesor(profe.getId());
-        Assert.assertEquals(reservaData.size(), list.size());
+        long idP = setUp2().getId();
+        List <ReservaEntity> list = reservaLogic.getReservasByIdProfesor(idP);
+        TypedQuery<ReservaEntity> q = em.createQuery("SELECT u FROM ReservaEntity u WHERE  u.profesor.id = :id",ReservaEntity.class);
+        q = q.setParameter("id", idP);
+        List<ReservaEntity> resers = q.getResultList();
+        Assert.assertEquals(resers.size(), list.size());
         for (ReservaEntity  entidad :list)
         {
             boolean encontrado = false;
-            for (ReservaEntity entidadAlmacenada : reservaData)
+            for (ReservaEntity entidadAlmacenada : resers)
             {
                 if(entidad.getId().equals(entidadAlmacenada.getId()))
                 {
@@ -214,6 +221,33 @@ public class ReservaLogicTest {
         Assert.assertNull(deleted);
     }
 
+    private ProfesorEntity setUp2() 
+    {
+         PodamFactory f = new PodamFactoryImpl();
+        ProfesorEntity nuevaEntidad = f.manufacturePojo(ProfesorEntity.class);
+        try
+        {
+            utx.begin();
+            em.joinTransaction();
+            em.persist(nuevaEntidad);
+            utx.commit();
+            
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        for (int i = 0; i < reservaData.size(); i++)
+        {
+            
+            reservaData.get(i).setProfesor(nuevaEntidad);
+            reservaPersistence.update(reservaData.get(i));
+            Assert.assertEquals( reservaPersistence.find(reservaData.get(i).getId()).getProfesor().getId() , nuevaEntidad.getId());
+            Assert.assertNotNull(reservaPersistence.find(reservaData.get(i).getId()).getProfesor());
+        }
+        return nuevaEntidad;
+    }
     
     
     
