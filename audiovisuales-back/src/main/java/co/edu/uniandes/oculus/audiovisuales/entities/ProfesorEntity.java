@@ -24,7 +24,7 @@ public class ProfesorEntity extends BaseEntity implements Serializable{
     private int codigo;
     
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true) 
-    private List<ReservaEntity> reservas;
+    private List<ReservaEntity> reservas = new ArrayList<>();
     
     public String getLogin()
     {
