@@ -185,7 +185,7 @@ public class ProfesorResource
     {
         //Debe pedirle al logic de profesores que le de sus reservas y pasarle tambien fechaI y fechaF
 //        return listEntity2DTOReserva(profesorLogic.listReservasRangoFechas(idP, new Date(fechaI), new Date(fechaF)));
-        return listEntity2DTOReserva(reservaLogic.getReservas(idP));
+        return listEntity2DTOReserva(reservaLogic.getReservasByIdProfesor(idP));
     }
     
     /**
@@ -198,7 +198,7 @@ public class ProfesorResource
     @Path("{idP: \\d+}/reservas")
     public List<ReservaDetailDTO> getReservas(@PathParam("idP") Long idP ) throws BusinessLogicException
     {
-        return listEntity2DTOReserva(reservaLogic.getReservas(idP));
+        return listEntity2DTOReserva(reservaLogic.getReservasByIdProfesor(idP));
     }
     
     /**
@@ -227,6 +227,7 @@ public class ProfesorResource
     @Path("{idP: \\d+}/updateReserva}")
     public ReservaDetailDTO updateReserva(@PathParam("idP") Long idP, ReservaDTO newReserva) throws BusinessLogicException {
         ReservaEntity r = newReserva.toEntity();
+                
         r.setId(newReserva.getId());
         return new ReservaDetailDTO(reservaLogic.updateReserva(idP, r));
     }

@@ -31,9 +31,23 @@ public class ReservaLogic implements IReservaLogic{
     private IProfesorLogic profesorLogic;
     
     @Override
-    public List<ReservaEntity> getReservas(Long profesorId) {
+    public List<ReservaEntity> getReservas() {
         return persistence.findAll();
     }
+    
+    @Override
+    public ReservaEntity getReservaByIdProfesor(Long idProfesor, Long idReserva)
+    {
+        return persistence.buscarReservaPorIdProfesor(idProfesor, idReserva);
+    }
+    
+    @Override
+    public List<ReservaEntity> getReservasByIdProfesor(Long idProfesor)
+    {
+        return persistence.buscarReservasPorIdProfesor(idProfesor);
+    }
+    
+    
     
     @Override
     public ReservaEntity getReserva(Long reservaid) {

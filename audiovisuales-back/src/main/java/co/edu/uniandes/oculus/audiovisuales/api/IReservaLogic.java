@@ -15,7 +15,9 @@ import java.util.List;
  * @author fa.lopez10
  */
 public interface IReservaLogic {
-    public List<ReservaEntity> getReservas(Long profesorId);
+    public List<ReservaEntity> getReservas();
+    public ReservaEntity getReservaByIdProfesor(Long idProfesor, Long idReserva);
+    public List<ReservaEntity> getReservasByIdProfesor(Long idProfesor);
     public ReservaEntity getReserva(Long reservaid);
     public ReservaEntity createReserva(Long profesorid, ReservaEntity entity) throws BusinessLogicException ;
     public ReservaEntity updateReserva(Long profesorid, ReservaEntity entity);

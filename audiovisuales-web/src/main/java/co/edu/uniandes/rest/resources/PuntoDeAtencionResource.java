@@ -204,7 +204,7 @@ public class PuntoDeAtencionResource {
     @Path("{idPuntoAtencion: \\d+}/TodasLasReservasDeUnPuntoA") 
     public List<ReservaDetailDTO> getReservasPuntoA(@PathParam("idPuntoAtencion")Long idPA) 
     {
-        return listEntityToDTO(reservaLogic.getReservas(idPA));
+        return listEntityToDTO(reservaLogic.getReservasByIdProfesor(idPA));
     }
    
 }

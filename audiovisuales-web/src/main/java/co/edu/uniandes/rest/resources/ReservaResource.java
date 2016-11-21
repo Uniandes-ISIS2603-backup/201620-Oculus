@@ -51,6 +51,11 @@ public class ReservaResource {
         return list;
     }
     
+    @GET
+    public List<ReservaDetailDTO> getReservas() throws BusinessLogicException {
+        return listEntity2DTOReserva(reservaLogic.getReservas());
+    }
+    
     /**
      * Elimina la reserva
      * 

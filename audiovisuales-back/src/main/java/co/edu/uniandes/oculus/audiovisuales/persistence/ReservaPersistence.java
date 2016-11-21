@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
+import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -78,5 +80,22 @@ public class ReservaPersistence {
         Query q = em.createQuery("select u from ReservaEntity u where u.estado = pendiente");
         q.setParameter("pendiente", ReservaEntity.RESERVA_PENDIENTE);
         return q.getResultList();
+    }
+    
+    public List<ReservaEntity> buscarReservasPorIdProfesor(Long id1)
+    {
+        LOGGER.log(Level.INFO, "buscarReservasPorIdProfesor con el id dado: "+id1);
+        Query q = em.createQuery("SELECT u FROM ReservaEntity u WHERE  u.profesor.id = :id");
+        q = q.setParameter("id", id1);
+        return q.getResultList();
+    }
+    
+    public ReservaEntity buscarReservaPorIdProfesor(Long idProfesor, Long idReserva) 
+    {
+         LOGGER.log(Level.INFO, "Consultar reserva del profesor con el id dado: "+idProfesor +"y reserva con id:"+idReserva);
+        TypedQuery<ReservaEntity> q = em.createQuery("SELECT u FROM ReservaEntity u WHERE  u.profesor.id = :id AND u.id=:ide",ReservaEntity.class);
+        q = q.setParameter("id", idProfesor);
+        q = q.setParameter("ide", idReserva);
+        return q.getSingleResult();
     }
 }

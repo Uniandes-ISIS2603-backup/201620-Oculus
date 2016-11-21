@@ -126,9 +126,9 @@ public class ReservaLogicTest {
      * Test of getReservas method, of class ReservaLogic.
      */
     @Test
-    public void testGetReservas() throws Exception {
+    public void testGetReservasByIdProfesor() throws Exception {
         ProfesorEntity profe = factory.manufacturePojo(ProfesorEntity.class);
-        List <ReservaEntity> list = reservaLogic.getReservas(profe.getId());
+        List <ReservaEntity> list = reservaLogic.getReservasByIdProfesor(profe.getId());
         Assert.assertEquals(reservaData.size(), list.size());
         for (ReservaEntity  entidad :list)
         {
