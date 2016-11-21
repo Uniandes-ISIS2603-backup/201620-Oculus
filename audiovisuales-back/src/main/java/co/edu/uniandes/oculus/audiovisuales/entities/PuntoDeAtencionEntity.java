@@ -23,13 +23,13 @@ public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
     private String ubicacion;
     @PodamExclude
     @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL)
-    private ArrayList<AdministradorEntity> administradores  ; 
+    private List<AdministradorEntity> administradores = new ArrayList<>() ; 
     
     //@PodamExclude
     @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EquipoEntity> equipos ;
+    private List<EquipoEntity> equipos = new ArrayList<>();
 
-    public void setAdministradores(ArrayList<AdministradorEntity> administradores) 
+    public void setAdministradores(List<AdministradorEntity> administradores) 
     {
         this.administradores = administradores;
     }
