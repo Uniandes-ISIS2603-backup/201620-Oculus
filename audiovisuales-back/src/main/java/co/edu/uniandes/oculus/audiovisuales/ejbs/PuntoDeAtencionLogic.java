@@ -36,15 +36,15 @@ public class PuntoDeAtencionLogic implements IPuntoDeAtencionLogic
     @Override
     public PuntoDeAtencionEntity createPuntoDeAtencion(PuntoDeAtencionEntity puntoDeAtencion) throws BusinessLogicException
     {
-      PuntoDeAtencionEntity punto = persistence.findByUbicacion(puntoDeAtencion.getUbicacion()); 
-      if(punto != null)
-      {
-          throw new BusinessLogicException("Ya existe un punto de atención con esa ubicación");
-      }
-      else
-      {
+     // PuntoDeAtencionEntity punto = persistence.findByUbicacion(puntoDeAtencion.getUbicacion()); 
+      //if(punto != null)
+      //{
+        //  throw new BusinessLogicException("Ya existe un punto de atención con esa ubicación");
+      //}
+      //else
+      //{
           persistence.create(puntoDeAtencion);
-      }
+      //}
       return puntoDeAtencion;
     }
 
@@ -61,9 +61,9 @@ public class PuntoDeAtencionLogic implements IPuntoDeAtencionLogic
     }
 
     @Override
-    public PuntoDeAtencionEntity getByUbicacion(String ubicacion)
+    public PuntoDeAtencionEntity getByName(String ubicacion)
     {
-        return persistence.findByUbicacion(ubicacion); 
+        return persistence.findByName(ubicacion); 
        
     }
 }

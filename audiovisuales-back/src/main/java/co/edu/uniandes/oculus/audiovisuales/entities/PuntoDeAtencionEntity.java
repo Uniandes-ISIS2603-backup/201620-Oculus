@@ -20,9 +20,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
 {
-    private String ubicacion;
+    //private String ubicacion;
     @PodamExclude
-    @OneToMany(mappedBy = "puntoDeAtencion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "puntoDeAtencion")
     private List<AdministradorEntity> administradores = new ArrayList<>() ; 
     
     //@PodamExclude
@@ -49,13 +49,13 @@ public class PuntoDeAtencionEntity extends BaseEntity implements Serializable
         return equipos;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
+   // public void setUbicacion(String ubicacion) {
+     //   this.ubicacion = ubicacion;
+    //}
 
-    public String getUbicacion() {
-        return ubicacion;
-    }
+    //public String getUbicacion() {
+      //  return ubicacion;
+   // }
     
     
      

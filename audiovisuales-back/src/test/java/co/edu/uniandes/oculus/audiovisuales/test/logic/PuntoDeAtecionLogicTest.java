@@ -148,7 +148,7 @@ public class PuntoDeAtecionLogicTest
        PuntoDeAtencionEntity punto2 = puntoDeAtencionLogic.getPuntoDeAtencion(punto1.getId());
        Assert.assertNotNull(punto2);
        Assert.assertEquals(punto1.getId(), punto2.getId());
-       Assert.assertEquals(punto1.getUbicacion(), punto2.getUbicacion());
+       //Assert.assertEquals(punto1.getUbicacion(), punto2.getUbicacion());
        
     }
     
@@ -169,7 +169,7 @@ public class PuntoDeAtecionLogicTest
 
         PuntoDeAtencionEntity entity = em.find(PuntoDeAtencionEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
+        //Assert.assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertNotNull(entity.getEquipos());
         Assert.assertNotNull(result.getEquipos());
@@ -197,7 +197,7 @@ public class PuntoDeAtecionLogicTest
     public void testCreatePuntoDeAtencionRegla() throws BusinessLogicException
     {
         PuntoDeAtencionEntity newEntity = factory.manufacturePojo(PuntoDeAtencionEntity.class);
-        newEntity.setUbicacion(puntoDeAtencionData.get(0).getUbicacion());
+        newEntity.setName(puntoDeAtencionData.get(0).getName());
         PuntoDeAtencionEntity result = puntoDeAtencionLogic.createPuntoDeAtencion(newEntity);
     }
 
@@ -228,19 +228,19 @@ public class PuntoDeAtecionLogicTest
 
         PuntoDeAtencionEntity resp = em.find(PuntoDeAtencionEntity.class, punto1.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getUbicacion(), resp.getUbicacion());
+      //  Assert.assertEquals(pojoEntity.getUbicacion(), resp.getUbicacion());
     }
 
     /**
      * Test of getByUbicacion method, of class PuntoDeAtencionLogic.
      */
-    @Test
-    public void testGetByUbicacion() throws Exception 
-    {
-       PuntoDeAtencionEntity punto1 = puntoDeAtencionData.get(0);
-       PuntoDeAtencionEntity punto2 = puntoDeAtencionLogic.getByUbicacion(punto1.getUbicacion());
-       Assert.assertNotNull(punto2);
-       Assert.assertEquals(punto1.getId(), punto2.getId());
+   // @Test
+    //public void testGetByUbicacion() throws Exception 
+    //{
+      // PuntoDeAtencionEntity punto1 = puntoDeAtencionData.get(0);
+       //PuntoDeAtencionEntity punto2 = puntoDeAtencionLogic.getByUbicacion(punto1.getUbicacion());
+       ///Assert.assertNotNull(punto2);
+       //Assert.assertEquals(punto1.getId(), punto2.getId());
        
-    }
+    //}
 }
