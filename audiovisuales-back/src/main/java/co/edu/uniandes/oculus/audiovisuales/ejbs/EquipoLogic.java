@@ -59,9 +59,12 @@ public class EquipoLogic implements IEquipoLogic
     public EquipoEntity createEquipo(EquipoEntity e) throws BusinessLogicException
     {
         //persistence.create(e);
-        if(e.getId() != null)
+        if(e.getId()!=null)
         {
-            throw new BusinessLogicException("Ya existe un equipo con ese nombre");
+            if(persistence.find(e.getId()) != null)
+            {
+                throw new BusinessLogicException("Ya existe un equipo con ese id");
+            }
         }
         return persistence.create(e);
     }
@@ -113,6 +116,6 @@ public class EquipoLogic implements IEquipoLogic
     {
         return tipoPersistence.find(id);
     }
-
+    
     
 }
