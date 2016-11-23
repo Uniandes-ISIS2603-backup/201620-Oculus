@@ -1,6 +1,12 @@
 <div ng-messages="form.$error" multiple>
             <ng-message when="required">
-                <alert type="warning">Ingrese los valores requeridos!</alert>
+                <alert type="warning">Ingrese los valores requeridos.<\n>
+                Estados válidos de reserva: <\n>
+                "Reserva Cancelada" <\n>
+                "Reserva Aprobada" <\n>
+                "Reserva Finalizada" <\n>
+                "Reserva Activa"<\n>
+                "Reserva Pendiente"</alert>
             </ng-message>    <br>
             <ng-message when="date">
                 <alert type="warning">No es una fecha válida!</alert>
@@ -25,8 +31,9 @@
             <div class="form-group col-md-6" ng-class="{'has-success': form.fecha.$valid && form.fecha.$dirty, 'has-error': form.fecha.$invalid && (form.fecha.$dirty || form.$submitted)}" >
 
                 <label for="fecha" class="col-md-2 control-label">Fecha:</label>
+                
                 <div class="col-md-10">
-                    <date-picker name="fecha" model="currentRecord.fecha"></date-picker>
+                    <input  id="publishingdate" name="fecha"  type="date" class="form-control" uib-datepicker-popup ng-model="currentRecord.fecha" ng-required="true" close-text="Close" />
                     
                 </div>
             </div>
