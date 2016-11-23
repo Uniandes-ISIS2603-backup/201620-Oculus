@@ -56,6 +56,13 @@ public class ReservaResource {
         return listEntity2DTOReserva(reservaLogic.getReservas());
     }
     
+    @GET
+    @Path("{id: \\d+}")
+    public ReservaDetailDTO getReserva(@PathParam("id") Long id) throws BusinessLogicException 
+    {
+            return new ReservaDetailDTO(reservaLogic.getReserva(id));
+    }
+    
     /**
      * Elimina la reserva
      * 

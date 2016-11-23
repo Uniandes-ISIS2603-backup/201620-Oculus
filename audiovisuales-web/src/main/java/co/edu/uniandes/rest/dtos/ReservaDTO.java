@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class ReservaDTO {
+    private String name;
     private Long id;
     private Date fecha;
     private String estado;
@@ -37,6 +38,7 @@ public class ReservaDTO {
         if(entity != null)
         {
             this.id = entity.getId();
+            this.name = entity.getName();
             this.fecha = entity.getFecha();
             this.estado = entity.getEstado();
         }
@@ -48,6 +50,7 @@ public class ReservaDTO {
         reservaNueva.setId(id);
         reservaNueva.setFecha(fecha);
         reservaNueva.setEstado(estado);
+        reservaNueva.setName(name);
         return reservaNueva;
     }
     
@@ -63,6 +66,20 @@ public class ReservaDTO {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    /**
+     * @return el name
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * @param name el name a cambiar
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
     /**
