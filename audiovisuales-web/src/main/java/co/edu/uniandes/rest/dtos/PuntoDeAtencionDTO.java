@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PuntoDeAtencionDTO {
     private Long id;
-    private String ubicacion;
+    private String name;
   
 
     /**
@@ -36,7 +36,7 @@ public class PuntoDeAtencionDTO {
 	if(entity != null)
         {
             this.id = entity.getId();
-            this.ubicacion = entity.getUbicacion();
+            this.name = entity.getName();
         }
     }
     
@@ -50,7 +50,7 @@ public class PuntoDeAtencionDTO {
     {
         PuntoDeAtencionEntity newPunto = new PuntoDeAtencionEntity();
         newPunto.setId(id);
-        newPunto.setUbicacion(ubicacion);
+        newPunto.setName(name);
         return newPunto;
     }
     
@@ -71,15 +71,15 @@ public class PuntoDeAtencionDTO {
     /**
      * @return the ubicación
      */
-    public String getUbicacion() {
-        return ubicacion;
+    public String getName() {
+        return name;
     }
 
     /**
      * @param ubic the ubicacion to set
      */
-    public void setUbicacion(String ubic) {
-        this.ubicacion = ubic;
+    public void setName(String ubic) {
+        this.name = ubic;
     }
 
     
@@ -88,6 +88,6 @@ public class PuntoDeAtencionDTO {
      */
     @Override
     public String toString() {
-    	return "{ id : " + getId() + ", ubicacion : \"" + getUbicacion() + "\" }" ;  
+    	return "{ id : " + getId() + ", ubicacion : \"" + getName() + "\" }" ;  
     }
 }

@@ -10,6 +10,7 @@ import co.edu.uniandes.oculus.audiovisuales.api.IPuntoDeAtencionLogic;
 import co.edu.uniandes.oculus.audiovisuales.api.IReservaLogic;
 import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import co.edu.uniandes.oculus.audiovisuales.exceptions.BusinessLogicException;
 import co.edu.uniandes.rest.dtos.PuntoDeAtencionDTO;
 import co.edu.uniandes.rest.dtos.PuntoDeAtencionDetailDTO;
 import co.edu.uniandes.rest.dtos.ReservaDTO;
@@ -107,9 +108,9 @@ public class PuntoDeAtencionResource {
      */
     @GET
     @Path("ubicacion")
-    public PuntoDeAtencionDetailDTO getPuntoDeAtencionByUbicacion(@QueryParam("ubicacion") String ubic)
+    public PuntoDeAtencionDetailDTO getPuntoDeAtencionByUbicacion(@QueryParam("name") String ubic)
     {
-        PuntoDeAtencionEntity puntoEntity = puntoDeAtencionLogic.getByUbicacion(ubic);
+        PuntoDeAtencionEntity puntoEntity = puntoDeAtencionLogic.getByName(ubic);
         if(puntoEntity == null)
         {
             throw new WebApplicationException("No existe un punto de atención con esa especificación", 404);
@@ -128,7 +129,7 @@ public class PuntoDeAtencionResource {
      * @throws CityLogicException cuando ya existe un punto de atencion con el id suministrado
      */
     @POST
-    public PuntoDeAtencionDetailDTO createPuntoDeAtencion(PuntoDeAtencionDetailDTO punto) throws Exception 
+    public PuntoDeAtencionDetailDTO createPuntoDeAtencion(PuntoDeAtencionDetailDTO punto) throws BusinessLogicException
     {
         return new PuntoDeAtencionDetailDTO(puntoDeAtencionLogic.createPuntoDeAtencion(punto.toEntity()));
     }

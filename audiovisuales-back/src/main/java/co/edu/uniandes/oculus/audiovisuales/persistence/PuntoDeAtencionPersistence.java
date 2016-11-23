@@ -58,16 +58,16 @@ public class PuntoDeAtencionPersistence
         em.remove(entity);
     }
     
-    public PuntoDeAtencionEntity findByUbicacion(String ubicacion)
+   public PuntoDeAtencionEntity findByName(String name)
     {
-         LOGGER.log(Level.INFO, "Consultando punto de atencion con ubicacion= ", ubicacion);
+         LOGGER.log(Level.INFO, "Consultando punto de atencion con name= ", name);
         TypedQuery<PuntoDeAtencionEntity> q
-                = em.createQuery("select u from PuntoDeAtencionEntity u where u.ubicacion = :ubicacion", PuntoDeAtencionEntity.class);
-        q = q.setParameter("ubicacion", ubicacion);
+               = em.createQuery("select u from PuntoDeAtencionEntity u where u.name = :name", PuntoDeAtencionEntity.class);
+        q = q.setParameter("name", name);
         
         List<PuntoDeAtencionEntity> puntoEncontrado = q.getResultList();
         if (puntoEncontrado.isEmpty() ) {
-            return null; 
+           return null; 
         } else {
             return puntoEncontrado.get(0);
         }

@@ -20,7 +20,7 @@ and open the template in the editor.
                 <tbody>
                     <tr ng-repeat="record in records">
                        
-                        <td id="{{$index}}-ubicacion">{{record.ubicacion}}</td>
+                        <td id="{{$index}}-name">{{record.name}}</td>
 
                         <td>
                             <button style="color:darkcyan" style="background-color:floralwhite"id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="puntoDeAtencionAdminGeneralEdit({puntoDeAtencionId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>

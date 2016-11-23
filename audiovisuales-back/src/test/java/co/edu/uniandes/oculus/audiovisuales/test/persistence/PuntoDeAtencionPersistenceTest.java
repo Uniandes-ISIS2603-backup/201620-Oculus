@@ -128,7 +128,7 @@ public class PuntoDeAtencionPersistenceTest
         Assert.assertNotNull(nuevaEntidad);
        
         Assert.assertEquals(entidad.getId(), nuevaEntidad.getId());
-        Assert.assertEquals(entidad.getUbicacion(), nuevaEntidad.getUbicacion());
+        Assert.assertEquals(entidad.getName(), nuevaEntidad.getName());
         //fail("testFind");
     }
 
@@ -168,7 +168,7 @@ public class PuntoDeAtencionPersistenceTest
         PuntoDeAtencionEntity entity = em.find(PuntoDeAtencionEntity.class, result.getId());
         Assert.assertNotNull(entity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(entity.getUbicacion(), newEntity.getUbicacion());
+        
         //fail("testCreate");
     }
 
@@ -202,18 +202,18 @@ public class PuntoDeAtencionPersistenceTest
         PuntoDeAtencionEntity resp = em.find(PuntoDeAtencionEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(newEntity.getUbicacion(), resp.getUbicacion());
+        //Assert.assertEquals(newEntity.getUbicacion(), resp.getUbicacion());
         //fail("testUpdate");
     }
     
-    @Test
-    public void testGetByUbicacion()
-    {
-        PuntoDeAtencionEntity punto1 = data.get(0);
-        PuntoDeAtencionEntity punto2 = puntoDeAtencionPersistence.findByUbicacion(punto1.getUbicacion());
-        Assert.assertNotNull(punto2);
-        Assert.assertEquals(punto2.getUbicacion(), punto1.getUbicacion());
-        Assert.assertEquals(punto2.getId(), punto1.getId());
-    }
+    //@Test
+    //public void testGetByUbicacion()
+    //{
+      //  PuntoDeAtencionEntity punto1 = data.get(0);
+        //PuntoDeAtencionEntity punto2 = puntoDeAtencionPersistence.findByUbicacion(punto1.getUbicacion());
+       // Assert.assertNotNull(punto2);
+       // Assert.assertEquals(punto2.getName(), punto1.getName());
+       // Assert.assertEquals(punto2.getId(), punto1.getId());
+    //}
     
 }
