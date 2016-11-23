@@ -23,10 +23,7 @@
                 <label for="PublishingDate" class="col-md-2 control-label">Fecha Inicio</label>
                 <div class="col-md-10">
                     <p class="input-group">
-                        <input  id="publishingdate" name="publishingdate"  type="text" class="form-control" uib-datepicker-popup ng-model="currentRecord.fechaInicial" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="ctrl.open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
+                        <input  id="publishingdate" name="publishingdate"  type="date" class="form-control" uib-datepicker-popup ng-model="currentRecord.fechaInicial" ng-required="true" close-text="Close" />
                     </p>
                 </div>
             </div>
@@ -36,10 +33,7 @@
                 <label for="PublishingDate" class="col-md-2 control-label">Fecha Final</label>
                 <div class="col-md-10">
                     <p class="input-group">
-                        <input  id="publishingdate" name="publishingdate"  type="text" class="form-control" uib-datepicker-popup ng-model="currentRecord.fechaFinal" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="ctrl.open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
+                        <input  id="publishingdate" name="publishingdate"  type="date" class="form-control" uib-datepicker-popup ng-model="currentRecord.fechaFinal" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                     </p>
                 </div>
             </div> 
