@@ -1,6 +1,6 @@
-<div class="container-fluid" >
+<div class="row" >
    
-    <table class="table table-hover" class="col-md-4">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th class="active">Nombre</th>
@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="record in records">
+            <tr ng-repeat="record in records" style="background-color: #D0D3D4">
                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
                 <td id="{{$index}}-id">{{record.id}}</td>
                 <td id="{{$index}}-login">{{record.login}}</td>
