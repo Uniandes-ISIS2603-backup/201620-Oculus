@@ -34,7 +34,7 @@
                 currentRecord = $scope.currentRecord;
                 //alert($scope.idEquipo);
                 //administradores/{idAdministrador: \d+}/equipos/{idEquipo: \d+}/devuelto
-                alert(administradoresContext+ "/" + id + "/equipos/"+ $scope.idEquipo+"/devuelto");
+                //alert(administradoresContext+ "/" + id + "/equipos/"+ $scope.idEquipo+"/devuelto");
                 return $http.put(administradoresContext+ "/" + id + "/equipos/"+ $scope.idEquipo+"/devuelto",currentRecord)
                         .then(function () {
                             // $http.post es una promesa

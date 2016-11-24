@@ -22,7 +22,7 @@
             
             $http.get(equiposContext+"/tipos").then(function(response){
                 $scope.tipos=response.data;
-                alert(tipos);
+                //alert(tipos);
             }); 
             
             ; 
@@ -31,7 +31,7 @@
             {
                 currentRecord = $scope.currentRecord;
                 currentRecord.estado = currentRecord.tipo.nombre;
-                alert(currentRecord.estado);
+                //alert(currentRecord.estado);
                 // ejecuta POST en el recurso REST
                 return $http.post(profesoresContext+ "/" + idP + "/reservas", currentRecord)
                         .then(function () {

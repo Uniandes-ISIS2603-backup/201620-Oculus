@@ -113,6 +113,30 @@ public class EquipoPersistence
         t.setId(1L);
         t.setName("Computador");
         em.persist(t);
+        
+        LOGGER.log(Level.INFO, "Crear tipo 2");
+        t = new TipoEntity();
+        t.setId(2L);
+        t.setName("Audífonos");
+        em.persist(t);
+        
+        LOGGER.log(Level.INFO, "Crear tipo 3");
+        t = new TipoEntity();
+        t.setId(3L);
+        t.setName("Cámara");
+        em.persist(t);
+        
+        LOGGER.log(Level.INFO, "Crear tipo 4");
+        t = new TipoEntity();
+        t.setId(4L);
+        t.setName("Tablet");
+        em.persist(t);
+        
+        LOGGER.log(Level.INFO, "Crear tipo 5");
+        t = new TipoEntity();
+        t.setId(5L);
+        t.setName("Celular");
+        em.persist(t);
     }
     
     public void truncate()
