@@ -97,14 +97,13 @@ public class EquipoPersistence
         return q.getSingleResult();
     }
 
-    public ReservaEntity getReservaActiva(long idEquipo) 
+    public List<ReservaEntity> getReservaActiva(long idEquipo) 
     {
         LOGGER.log(Level.INFO, "Consultar reserva activa del equipo con id:"+idEquipo);
-        TypedQuery<ReservaEntity> q = em.createQuery("SELECT u FROM ReservaEntity u WHERE  u.equipo.id = :id  AND"
-                + "u.estado = activo ",ReservaEntity.class);
+        TypedQuery<ReservaEntity> q = em.createQuery("SELECT u FROM ReservaEntity u WHERE  u.equipo.id = :id  AND u.estado = :activo ",ReservaEntity.class);
         q = q.setParameter("id", idEquipo);
-        q = q.setParameter("activo","Reserva Activa");
-        return q.getSingleResult();
+        q = q.setParameter("activo",ReservaEntity.RESERVA_ACTIVA);
+        return q.getResultList();
     }
 
     public void crearTipos() 

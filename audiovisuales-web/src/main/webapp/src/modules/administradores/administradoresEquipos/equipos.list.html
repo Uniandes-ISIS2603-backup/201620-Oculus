@@ -4,6 +4,7 @@
     <table class="table table-hover" class="col-md-4">
         <thead>
             <tr>
+                <th class="active">Id</th>
                 <th class="active">Tipo</th>
                 <th class="active">Caracteríticas</th>
                 
@@ -11,6 +12,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
+                <td id="{{$index}}-id">{{record.id}}</td>
                 <td id="{{$index}}-tipo">{{record.tipo.nombre}}</td>
                 <td id="{{$index}}-caracteristicas">{{record.caracteristicas}}</td>
 

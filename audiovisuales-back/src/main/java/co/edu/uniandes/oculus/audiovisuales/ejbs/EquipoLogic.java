@@ -102,7 +102,11 @@ public class EquipoLogic implements IEquipoLogic
     @Override
     public ReservaEntity getReservaActiva(long idEquipo)
     {
-        return persistence.getReservaActiva(idEquipo);
+        ReservaEntity r = null;
+        List<ReservaEntity> rs = persistence.getReservaActiva(idEquipo);
+        if(rs.size()>0)
+            r=rs.get(0);
+        return r;
     }
     
     @Override

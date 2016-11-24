@@ -7,6 +7,7 @@ package co.edu.uniandes.oculus.audiovisuales.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
 import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,5 +98,30 @@ public class ReservaPersistence {
         q = q.setParameter("id", idProfesor);
         q = q.setParameter("ide", idReserva);
         return q.getSingleResult();
+    }
+
+    public EquipoEntity encontrarEquipo(String estado, Date fecha) 
+    {
+        EquipoEntity r = null;
+        LOGGER.log(Level.INFO, "Encontrar un equipo tipo: "+estado +" disponible para"+fecha);
+        TypedQuery<EquipoEntity> q = em.createQuery("SELECT u FROM EquipoEntity u WHERE  u.tipo.name = :tipo",EquipoEntity.class);
+        q = q.setParameter("tipo", estado);
+        List<EquipoEntity> posibles =q.getResultList();
+        boolean encontrado = false;
+        for (int i = 0; i < posibles.size() && !encontrado ; i++) 
+        {
+            EquipoEntity actual=posibles.get(i);
+            TypedQuery<ReservaEntity> qe = em.createQuery("SELECT u FROM ReservaEntity u WHERE  u.equipo.id = :id AND u.estado = :es AND u.fecha = :fecha",ReservaEntity.class);
+            qe = qe.setParameter("id", actual.getId());
+            qe = qe.setParameter("es", ReservaEntity.RESERVA_ACTIVA);
+            qe = qe.setParameter("fecha", fecha);
+            
+            if(qe.getResultList().size()==0)
+            {
+                encontrado = true;
+                r= actual;
+            }
+        }
+        return r;
     }
 }
