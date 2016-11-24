@@ -1,4 +1,4 @@
-<div class="col-md-6 well">
+<div class="col-md-6 well" style="background-color: #777;border-color: #111">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
     <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
@@ -6,17 +6,14 @@
             <div ng-message="required">Llene el formulario</div>
         </div>
             
-        <fieldset>
+        <fieldset style="background-color: #777">
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
                 
                 <label for="PublishingDate" class="col-md-2 control-label">Fecha</label>
                 <div class="col-md-10">
                     <p class="input-group">
-                        <input  id="publishingdate" name="publishingdate"  type="text" class="form-control" uib-datepicker-popup ng-model="currentRecord.fecha" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="ctrl.open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
+                        <input  id="publishingdate" name="publishingdate"  type="date" class="form-control" uib-datepicker-popup ng-model="currentRecord.fecha" ng-required="true" close-text="Close" />
                     </p>
                 </div>
             </div> 
@@ -28,8 +25,8 @@
                     <input id="estado" name="estado" class="form-control" type="text" ng-model="currentRecord.estado" ng-init="currentRecord.estado" required />
                 </div>
             </div>
-            <button type="button" ui-sref='reservasList'>Cancel</button>
-            <button type="submit" >Save</button>    
+            <button class="btn btn-primary" type="button" ui-sref='reservasList'>Cancelar</button>
+            <button class="btn btn-primary" type="submit" >Guardar</button>    
         </fieldset>
     </form>
 </div>

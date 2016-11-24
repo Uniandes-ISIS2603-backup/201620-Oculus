@@ -7,7 +7,7 @@
             </ng-message> 
 </div>
 
-<div class="col-md-12 well">
+<div class="col-md-12 well" style="background-color: #777;border-color: #111">
     <form novalidate name="form" id="book-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
 
         
@@ -15,16 +15,16 @@
         <fieldset style="background-color: #777">
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <!-- Tipo -->
-            <label for="tipo" class="col-md-4 control-label">Tipo</label>
-                <div class="col-md-10">
+            <label for="tipo" class="col-md-2 control-label">Tipo:</label>
+                <div class="col-md-4">
                 <select id="tipo" name="tipo" ng-model="currentRecord.tipo" ng-options="tipo.nombre for tipo in tipos track by tipo.id" class="form-control" type="text" ng-model="currentRecord.tipo"></select>
                 </div>
             <!-- Fecha -->
-            <div class="form-group col-md-6" ng-class="{'has-success': form.fecha.$valid && form.fecha.$dirty, 'has-error': form.fecha.$invalid && (form.fecha.$dirty || form.$submitted)}" >
+            <div class="form-group col-md-10" ng-class="{'has-success': form.fecha.$valid && form.fecha.$dirty, 'has-error': form.fecha.$invalid && (form.fecha.$dirty || form.$submitted)}" >
 
                 <label for="fecha" class="col-md-2 control-label">Fecha:</label>
                 
-                <div class="col-md-10">
+                <div class="col-md-6">
                     <input  id="publishingdate" name="fecha"  type="date" class="form-control" uib-datepicker-popup ng-model="currentRecord.fecha" ng-required="true" close-text="Close" />
                     
                 </div>
