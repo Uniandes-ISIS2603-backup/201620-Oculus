@@ -26,5 +26,9 @@ public interface IAdministradorLogic
     public AdministradorEntity updateAdministrador(AdministradorEntity entity);
 
     public void deleteAdministrador(Long id);
+
+    public void truncate();
+
+    
     
 }

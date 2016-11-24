@@ -66,4 +66,10 @@ public class PuntoDeAtencionLogic implements IPuntoDeAtencionLogic
         return persistence.findByName(ubicacion); 
        
     }
+    
+    @Override
+    public void truncate()
+    {
+        persistence.truncate();
+    }
 }

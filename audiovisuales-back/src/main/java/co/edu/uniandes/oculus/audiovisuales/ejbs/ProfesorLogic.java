@@ -68,6 +68,12 @@ public class ProfesorLogic implements IProfesorLogic{
             throw new BusinessLogicException("Rango de fechas no valido");
         return persistence.find(profesorId).getReservasRangoFechas(fecha1, fecha2);
     }
+    
+    @Override
+    public void truncate()
+    {
+        persistence.truncate();
+    }
 
     
     

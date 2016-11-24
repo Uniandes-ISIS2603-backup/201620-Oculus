@@ -115,4 +115,13 @@ public class EquipoPersistence
         em.persist(t);
     }
     
+    public void truncate()
+    {
+        List a = findAll();
+        for (Object object : a) 
+        {
+            em.remove(object);
+        }
+    }
+    
 }

@@ -121,5 +121,12 @@ public class EquipoLogic implements IEquipoLogic
         return tipoPersistence.find(id);
     }
     
+    @Override
+    public void truncate()
+    {
+        persistence.truncate();
+        tipoPersistence.truncate();
+    }
+    
     
 }

@@ -59,7 +59,7 @@ public class AdministradorResource
     private IAdministradorLogic administradorLogic;
     
     @Inject
-    private IEquipoLogic equipoLogicMock;
+    private IEquipoLogic equipoLogic;
     
     @Inject 
     private IReservaLogic reservaLogicMock;
@@ -97,7 +97,7 @@ public class AdministradorResource
         public List<EquipoDetailDTO> getEquipos(@PathParam("idAdministrador") Long id ) throws EquipoLogicException
         {
             AdministradorEntity a = administradorLogic.getAdministrador(id);
-            return listEntity2DTO(equipoLogicMock.getEquiposByIdPuntoDeAtencion(a.getPuntoDeAtencion().getId()));
+            return listEntity2DTO(equipoLogic.getEquiposByIdPuntoDeAtencion(a.getPuntoDeAtencion().getId()));
         }
     
     /**
@@ -110,7 +110,7 @@ public class AdministradorResource
     public EquipoDetailDTO getEquipo(@PathParam("idAdministrador") Long idAdmin , @PathParam("idEquipo") Long idEquipo) throws EquipoLogicException
     {
         AdministradorEntity a = administradorLogic.getAdministrador(idAdmin);
-        return new EquipoDetailDTO(equipoLogicMock.getEquipoByIdPuntoDeAtencion( a.getId(),idEquipo));
+        return new EquipoDetailDTO(equipoLogic.getEquipoByIdPuntoDeAtencion( a.getId(),idEquipo));
     }
     
     /**
@@ -127,7 +127,7 @@ public class AdministradorResource
     public EquipoDetailDTO createEquipo(@PathParam("idAdministrador") Long idAdmin, EquipoDetailDTO equipo) throws EquipoLogicException, BusinessLogicException 
     {
         AdministradorEntity a = administradorLogic.getAdministrador(idAdmin);
-        TipoEntity tipo = equipoLogicMock.getTipo(equipo.getTipo().getId());
+        TipoEntity tipo = equipoLogic.getTipo(equipo.getTipo().getId());
         
         EquipoEntity e = equipo.toEntity();
         e.setPuntoDeAtencion(a.getPuntoDeAtencion());
@@ -137,7 +137,7 @@ public class AdministradorResource
         //Dto datos que manda el usuario
         //lo agrega a un arreglo
         logger.info("Se trata de agregar "+equipo+" a "+idAdmin);
-        return new EquipoDetailDTO(equipoLogicMock.createEquipo(e));
+        return new EquipoDetailDTO(equipoLogic.createEquipo(e));
     }
     
     @PUT
@@ -147,7 +147,7 @@ public class AdministradorResource
             logger.info("Trata de hacer put");
             equipo.setId(idEquipo);
             AdministradorEntity a = administradorLogic.getAdministrador(idAdmin);
-            return new EquipoDetailDTO(equipoLogicMock.updateEquipo(equipo.toEntity()));
+            return new EquipoDetailDTO(equipoLogic.updateEquipo(equipo.toEntity()));
     }
     
          /**
@@ -161,15 +161,15 @@ public class AdministradorResource
     public void deleteEquipo(@PathParam("idEquipo") Long idEquipo) throws EquipoLogicException 
     {
             logger.info("Trata de borrar");
-            equipoLogicMock.deleteEquipo(idEquipo);
+            equipoLogic.deleteEquipo(idEquipo);
     }
     @PUT
     @Path("{idAdministrador: \\d+}/equipos/{idEquipo: \\d+}/devuelto")
     public EquipoDTO devolverEquipo(@PathParam("idEquipo") Long idEquipo, EquipoDTO equipo) throws EquipoLogicException, CityLogicException 
     {
             logger.info("Trata de devolver equipo");
-            EquipoEntity e = equipoLogicMock.getEquipo(idEquipo);
-            ReservaEntity r = equipoLogicMock.getReservaActiva(e.getId());
+            EquipoEntity e = equipoLogic.getEquipo(idEquipo);
+            ReservaEntity r = equipoLogic.getReservaActiva(e.getId());
             reservaLogicMock.devolver(idEquipo,r);
             return null;
     }
@@ -242,5 +242,13 @@ public class AdministradorResource
     {
           logger.info("Trata de borrar");
             administradorLogic.deleteAdministrador(id);
+    }
+        @DELETE
+    @Path("tabla")
+    public void deleteTable() throws BusinessLogicException
+    {
+          logger.info("Trata de borrar la tabla");
+            administradorLogic.truncate();
+            equipoLogic.truncate();
     }
 }

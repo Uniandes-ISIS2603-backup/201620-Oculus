@@ -123,4 +123,10 @@ public class ReservaLogic implements IReservaLogic{
     {
         return persistence.findAllPendientes();
     }
+    
+    @Override
+    public void truncate()
+    {
+        persistence.truncate();
+    }
 }

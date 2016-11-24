@@ -19,7 +19,7 @@
             this.saveRecord = function () 
             {
                 currentRecord = $scope.currentRecord;
-                alert(currentRecord.tipo.nombre);
+                //alert(currentRecord.tipo.nombre);
                     //alert(administradoresContext+ "/" + $scope.actual + "/equipos");
                     // ejecuta POST en el recurso REST
                     return $http.post(administradoresContext+ "/" + id + "/equipos", currentRecord)

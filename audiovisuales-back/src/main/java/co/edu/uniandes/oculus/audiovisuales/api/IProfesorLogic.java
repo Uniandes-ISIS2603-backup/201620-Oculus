@@ -23,5 +23,6 @@ public interface IProfesorLogic {
     public ProfesorEntity updateProfesor(ProfesorEntity entity);
     public List<ReservaEntity> listReservasRangoFechas(long profesorId, Date fecha1, Date fecha2) throws BusinessLogicException;
     public void deleteProfesor(Long id);
-    
+    public void truncate();
+
 }

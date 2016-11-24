@@ -34,5 +34,7 @@ public interface IEquipoLogic
     public void crearTipos();
 
     public TipoEntity getTipo(Long id);
+    
+    public void truncate();
 
 }

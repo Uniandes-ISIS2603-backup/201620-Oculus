@@ -72,4 +72,14 @@ public class ProfesorPersistence {
         em.remove(entity);
     }
     
+    
+    public void truncate()
+    {
+        List a = findAll();
+        for (Object object : a) 
+        {
+            em.remove(object);
+        }
+    }
+    
 }

@@ -29,4 +29,6 @@ public interface IReservaLogic {
     public List<ReservaEntity> getReservasPendientes(Long paId);
 
     public void devolver(Long idEquipo, ReservaEntity r);
+    
+    public void truncate();
 }

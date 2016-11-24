@@ -72,5 +72,13 @@ public class PuntoDeAtencionPersistence
             return puntoEncontrado.get(0);
         }
     }
+   public void truncate()
+    {
+        List a = findAll();
+        for (Object object : a) 
+        {
+            em.remove(object);
+        }
+    }
 
 }

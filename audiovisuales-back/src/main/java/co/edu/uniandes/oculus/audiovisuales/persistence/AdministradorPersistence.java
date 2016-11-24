@@ -1,6 +1,10 @@
 package co.edu.uniandes.oculus.audiovisuales.persistence;
 
 import co.edu.uniandes.oculus.audiovisuales.entities.AdministradorEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.EquipoEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.ProfesorEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.PuntoDeAtencionEntity;
+import co.edu.uniandes.oculus.audiovisuales.entities.ReservaEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +19,7 @@ import javax.persistence.TypedQuery;
  * @author Sneider Velandia G
  */
 @Stateless
-public class AdministradorPersistence 
+public class AdministradorPersistence
 {
     private static final Logger LOGGER = Logger.getLogger(AdministradorPersistence.class.getName());
     
@@ -24,13 +28,13 @@ public class AdministradorPersistence
     protected EntityManager em;
     
     /// CRUD ///
-
+    
     /**
      * encontrar administrador por un id
      * @param id identificador del administrador
      * @return administrador con el id dado.
      */
-    public AdministradorEntity find(Long id) 
+    public AdministradorEntity find(Long id)
     {
         LOGGER.log(Level.INFO, "Consultando Administrador con id={0}", id);
         return em.find(AdministradorEntity.class, id);
@@ -47,7 +51,7 @@ public class AdministradorPersistence
     }
     
     /**
-     * crear un administrador 
+     * crear un administrador
      * @param adminEntity
      * @return retorna el administrador creado
      */
@@ -60,7 +64,7 @@ public class AdministradorPersistence
     }
     
     /**
-     * Modificar un administrador 
+     * Modificar un administrador
      * @param adminEntity administrador a modificar
      * @return el administrador modificado
      */
@@ -74,7 +78,7 @@ public class AdministradorPersistence
      * Borrar un adminitrador dado su id
      * @param id identificador del administrador
      */
-    public void delete(Long id) 
+    public void delete(Long id)
     {
         LOGGER.log(Level.INFO, "Borrando Administrador con id={0}", id);
         AdministradorEntity entity = em.find(AdministradorEntity.class, id);
@@ -91,11 +95,20 @@ public class AdministradorPersistence
         TypedQuery<AdministradorEntity> q = em.createQuery("select u from AdministradorEntity u where u.name = :name", AdministradorEntity.class);
         q = q.setParameter("name", name);
         
-       List<AdministradorEntity> administradoresConNombreIgual = q.getResultList();
+        List<AdministradorEntity> administradoresConNombreIgual = q.getResultList();
         if (administradoresConNombreIgual.isEmpty() ) {
-            return null; 
+            return null;
         } else {
             return administradoresConNombreIgual.get(0);
+        }
+    }
+    
+    public void truncate()
+    {
+        List a = findAll();
+        for (Object object : a) 
+        {
+            em.remove(object);
         }
     }
 }

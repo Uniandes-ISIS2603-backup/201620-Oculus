@@ -124,4 +124,13 @@ public class ReservaPersistence {
         }
         return r;
     }
+    
+    public void truncate()
+    {
+        List a = findAll();
+        for (Object object : a) 
+        {
+            em.remove(object);
+        }
+    }
 }

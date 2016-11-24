@@ -25,4 +25,6 @@ public interface IPuntoDeAtencionLogic
     public PuntoDeAtencionEntity updatePuntoDeAtencion(PuntoDeAtencionEntity puntoDeAtencion);
     
     public PuntoDeAtencionEntity getByName(String ubicacion);
+    
+    public void truncate();
 }

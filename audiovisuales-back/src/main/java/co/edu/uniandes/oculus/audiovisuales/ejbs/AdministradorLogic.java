@@ -69,12 +69,12 @@ public class AdministradorLogic implements IAdministradorLogic
         else
         {
             PuntoDeAtencionEntity a = new PuntoDeAtencionEntity();
-            a.setId(adminEntity.getId());
+            //a.setId(adminEntity.getId());
             a.setName("Sin asignar");
             PuntoDeAtencionEntity ab = puntoDeAtencionPersistence.create(a);
             
-                    adminEntity.setPuntoDeAtencion(ab);
-                    persistence.create(adminEntity);
+            adminEntity.setPuntoDeAtencion(ab);
+            persistence.create(adminEntity);
         }
         return adminEntity;
     }
@@ -104,6 +104,12 @@ public class AdministradorLogic implements IAdministradorLogic
     public AdministradorEntity getAdministradorByName(String name)
     {
         return persistence.findByName(name);
+    }
+    
+    @Override
+    public void truncate()
+    {
+        persistence.truncate();
     }
     
 }
