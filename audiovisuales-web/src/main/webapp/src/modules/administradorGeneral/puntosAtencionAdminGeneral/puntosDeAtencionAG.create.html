@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div class="col-md-6 well">
+<div class="col-md-6 well" style="background-color: #777;border-color: #111">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
     <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
@@ -12,7 +12,7 @@ and open the template in the editor.
             <div ng-message="required">Llene el campo solicitado</div>
         </div>
    
-        <fieldset>
+        <fieldset style="background-color: #777">
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
                 <label for="name" class="col-md-2 control-label">Nombre</label>
@@ -20,8 +20,8 @@ and open the template in the editor.
                     <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
                 </div>
             </div>
-            <button type="button" ui-sref='adminGeneralPuntosDeAtencion'>Cancelar</button>
-            <button type="submit" >Guardar</button>    
+            <button class="btn btn-primary" type="button" ui-sref='adminGeneralPuntosDeAtencion'>Cancelar</button>
+            <button class="btn btn-primary" type="submit" >Guardar</button>    
         </fieldset>
     </form>
 </div>

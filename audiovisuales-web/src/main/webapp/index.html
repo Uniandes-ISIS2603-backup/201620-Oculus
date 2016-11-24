@@ -60,67 +60,46 @@
 
     </head>
    
-        <body style="padding-top: 20px;">
-        <div class="container-fluid" class="col-md-12">   
-            <h1 align=center size=5 > Audiovisuales </h1>
-            <img src="http://pymematicaeventos.com/wp-content/uploads/2014/02/streaming-eventos.jpg" align="center" WIDTH="100%" HEIGHT="350">
-            <ul class="nav nav-tabs nav-justified navbar-inverse">
+        <body style="background-color:#333 ">
+        <div class="container-fluid" class="col-md-8">   
+            <a style="color: white;font-family: Vivaldi;font-size: 8em;text-align: center" > Audiovisuales </a>
+           
+            <ul class="nav nav-tabs nav-justified navbar-form navbar-header" >
                                 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Administrador General
+                    <a class="dropdown-toggle" data-toggle="dropdown" style="background-color: #21618C;color: white;border-color: #154330" >Administrador General
                         <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="background-color: #555">
                          
-                        <li><a ui-sref="adminGeneralPuntosDeAtencion">Puntos de atención</a></li>
-                        <li><a ui-sref="adminGeneralPuntosDeAtencionCreate">Crear Punto de atención</a></li>
-                        <li><a ui-sref="adminGeneralReservasPendientes">Ver reservas pendientes</a></li>    
-                        <li><a ui-sref="adminGeneralReservasCanceladas">Ver reservas canceladas</a></li>
+                            <li><a ui-sref="adminGeneralPuntosDeAtencion" style="color: white"> Lista de Puntos de atención</a></li>
+                        <li><a ui-sref="adminGeneralPuntosDeAtencionCreate" style="color: white">Crear Punto de atención</a></li>
+                        <li><a ui-sref="adminGeneralReservasPendientes" style="color: white">Ver reservas pendientes</a></li>    
+                        <li><a ui-sref="adminGeneralReservasCanceladas" style="color: white">Ver reservas canceladas</a></li>
                     </ul>
                 </li>
                 
+                          
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Equipos
+                    <a class="dropdown-toggle" data-toggle="dropdown" style="background-color: #21618C;color: white;border-color: #154330">Administradores
                         <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="equipoCreate">Crear</a></li>    
-                         <li><a ui-sref="equiposList">Listar</a></li>     
+                    <ul class="dropdown-menu" style="background-color: #555">
+                        <li><a ui-sref="administradoresCreate" style="color: white">Crear Administrador</a></li>    
+                         <li><a ui-sref="administradoresList" style="color: white">Lista de Administradores</a></li>
                     </ul>
                 </li>
                 
+              
+                
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Administradores
+                    <a class="dropdown-toggle" data-toggle="dropdown" style="background-color: #21618C;color: white;border-color: #154330">Profesores
                         <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="administradoresCreate">Crear Administrador</a></li>    
-                         <li><a ui-sref="administradoresList">Lista de Administradores</a></li>
+                    <ul class="dropdown-menu" style="background-color: #555">
+                        <li><a ui-sref="profesorCreate" style="color: white">Crear Profesor</a></li>    
+                         <li><a ui-sref="profesoresList" style="color: white">Lista de Profesores</a></li>        
                     </ul>
                 </li>
                 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Puntos de atención
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="puntoDeAtencionCreate">Create</a></li>    
-                         <li><a ui-sref="puntosDeAtencionList">List</a></li>        
-                    </ul>
-                </li>
                 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Profesores
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="profesorCreate">Create</a></li>    
-                         <li><a ui-sref="profesoresList">List</a></li>        
-                    </ul>
-                </li>
-                
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Reservas
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">   
-                         <li><a ui-sref="reservasList">List</a></li>       
-                    </ul>
-                </li> 
                 
             </ul>
             <div ui-view="mainView">

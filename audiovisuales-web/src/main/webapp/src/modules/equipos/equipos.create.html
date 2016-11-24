@@ -1,4 +1,4 @@
-<div class="col-md-6 well">
+<div class="col-md-6 well" style="background-color: #777;border-color: #111">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
     <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
@@ -6,7 +6,7 @@
             <div ng-message="required">Llene el formulario</div>
         </div>
    
-        <fieldset>
+        <fieldset style="background-color: #777">
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
 
@@ -22,8 +22,8 @@
                                 
             </div>
             
-            <button type="button" ui-sref='equiposList'>Cancel</button>
-            <button type="submit" >Save</button>    
+            <button type="button" class="btn btn-primary" ui-sref='equiposList'>Cancel</button>
+            <button type="submit" class="btn btn-primary" >Save</button>    
         </fieldset>
     </form>
 </div>

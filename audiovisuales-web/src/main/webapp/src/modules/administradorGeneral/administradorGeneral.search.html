@@ -1,13 +1,13 @@
-<div class="col-md-6 well">
+<div class="col-md-6 well" style="background-color: #777;border-color: #111">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
-    <form novalidate name="form" id="city-form" role="form" ng-submit="ctrl.saveRecord(currentRecord.id)">
+    <form  ng-submit="ctrl.saveRecord(currentRecord.id)" >
         
         <div ng-messages="form.$error">
             <div ng-message="required">Propiedades de la busqueda: </div>
         </div>
             
-        <fieldset>
-            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+        <fieldset style="background-color: #777">
+            <input  id="id" class="form-control"  type="hidden" ng-model="currentRecord.id"/>
             
              <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
                 
@@ -30,7 +30,7 @@
             
             <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
                 
-                <label for="PublishingDate" class="col-md-2 control-label">Fecha Final</label>
+                <label for="PublishingDate" class="col-md-2 control-label" >Fecha Final</label>
                 <div class="col-md-10">
                     <p class="input-group">
                         <input  id="publishingdate" name="publishingdate"  type="date" class="form-control" uib-datepicker-popup ng-model="currentRecord.fechaFinal" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
@@ -38,8 +38,8 @@
                 </div>
             </div> 
             
-            <button type="button" ui-sref='administradoresList'>Cancel</button>
-            <button type="submit" >Save</button>    
+            <button type="button" class="btn btn-primary" ui-sref='administradoresList'>Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>    
         </fieldset>
     </form>
 </div>

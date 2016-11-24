@@ -1,4 +1,4 @@
-<div ng-messages="form.$error" multiple>
+<div ng-messages="form.$error" multiple style="background-color: #777;border-color: #111">
             <ng-message when="required">
                 <alert type="warning"><b>Ingrese los valores requeridos.</b><br>
                 Estados válidos de reserva: <br>
@@ -18,7 +18,7 @@
 
         
 
-        <fieldset>
+        <fieldset style="background-color: #777">
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <!-- Estado -->
             <div class="form-group col-md-6" ng-class="{'has-success': form.estado.$valid && form.estado.$dirty, 'has-error': form.estado.$invalid && (form.estado.$dirty || form.$submitted)}" >
@@ -41,8 +41,8 @@
            
              </fieldset>
             <div class="form-group col-md-12">
-                <button type="button" ui-sref='profesorReservasList'>Cancel</button>
-                <button type="submit" >Save</button>   
+                <button type="button" class="btn btn-primary" ui-sref='profesorReservasList'>Cancelar</button>
+                <button type="submit" class="btn btn-primary" >Guardar</button>   
             </div>
        
     </form>

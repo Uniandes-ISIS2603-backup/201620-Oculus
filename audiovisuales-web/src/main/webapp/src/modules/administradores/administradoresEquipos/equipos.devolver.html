@@ -1,4 +1,4 @@
-<div class="col-md-6 well">
+<div class="col-md-6 well" style="background-color: #777; border-color: #111 ">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
     <form novalidate name="form" id="city-form" role="form" ng-submit="form.$valid && ctrl.devolver()">
         
@@ -7,7 +7,7 @@
         </div>
         <h2>Devolver equipo </h2>
    
-        <fieldset>
+        <fieldset >
             
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
 
@@ -19,8 +19,8 @@
                                 
             </div>
             
-            <button type="button" ui-sref='reservasList'>Cancel</button>
-            <button type="submit" >Save</button>    
+            <button  type="button" ui-sref='reservasList'>Cancel</button>
+            <button  type="submit" >Save</button>    
         </fieldset>
     </form>
 </div>

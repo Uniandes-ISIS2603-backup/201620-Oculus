@@ -1,11 +1,11 @@
 <div class="container-fluid" >
     <button class="btn btn--default" ui-sref="profesorReservaCreate">Crear Reserva</button>
     <button class="btn btn--default" ui-sref="profesorReservasRangoFechas">Buscar reservas en rango de fechas</button>
-    <table class="table table-striped" class="col-md-4">
+    <table class="table table-hover" class="col-md-4">
         <thead>
             <tr>
-                <th>Fecha</th>
-                <th>Estado</th>
+                <th class="active">Fecha</th>
+                <th class="active">Estado</th>
                 
             </tr>
         </thead>
@@ -14,7 +14,7 @@
                 <td id="{{$index}}-fecha">{{record.fecha}}</td>
                 <td id="{{$index}}-estado">{{record.estado}}</td>
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.cancelarRecord(record)"><span class="glyphicon glyphicon-minus"></span> Cancelar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-primary" ng-click="ctrl.cancelarRecord(record)"><span class="glyphicon glyphicon-minus"></span> Cancelar</button>
                         
                 </td>    
             </tr>
